@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { offersDiscord } from "@glimstone/core";
 import { LANGUAGES, localeOf } from "../lib/i18n/languages";
 import { tables, type Table } from "../lib/i18n/locales/index";
 import { plural, translate } from "../lib/i18n/translate";
@@ -63,6 +64,13 @@ test("translations use no placeholder the English text lacks", () => {
       const want = texts(english.get(key)!).flatMap(names);
       for (const name of texts(value).flatMap(names)) assert.ok(want.includes(name), `${code}.${key} invents {${name}}`);
     }
+  }
+});
+
+test("the Help sentence names Discord in every language, so the card shows its button", () => {
+  for (const code of codes) {
+    const report = (tables[code].info as Table).report as string;
+    assert.ok(offersDiscord(report, "https://discord.gg/invite"), `${code}.info.report`);
   }
 });
 

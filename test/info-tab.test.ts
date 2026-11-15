@@ -18,8 +18,23 @@ before(async () => {
   Info = await loadComponent("src/settings/Info.vue");
 });
 
+const render = () => renderToString(createSSRApp({ render: () => h(Info) }));
+
 test("showing the Info tab opens no other window", async () => {
-  const html = await renderToString(createSSRApp({ render: () => h(Info) }));
+  const html = await render();
   assert.match(html, /CastleParcel/);
   assert.deepEqual(opened, []);
+});
+
+test("the Help card offers GitHub and Discord and no mail", async () => {
+  const html = await render();
+  assert.match(html, /open an issue on GitHub, or come say hi on Discord\./);
+  assert.match(html, /aria-label="GitHub"/);
+  assert.match(html, /aria-label="Discord"[^>]*>[\s\S]*?glim-discord-mark/);
+  assert.doesNotMatch(html, /aria-label="Email"/);
+});
+
+test("the GlimStone version opens its newest release", async () => {
+  const html = await render();
+  assert.match(html, /href="https:\/\/github\.com\/junkerderprovinz\/glimstone\/releases\/latest"/);
 });
