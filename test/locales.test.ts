@@ -67,6 +67,12 @@ test("translations use no placeholder the English text lacks", () => {
   }
 });
 
+test("the Help sentence is GlimStone's, the same in every app", () => {
+  const help = (code: string) => (tables[code].info as Table).report;
+  assert.equal(help("en"), "Problems, wishes or suggestions? You're welcome to open an issue on GitHub, or come say hi on Discord.");
+  assert.equal(help("de"), "Probleme, Wünsche oder Verbesserungsvorschläge? Mach gern ein Issue auf GitHub auf, oder schau auf Discord vorbei.");
+});
+
 test("the Help sentence names Discord in every language, so the card shows its button", () => {
   for (const code of codes) {
     const report = (tables[code].info as Table).report as string;
