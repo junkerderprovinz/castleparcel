@@ -5,5 +5,5 @@ import { dismiss, hold, release, toasts } from '@/src/toast';
 </script>
 
 <template>
-  <ToastViewport :toasts="toasts" :dismiss-label="t('common.close')" @dismiss="dismiss" @enter="hold" @leave="release" @focusin="hold" @focusout="release" />
+  <ToastViewport :toasts="toasts" :dismiss-label="t('common.close')" @dismiss="dismiss" @mouse-enter="hold" @mouse-leave="release" @focus="hold" @blur="release" />
 </template>

@@ -21,5 +21,5 @@ const chosen = (hex: string) => hex.toLowerCase() === props.modelValue.toLowerCa
 .gs-swatch:hover:not(:disabled) { transform: scale(1.1); }
 .gs-swatch[aria-checked="true"] { box-shadow: 0 0 0 2px var(--carbon-surface), 0 0 0 4px var(--carbon-text); }
 .gs-swatch:disabled { cursor: default; opacity: .45; }
-.gs-swatch:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
+.gs-swatch:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: 4px; }
 </style>
