@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Help goes to Discord.** The Help card in the Info tab offers GitHub and CastleParcel's Discord server, and the mail button is gone, in all 42 languages.
 - The GlimStone version in the Info tab opens GlimStone's newest release.
-- GlimStone 4.5.2.
+- GlimStone 4.5.4.
 
 ## [2.1.2] - 2026-11-11
 
