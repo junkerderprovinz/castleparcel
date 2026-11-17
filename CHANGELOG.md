@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.3] - 2026-11-17
+
 ### Changed
 
-- **Help goes to Discord.** The Help card in the Info tab offers GitHub and CastleParcel's Discord server, and the mail button is gone, in all 42 languages.
+- **Help goes to Discord.** The Help card in the Info tab offers GitHub and CastleParcel's Discord server, and the mail button is gone, in all 42 languages. The help sentence reads the same as in the other apps of the family, and French readers are addressed with tu.
 - The GlimStone version in the Info tab opens GlimStone's newest release.
-- GlimStone 4.5.4.
+- GlimStone 4.5.4: buttons, rows, menus and tiles hover in one color made from the accent, accent text in the light theme reads at 4.5:1 or more on every surface, and the focus ring is drawn solid in the accent's text color.
 
 ## [2.1.2] - 2026-11-11
 
@@ -331,6 +333,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/render-assets.mjs` renders the banner and icon from the logo SVG (with `@resvg/resvg-js` installed on demand).
 - Unraid Community Applications template, multi-arch image (`ghcr.io/junkerderprovinz/featherdrop`, amd64 and arm64), ASCII init-log banner, CI (ESLint, typecheck, XML template lint) and a release workflow. CI opts JavaScript actions into Node 24 (`FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`).
 
+[2.1.3]: https://github.com/junkerderprovinz/castleparcel/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/junkerderprovinz/castleparcel/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/junkerderprovinz/castleparcel/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/junkerderprovinz/castleparcel/compare/v2.0.0...v2.1.0
