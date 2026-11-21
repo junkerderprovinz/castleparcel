@@ -354,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee nhận thẻ và Apple Pay hoặc Google Pay. Trang sẽ mở trong một thẻ mới.",
     "paypalText": "PayPal mở trong một thẻ mới, có hoặc không cần tài khoản.",
     "cryptoText": "Chọn một loại tiền, rồi gửi đến địa chỉ hiện ra.",
-    "open": "Mở trang"
+    "open": "Mở trang",
+    "notesTitle": "Có gì mới trong {version}",
+    "notesLoading": "Đang tải ghi chú phát hành…",
+    "notesFailed": "Không thể tải ghi chú phát hành tại đây. Hãy mở trên GitHub.",
+    "notesRetry": "Thử lại",
+    "notesOnGitHub": "Xem bản phát hành đầy đủ trên GitHub"
   }
 }

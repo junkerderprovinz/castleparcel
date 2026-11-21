@@ -362,6 +362,11 @@
     "coffeeText": "Buy Me a Coffee pieņem kartes un Apple Pay vai Google Pay. Lapa atveras jaunā cilnē.",
     "paypalText": "PayPal atveras jaunā cilnē, ar kontu vai bez tā.",
     "cryptoText": "Izvēlies valūtu un sūti uz parādīto adresi.",
-    "open": "Atvērt lapu"
+    "open": "Atvērt lapu",
+    "notesTitle": "Jaunumi versijā {version}",
+    "notesLoading": "Ielādē izlaidumu piezīmes…",
+    "notesFailed": "Neizdevās šeit ielādēt izlaidumu piezīmes. Atveriet tās GitHub.",
+    "notesRetry": "Mēģināt vēlreiz",
+    "notesOnGitHub": "Skatīt pilnu izlaidumu GitHub"
   }
 }

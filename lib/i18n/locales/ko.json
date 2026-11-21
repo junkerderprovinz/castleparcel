@@ -354,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee는 카드와 Apple Pay, Google Pay를 받아요. 페이지는 새 탭에서 열려요.",
     "paypalText": "PayPal이 새 탭에서 열려요. 계정이 없어도 돼요.",
     "cryptoText": "통화를 고른 뒤, 표시되는 주소로 보내 주세요.",
-    "open": "페이지 열기"
+    "open": "페이지 열기",
+    "notesTitle": "{version} 새 소식",
+    "notesLoading": "릴리스 노트를 불러오는 중…",
+    "notesFailed": "여기에서 릴리스 노트를 불러올 수 없습니다. GitHub에서 여세요.",
+    "notesRetry": "다시 시도",
+    "notesOnGitHub": "GitHub에서 전체 릴리스 보기"
   }
 }

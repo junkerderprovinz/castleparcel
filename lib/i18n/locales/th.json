@@ -354,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee รับบัตร และ Apple Pay หรือ Google Pay หน้าเว็บจะเปิดในแท็บใหม่",
     "paypalText": "PayPal จะเปิดในแท็บใหม่ จะมีบัญชีหรือไม่ก็ได้",
     "cryptoText": "เลือกสกุลเงิน แล้วส่งไปยังที่อยู่ที่แสดง",
-    "open": "เปิดหน้าเว็บ"
+    "open": "เปิดหน้าเว็บ",
+    "notesTitle": "ใหม่ใน {version}",
+    "notesLoading": "กำลังโหลดบันทึกการเผยแพร่…",
+    "notesFailed": "ไม่สามารถโหลดบันทึกการเผยแพร่ที่นี่ได้ เปิดบน GitHub",
+    "notesRetry": "ลองอีกครั้ง",
+    "notesOnGitHub": "ดูรุ่นเต็มบน GitHub"
   }
 }

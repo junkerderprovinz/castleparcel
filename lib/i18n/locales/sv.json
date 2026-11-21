@@ -358,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee tar kort och Apple Pay eller Google Pay. Sidan öppnas i en ny flik.",
     "paypalText": "PayPal öppnas i en ny flik, med eller utan konto.",
     "cryptoText": "Välj en valuta och skicka sedan till adressen som visas.",
-    "open": "Öppna sidan"
+    "open": "Öppna sidan",
+    "notesTitle": "Nytt i {version}",
+    "notesLoading": "Läser in versionsinformation…",
+    "notesFailed": "Det gick inte att läsa in versionsinformationen här. Öppna den på GitHub.",
+    "notesRetry": "Försök igen",
+    "notesOnGitHub": "Visa hela versionen på GitHub"
   }
 }

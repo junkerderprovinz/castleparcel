@@ -358,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee võtab vastu kaarte ning Apple Payd või Google Payd. Leht avaneb uuel vahekaardil.",
     "paypalText": "PayPal avaneb uuel vahekaardil, kontoga või ilma.",
     "cryptoText": "Vali valuuta ja saada näidatud aadressile.",
-    "open": "Ava leht"
+    "open": "Ava leht",
+    "notesTitle": "Uut versioonis {version}",
+    "notesLoading": "Väljalaskemärkmete laadimine…",
+    "notesFailed": "Väljalaskemärkmeid ei õnnestunud siin laadida. Ava need GitHubis.",
+    "notesRetry": "Proovi uuesti",
+    "notesOnGitHub": "Vaata täielikku väljalasket GitHubis"
   }
 }

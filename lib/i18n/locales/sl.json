@@ -366,6 +366,11 @@
     "coffeeText": "Buy Me a Coffee sprejema kartice ter Apple Pay ali Google Pay. Stran se odpre v novem zavihku.",
     "paypalText": "PayPal se odpre v novem zavihku, z računom ali brez.",
     "cryptoText": "Izberi valuto in pošlji na naslov, ki se prikaže.",
-    "open": "Odpri stran"
+    "open": "Odpri stran",
+    "notesTitle": "Novosti v različici {version}",
+    "notesLoading": "Nalaganje opomb o izdaji…",
+    "notesFailed": "Opomb o izdaji tukaj ni bilo mogoče naložiti. Odpri jih na GitHubu.",
+    "notesRetry": "Poskusi znova",
+    "notesOnGitHub": "Ogled celotne izdaje na GitHubu"
   }
 }

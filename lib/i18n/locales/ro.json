@@ -362,6 +362,11 @@
     "coffeeText": "Buy Me a Coffee acceptă carduri și Apple Pay sau Google Pay. Pagina se deschide într-o filă nouă.",
     "paypalText": "PayPal se deschide într-o filă nouă, cu sau fără cont.",
     "cryptoText": "Alege o monedă, apoi trimite la adresa afișată.",
-    "open": "Deschide pagina"
+    "open": "Deschide pagina",
+    "notesTitle": "Noutăți în versiunea {version}",
+    "notesLoading": "Se încarcă notele de lansare…",
+    "notesFailed": "Notele de lansare nu au putut fi încărcate aici. Deschide-le pe GitHub.",
+    "notesRetry": "Încearcă din nou",
+    "notesOnGitHub": "Vezi lansarea completă pe GitHub"
   }
 }

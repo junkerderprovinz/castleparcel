@@ -5,6 +5,7 @@ import { computed, h, ref, type FunctionalComponent } from 'vue';
 import { releaseState } from '@/lib/release';
 import { glyph } from '@/src/glyphs';
 import GiveWindow from '@/src/gs-gaps/GiveWindow.vue';
+import ReleaseNotesWindow from '@/src/settings/ReleaseNotesWindow.vue';
 import { language, t } from '@/src/i18n';
 import { toast } from '@/src/toast';
 import { windowWords } from '@/src/ui';
@@ -29,9 +30,9 @@ async function check() {
 }
 
 // While a newer release waits, its notes are what is new.
+const notes = ref<string | null>(null);
 const whatsNew = () => {
-  const shown = update.value.kind === 'available' ? update.value.version : version;
-  window.open(`${REPO}/releases/tag/v${shown}`, '_blank', 'noopener');
+  notes.value = update.value.kind === 'available' ? update.value.version : version;
 };
 
 const svgMark = (svg: string): FunctionalComponent => () => h(BrandMark, { svg });
@@ -62,5 +63,6 @@ function bugReport() {
   <InfoAboutCard :coffee-art="coffeeArt" :paypal-glyph="glyph('IconPayPal')" :crypto-glyph="glyph('IconBitcoin')"
     :on-coffee="() => (giving = 'coffee')" :on-paypal="() => (giving = 'paypal')" :on-crypto="() => (giving = 'crypto')"
     :text="{ title: t('info.about'), body: t('info.body'), coffee: t('info.coffee'), coffeeButton: t('info.coffeeButton'), paypalButton: t('info.paypal'), cryptoButton: t('info.crypto') }" />
+  <ReleaseNotesWindow v-if="notes" :version="notes" :repo="REPO" @close="notes = null" />
   <GiveWindow v-if="giving" :title="t(ROUTES[giving].title)" :appeal="t('info.appeal')" :text="t(ROUTES[giving].text)" :go="t('info.open')" :url="ROUTES[giving].url" :glyph-key="ROUTES[giving].glyph" :words="windowWords()" @close="giving = null" />
 </template>

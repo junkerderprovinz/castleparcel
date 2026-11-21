@@ -362,6 +362,11 @@
     "coffeeText": "Buy Me a Coffee מקבל כרטיסי אשראי ו-Apple Pay או Google Pay. הדף נפתח בכרטיסייה חדשה.",
     "paypalText": "PayPal נפתח בכרטיסייה חדשה, עם חשבון או בלעדיו.",
     "cryptoText": "בחרו מטבע, ואז שלחו לכתובת שמוצגת.",
-    "open": "פתיחת הדף"
+    "open": "פתיחת הדף",
+    "notesTitle": "מה חדש בגרסה {version}",
+    "notesLoading": "טוען הערות גרסה…",
+    "notesFailed": "לא ניתן היה לטעון כאן את הערות הגרסה. אפשר לפתוח אותן ב-GitHub.",
+    "notesRetry": "ניסיון חוזר",
+    "notesOnGitHub": "הצגת ההשקה המלאה ב-GitHub"
   }
 }

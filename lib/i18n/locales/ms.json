@@ -354,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee menerima kad serta Apple Pay atau Google Pay. Halaman dibuka dalam tab baharu.",
     "paypalText": "PayPal dibuka dalam tab baharu, dengan atau tanpa akaun.",
     "cryptoText": "Pilih mata wang, kemudian hantar ke alamat yang ditunjukkan.",
-    "open": "Buka halaman"
+    "open": "Buka halaman",
+    "notesTitle": "Baharu dalam {version}",
+    "notesLoading": "Memuatkan nota keluaran…",
+    "notesFailed": "Nota keluaran gagal dimuatkan di sini. Buka di GitHub.",
+    "notesRetry": "Cuba lagi",
+    "notesOnGitHub": "Lihat keluaran penuh di GitHub"
   }
 }

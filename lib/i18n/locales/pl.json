@@ -366,6 +366,11 @@
     "coffeeText": "Buy Me a Coffee przyjmuje karty oraz Apple Pay lub Google Pay. Strona otworzy się w nowej karcie.",
     "paypalText": "PayPal otworzy się w nowej karcie, z kontem lub bez.",
     "cryptoText": "Wybierz walutę, a potem wyślij na pokazany adres.",
-    "open": "Otwórz stronę"
+    "open": "Otwórz stronę",
+    "notesTitle": "Nowości w wersji {version}",
+    "notesLoading": "Wczytywanie informacji o wersji…",
+    "notesFailed": "Nie udało się tutaj wczytać informacji o wersji. Otwórz je w GitHub.",
+    "notesRetry": "Spróbuj ponownie",
+    "notesOnGitHub": "Zobacz pełne wydanie na GitHub"
   }
 }
