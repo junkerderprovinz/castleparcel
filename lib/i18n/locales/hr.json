@@ -362,6 +362,11 @@
     "coffeeText": "Buy Me a Coffee prima kartice te Apple Pay ili Google Pay. Stranica se otvara u novoj kartici.",
     "paypalText": "PayPal se otvara u novoj kartici, s računom ili bez njega.",
     "cryptoText": "Odaberi valutu pa pošalji na adresu koju prikaže.",
-    "open": "Otvori stranicu"
+    "open": "Otvori stranicu",
+    "notesTitle": "Novo u verziji {version}",
+    "notesLoading": "Učitavanje bilješki o izdanju…",
+    "notesFailed": "Bilješke o izdanju nisu se mogle učitati ovdje. Otvorite ih na GitHubu.",
+    "notesRetry": "Pokušaj ponovno",
+    "notesOnGitHub": "Pogledaj cijelo izdanje na GitHubu"
   }
 }

@@ -354,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee ではカードや Apple Pay、Google Pay が使えます。ページは新しいタブで開きます。",
     "paypalText": "PayPal は新しいタブで開きます。アカウントがなくても使えます。",
     "cryptoText": "通貨を選んで、表示されたアドレスに送ってください。",
-    "open": "ページを開く"
+    "open": "ページを開く",
+    "notesTitle": "{version} の新着",
+    "notesLoading": "リリースノートを読み込んでいます…",
+    "notesFailed": "ここでリリースノートを読み込めませんでした。GitHub で開いてください。",
+    "notesRetry": "再試行",
+    "notesOnGitHub": "GitHub で完全なリリースを表示"
   }
 }

@@ -366,6 +366,11 @@
     "coffeeText": "Buy Me a Coffee prijíma karty aj Apple Pay alebo Google Pay. Stránka sa otvorí na novej karte.",
     "paypalText": "PayPal sa otvorí na novej karte, s účtom aj bez neho.",
     "cryptoText": "Vyber menu a pošli platbu na adresu, ktorá sa zobrazí.",
-    "open": "Otvoriť stránku"
+    "open": "Otvoriť stránku",
+    "notesTitle": "Novinky vo verzii {version}",
+    "notesLoading": "Načítavajú sa poznámky k vydaniu…",
+    "notesFailed": "Poznámky k vydaniu sa tu nepodarilo načítať. Otvor ich na GitHube.",
+    "notesRetry": "Skúsiť znova",
+    "notesOnGitHub": "Zobraziť celé vydanie na GitHube"
   }
 }

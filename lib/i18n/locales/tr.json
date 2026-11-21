@@ -358,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee kart, Apple Pay ya da Google Pay kabul eder. Sayfa yeni bir sekmede açılır.",
     "paypalText": "PayPal yeni bir sekmede açılır, hesapla ya da hesapsız.",
     "cryptoText": "Bir para birimi seç, sonra gösterilen adrese gönder.",
-    "open": "Sayfayı aç"
+    "open": "Sayfayı aç",
+    "notesTitle": "{version} sürümündeki yenilikler",
+    "notesLoading": "Sürüm notları yükleniyor…",
+    "notesFailed": "Sürüm notları burada yüklenemedi. GitHub'da aç.",
+    "notesRetry": "Tekrar dene",
+    "notesOnGitHub": "Sürümün tamamını GitHub'da görüntüle"
   }
 }

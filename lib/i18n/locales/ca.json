@@ -362,6 +362,11 @@
     "coffeeText": "Buy Me a Coffee accepta targetes i Apple Pay o Google Pay. La pàgina s'obre en una pestanya nova.",
     "paypalText": "PayPal s'obre en una pestanya nova, amb compte o sense.",
     "cryptoText": "Tria una moneda i envia a l'adreça que et mostra.",
-    "open": "Obre la pàgina"
+    "open": "Obre la pàgina",
+    "notesTitle": "Novetats de la versió {version}",
+    "notesLoading": "Carregant les notes de la versió…",
+    "notesFailed": "No s'han pogut carregar aquí les notes de la versió. Obre-les a GitHub.",
+    "notesRetry": "Torna-ho a provar",
+    "notesOnGitHub": "Mira la versió completa a GitHub"
   }
 }

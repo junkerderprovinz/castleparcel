@@ -358,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee tekur við kortum og Apple Pay eða Google Pay. Síðan opnast í nýjum flipa.",
     "paypalText": "PayPal opnast í nýjum flipa, með eða án aðgangs.",
     "cryptoText": "Veldu gjaldmiðil og sendu á heimilisfangið sem birtist.",
-    "open": "Opna síðuna"
+    "open": "Opna síðuna",
+    "notesTitle": "Nýtt í {version}",
+    "notesLoading": "Hleð útgáfuathugasemdum…",
+    "notesFailed": "Ekki tókst að hlaða útgáfuathugasemdum hér. Opnaðu þær á GitHub.",
+    "notesRetry": "Reyna aftur",
+    "notesOnGitHub": "Skoða fulla útgáfu á GitHub"
   }
 }

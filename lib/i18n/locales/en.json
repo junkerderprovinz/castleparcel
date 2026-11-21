@@ -358,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee takes cards and Apple Pay or Google Pay. The page opens in a new tab.",
     "paypalText": "PayPal opens in a new tab, with or without an account.",
     "cryptoText": "Pick a currency, then send to the address it shows.",
-    "open": "Open the page"
+    "open": "Open the page",
+    "notesTitle": "New in {version}",
+    "notesLoading": "Loading release notes…",
+    "notesFailed": "Couldn't load the release notes here. Open them on GitHub.",
+    "notesRetry": "Try again",
+    "notesOnGitHub": "View full release on GitHub"
   }
 }

@@ -358,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee hyväksyy kortit sekä Apple Pay- ja Google Pay -maksut. Sivu aukeaa uuteen välilehteen.",
     "paypalText": "PayPal aukeaa uuteen välilehteen, tilin kanssa tai ilman.",
     "cryptoText": "Valitse valuutta ja lähetä sitten sen näyttämään osoitteeseen.",
-    "open": "Avaa sivu"
+    "open": "Avaa sivu",
+    "notesTitle": "Uutta versiossa {version}",
+    "notesLoading": "Ladataan julkaisutietoja…",
+    "notesFailed": "Julkaisutietoja ei voitu ladata tässä. Avaa ne GitHubissa.",
+    "notesRetry": "Yritä uudelleen",
+    "notesOnGitHub": "Näytä koko julkaisu GitHubissa"
   }
 }

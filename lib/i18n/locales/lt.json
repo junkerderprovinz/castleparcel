@@ -366,6 +366,11 @@
     "coffeeText": "Buy Me a Coffee priima korteles ir Apple Pay ar Google Pay. Puslapis atsidaro naujame skirtuke.",
     "paypalText": "PayPal atsidaro naujame skirtuke, su paskyra ar be jos.",
     "cryptoText": "Pasirink valiutą, tada siųsk parodytu adresu.",
-    "open": "Atidaryti puslapį"
+    "open": "Atidaryti puslapį",
+    "notesTitle": "Naujienos versijoje {version}",
+    "notesLoading": "Įkeliamos leidimo pastabos…",
+    "notesFailed": "Nepavyko čia įkelti leidimo pastabų. Atidaryk jas GitHub.",
+    "notesRetry": "Bandyti dar kartą",
+    "notesOnGitHub": "Žiūrėti visą leidimą GitHub"
   }
 }

@@ -354,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee 支持银行卡以及 Apple Pay 或 Google Pay。页面会在新标签页中打开。",
     "paypalText": "PayPal 会在新标签页中打开，有没有账户都可以。",
     "cryptoText": "选一种币种，然后发送到它显示的地址。",
-    "open": "打开页面"
+    "open": "打开页面",
+    "notesTitle": "{version} 的新内容",
+    "notesLoading": "正在加载发行说明…",
+    "notesFailed": "无法在此加载发行说明。请在 GitHub 上打开。",
+    "notesRetry": "重试",
+    "notesOnGitHub": "在 GitHub 上查看完整发行版"
   }
 }
