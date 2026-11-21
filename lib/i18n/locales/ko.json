@@ -337,10 +337,6 @@
     "soon": "곧 나와요"
   },
   "info": {
-    "version": "버전",
-    "versionHint": "번호를 누르면 릴리스 노트가 열려요.",
-    "unreleased": "{v}, 아직 출시 전",
-    "releaseNotes": "릴리스 노트",
     "help": "도움말",
     "report": "문제나 바람, 제안이 있나요? 편하게 GitHub에 이슈를 열거나 Discord에 들러 인사해 주세요.",
     "repo": "GitHub",

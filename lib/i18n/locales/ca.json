@@ -345,10 +345,6 @@
     "soon": "Aviat"
   },
   "info": {
-    "version": "Versió",
-    "versionHint": "Un número obre les seves notes de versió.",
-    "unreleased": "{v}, encara no publicada",
-    "releaseNotes": "Notes de versió",
     "help": "Ajuda",
     "report": "Problemes, desitjos o suggeriments? Obre una incidència a GitHub quan vulguis, o passa a saludar per Discord.",
     "repo": "GitHub",

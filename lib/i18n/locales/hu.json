@@ -341,10 +341,6 @@
     "soon": "Hamarosan"
   },
   "info": {
-    "version": "Verzió",
-    "versionHint": "Egy verziószám megnyitja a hozzá tartozó kiadási megjegyzéseket.",
-    "unreleased": "{v}, még nem jelent meg",
-    "releaseNotes": "Kiadási megjegyzések",
     "help": "Súgó",
     "report": "Problémád, kívánságod vagy ötleted van? Nyiss nyugodtan egy issue-t a GitHubon, vagy ugorj be köszönni a Discordon.",
     "repo": "GitHub",

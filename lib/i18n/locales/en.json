@@ -341,10 +341,6 @@
     "soon": "Coming soon"
   },
   "info": {
-    "version": "Version",
-    "versionHint": "A number opens its release notes.",
-    "unreleased": "{v}, not released yet",
-    "releaseNotes": "Release notes",
     "help": "Help",
     "report": "Problems, wishes or suggestions? You're welcome to open an issue on GitHub, or come say hi on Discord.",
     "repo": "GitHub",

@@ -345,10 +345,6 @@
     "soon": "În curând"
   },
   "info": {
-    "version": "Versiune",
-    "versionHint": "Un număr îți deschide notele de lansare.",
-    "unreleased": "{v}, încă nelansată",
-    "releaseNotes": "Note de lansare",
     "help": "Ajutor",
     "report": "Probleme, dorințe sau sugestii? Deschide liniștit un issue pe GitHub sau treci să saluți pe Discord.",
     "repo": "GitHub",

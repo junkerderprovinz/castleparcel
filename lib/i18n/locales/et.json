@@ -341,10 +341,6 @@
     "soon": "Varsti"
   },
   "info": {
-    "version": "Versioon",
-    "versionHint": "Number näitab, mis selles versioonis uut on.",
-    "unreleased": "{v}, pole veel välja antud",
-    "releaseNotes": "Mis on uut",
     "help": "Abi",
     "report": "Probleemid, soovid või ettepanekud? Ava julgelt GitHubis issue või astu läbi ja ütle Discordis tere.",
     "repo": "GitHub",

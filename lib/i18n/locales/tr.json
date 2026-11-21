@@ -341,10 +341,6 @@
     "soon": "Yakında"
   },
   "info": {
-    "version": "Sürüm",
-    "versionHint": "Bir numara, o sürümün notlarını açar.",
-    "unreleased": "{v}, henüz yayımlanmadı",
-    "releaseNotes": "Sürüm notları",
     "help": "Yardım",
     "report": "Sorun, dilek ya da öneri mi var? GitHub'da bir issue açabilir ya da Discord'a uğrayıp merhaba diyebilirsin.",
     "repo": "GitHub",

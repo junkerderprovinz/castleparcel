@@ -341,10 +341,6 @@
     "soon": "Væntanlegt"
   },
   "info": {
-    "version": "Útgáfa",
-    "versionHint": "Númer opnar útgáfulýsinguna sína.",
-    "unreleased": "{v}, ekki komin út enn",
-    "releaseNotes": "Útgáfulýsing",
     "help": "Hjálp",
     "report": "Vandamál, óskir eða tillögur? Þér er velkomið að opna mál á GitHub eða kíkja við og heilsa á Discord.",
     "repo": "GitHub",

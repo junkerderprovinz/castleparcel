@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **The Info tab has a Version and a Components card.** The Version card shows CastleParcel with where its updates stand, and What's new, Check for updates and How to update in one last row. GlimStone's number moves to the Components card. Check for updates asks your server, which asks GitHub at most once an hour however many visitors press it, and How to update opens the new Updating section of the README.
+
 ## [2.1.3] - 2026-11-17
 
 ### Changed

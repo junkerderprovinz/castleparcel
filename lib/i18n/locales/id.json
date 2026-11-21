@@ -337,10 +337,6 @@
     "soon": "Segera hadir"
   },
   "info": {
-    "version": "Versi",
-    "versionHint": "Klik nomor versi untuk membuka catatan rilisnya.",
-    "unreleased": "{v}, belum dirilis",
-    "releaseNotes": "Catatan rilis",
     "help": "Bantuan",
     "report": "Ada masalah, keinginan, atau saran? Silakan buka issue di GitHub, atau mampir menyapa di Discord.",
     "repo": "GitHub",

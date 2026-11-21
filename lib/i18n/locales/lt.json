@@ -349,10 +349,6 @@
     "soon": "Netrukus"
   },
   "info": {
-    "version": "Versija",
-    "versionHint": "Paspaudus numerį atsidaro tos versijos naujienos.",
-    "unreleased": "{v}, dar neišleista",
-    "releaseNotes": "Kas naujo",
     "help": "Pagalba",
     "report": "Problemos, norai ar pasiūlymai? Drąsiai atidaryk issue GitHub'e arba užsuk pasisveikinti į Discord.",
     "repo": "GitHub",

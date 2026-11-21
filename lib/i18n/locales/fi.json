@@ -341,10 +341,6 @@
     "soon": "Tulossa pian"
   },
   "info": {
-    "version": "Versio",
-    "versionHint": "Numerosta aukeavat sen julkaisutiedot.",
-    "unreleased": "{v}, ei vielä julkaistu",
-    "releaseNotes": "Julkaisutiedot",
     "help": "Ohje",
     "report": "Ongelmia, toiveita tai ehdotuksia? Avaa ihmeessä issue GitHubissa tai tule moikkaamaan Discordiin.",
     "repo": "GitHub",

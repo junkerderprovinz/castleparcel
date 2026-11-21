@@ -341,10 +341,6 @@
     "soon": "Laster"
   },
   "info": {
-    "version": "Bertsioa",
-    "versionHint": "Zenbaki batek bere bertsio-oharrak irekitzen ditu.",
-    "unreleased": "{v}, oraindik argitaratu gabe",
-    "releaseNotes": "Bertsio-oharrak",
     "help": "Laguntza",
     "report": "Arazoak, nahiak edo iradokizunak? Ireki issue bat GitHuben nahi duzunean, edo pasa zaitez Discordera kaixo esatera.",
     "repo": "GitHub",

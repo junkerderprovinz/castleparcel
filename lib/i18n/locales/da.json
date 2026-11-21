@@ -341,10 +341,6 @@
     "soon": "Kommer snart"
   },
   "info": {
-    "version": "Version",
-    "versionHint": "Et nummer åbner dets udgivelsesnoter.",
-    "unreleased": "{v}, ikke udgivet endnu",
-    "releaseNotes": "Udgivelsesnoter",
     "help": "Hjælp",
     "report": "Problemer, ønsker eller forslag? Du er velkommen til at oprette et issue på GitHub eller kigge forbi og sige hej på Discord.",
     "repo": "GitHub",

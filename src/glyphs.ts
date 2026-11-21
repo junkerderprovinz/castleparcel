@@ -25,8 +25,19 @@ export function glyph(name: string): FunctionalComponent {
   return components.get(name)!;
 }
 
+// The label keys GlimStone's own buttons carry, such as the Version card's.
+const LABEL_GLYPHS: Record<string, string> = {
+  'version.whatsNew': 'IconWhatsNew',
+  'version.check': 'IconSync',
+  'version.guide': 'IconUpdateAvailable',
+};
+
 // A button's label key is the name of its glyph, so the same verb wears the same mark everywhere.
-export const installGlyphs = () => setGlyphResolver((key) => (GLYPHS[key] ? glyph(key) : undefined));
+export const installGlyphs = () =>
+  setGlyphResolver((key) => {
+    const name = LABEL_GLYPHS[key] ?? key;
+    return GLYPHS[name] ? glyph(name) : undefined;
+  });
 
 export type Kind = 'image' | 'video' | 'audio' | 'pdf' | 'text' | 'svg' | 'sheet' | 'archive' | 'file';
 const KINDS: Record<string, Kind> = {

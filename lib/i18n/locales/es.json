@@ -345,10 +345,6 @@
     "soon": "Muy pronto"
   },
   "info": {
-    "version": "Versión",
-    "versionHint": "Un número abre sus notas de la versión.",
-    "unreleased": "{v}, aún sin publicar",
-    "releaseNotes": "Notas de la versión",
     "help": "Ayuda",
     "report": "¿Problemas, deseos o sugerencias? Abre un issue en GitHub cuando quieras, o pásate a saludar por Discord.",
     "repo": "GitHub",
