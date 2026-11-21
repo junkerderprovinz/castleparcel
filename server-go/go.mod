@@ -1,13 +1,13 @@
 module github.com/junkerderprovinz/castleparcel/server-go
 
-go 1.26.0
+go 1.26.11
 
 toolchain go1.27.4
 
 require (
 	github.com/go-chi/chi/v5 v5.5.0
-	github.com/tus/tusd/v2 v2.10.1
-	golang.org/x/exp v0.0.0-20261117202309-7a49493bfd90
+	github.com/tus/tusd/v2 v2.10.2
+	golang.org/x/exp v0.0.0-20261120182113-8801fbdfac81
 	modernc.org/sqlite v1.62.0
 )
 
