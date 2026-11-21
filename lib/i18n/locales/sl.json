@@ -349,10 +349,6 @@
     "soon": "Kmalu"
   },
   "info": {
-    "version": "Različica",
-    "versionHint": "Številka različice odpre njene opombe ob izdaji.",
-    "unreleased": "{v}, še ni izdana",
-    "releaseNotes": "Opombe ob izdaji",
     "help": "Pomoč",
     "report": "Težave, želje ali predlogi? Kar odpri issue na GitHubu ali se oglasi na Discordu.",
     "repo": "GitHub",

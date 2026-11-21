@@ -345,10 +345,6 @@
     "soon": "Drīzumā"
   },
   "info": {
-    "version": "Versija",
-    "versionHint": "Numurs atver tās versijas jaunumus.",
-    "unreleased": "{v}, vēl nav izlaista",
-    "releaseNotes": "Kas jauns",
     "help": "Palīdzība",
     "report": "Problēmas, vēlmes vai ieteikumi? Droši atver issue GitHub vai iegriezies sasveicināties Discord.",
     "repo": "GitHub",

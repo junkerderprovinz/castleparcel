@@ -209,6 +209,7 @@ func newRouter(cfg config.Config, db *sql.DB, tusHandler http.Handler, webFiles 
 	r.Post("/api/requests", createRequest)
 	r.Mount("/api/r", requests)
 	r.Get("/api/config", api.ConfigHandler(cfg))
+	r.Get("/api/latest-release", api.LatestReleaseHandler(api.NewLatestRelease()))
 
 	r.Get(clientmanifest.Path, client.ManifestHandler())
 	r.Get(clientmanifest.TemplatePath, client.TemplateHandler())

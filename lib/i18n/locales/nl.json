@@ -341,10 +341,6 @@
     "soon": "Binnenkort"
   },
   "info": {
-    "version": "Versie",
-    "versionHint": "Een versienummer opent de bijbehorende release notes.",
-    "unreleased": "{v}, nog niet uitgebracht",
-    "releaseNotes": "Release notes",
     "help": "Hulp",
     "report": "Problemen, wensen of ideeën? Open gerust een issue op GitHub, of kom even hallo zeggen op Discord.",
     "repo": "GitHub",

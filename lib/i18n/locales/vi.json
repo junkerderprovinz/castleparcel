@@ -337,10 +337,6 @@
     "soon": "Sắp ra mắt"
   },
   "info": {
-    "version": "Phiên bản",
-    "versionHint": "Nhấn vào một số để mở ghi chú phát hành của nó.",
-    "unreleased": "{v}, chưa phát hành",
-    "releaseNotes": "Ghi chú phát hành",
     "help": "Trợ giúp",
     "report": "Gặp sự cố, có mong muốn hay góp ý? Cứ thoải mái mở một issue trên GitHub hoặc ghé Discord chào một tiếng nhé.",
     "repo": "GitHub",

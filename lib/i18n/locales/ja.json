@@ -337,10 +337,6 @@
     "soon": "近日公開"
   },
   "info": {
-    "version": "バージョン",
-    "versionHint": "番号を押すと、そのリリースノートが開きます。",
-    "unreleased": "{v}（未リリース）",
-    "releaseNotes": "リリースノート",
     "help": "ヘルプ",
     "report": "不具合、要望、提案はありますか？GitHub で issue を開くか、Discord に気軽に遊びに来てください。",
     "repo": "GitHub",

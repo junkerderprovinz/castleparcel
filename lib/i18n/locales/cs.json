@@ -349,10 +349,6 @@
     "soon": "Již brzy"
   },
   "info": {
-    "version": "Verze",
-    "versionHint": "Číslo verze otevře její poznámky k vydání.",
-    "unreleased": "{v}, zatím nevydaná",
-    "releaseNotes": "Poznámky k vydání",
     "help": "Nápověda",
     "report": "Problémy, přání nebo nápady? Klidně založte issue na GitHubu, nebo se zastavte pozdravit na Discordu.",
     "repo": "GitHub",

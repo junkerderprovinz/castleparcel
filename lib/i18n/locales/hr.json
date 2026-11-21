@@ -345,10 +345,6 @@
     "soon": "Uskoro"
   },
   "info": {
-    "version": "Verzija",
-    "versionHint": "Broj verzije otvara bilješke o izdanju.",
-    "unreleased": "{v}, još nije izdana",
-    "releaseNotes": "Bilješke o izdanju",
     "help": "Pomoć",
     "report": "Problemi, želje ili prijedlozi? Slobodno otvori issue na GitHubu ili svrati pozdraviti na Discord.",
     "repo": "GitHub",
