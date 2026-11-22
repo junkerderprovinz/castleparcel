@@ -14,7 +14,8 @@ import {
   explainUpload,
   expiryChoices,
   maxDownloads,
-  passwordTooShort,
+  passwordMissing,
+  passwordShort,
   startExpiry,
   uploadDeps,
   uploadLocked,
@@ -34,7 +35,8 @@ const limits = computed(() => (['none', 'once', 'count'] as const).map((id) => (
   label: t({ none: 'options.noLimit', once: 'options.once', count: 'options.count' }[id]),
   attrs: { 'data-cp': `limit-${id}` },
 })));
-const short = computed(() => passwordTooShort(note.locked, note.password));
+const short = computed(() => passwordShort(note.locked, note.password));
+const missing = computed(() => passwordMissing(note.locked, note.password));
 const tooLong = computed(() => new TextEncoder().encode(note.text).length > MAX_NOTE_BYTES);
 const count = computed({ get: () => note.count, set: (v: number | null) => { note.count = v ?? 1; } });
 
@@ -90,7 +92,7 @@ function again() {
     </Card>
     <p v-if="error" class="cp-error" role="alert">{{ error }}</p>
     <div class="cp-actions">
-      <Button size="key" tone="accent" :busy="busy" :disabled="!note.text || tooLong || short" :label="t('note.share')" label-key="IconUpload" data-cp="share-note" @click="share" />
+      <Button size="key" tone="accent" :busy="busy" :disabled="!note.text || tooLong || missing" :label="t('note.share')" label-key="IconUpload" data-cp="share-note" @click="share" />
     </div>
   </section>
 </template>

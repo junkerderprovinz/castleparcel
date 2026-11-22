@@ -77,7 +77,7 @@
     "password": "Parool",
     "passwordHint": "Saaja vajab seda lisaks lingile. Saada see teist teed pidi.",
     "passwordField": "Jagamise parool",
-    "passwordShort": "Kasuta vähemalt 8 märki, et parooli poleks lihtne ära arvata.",
+    "passwordShort": "See sobib. Vähemalt 8 märgist parooli on aga palju raskem ära arvata.",
     "metadata": "Eemalda fotode metaandmed",
     "metadataHint": "Kaamera andmed ja GPS-asukoht eemaldatakse JPEG-fotodest enne krüpteerimist.",
     "upload": "Laadi üles ja jaga",

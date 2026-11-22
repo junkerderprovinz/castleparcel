@@ -77,7 +77,7 @@
     "password": "Parola",
     "passwordHint": "Alıcının bağlantının yanında buna da ihtiyacı var. Başka bir yoldan gönder.",
     "passwordField": "Paylaşım parolası",
-    "passwordShort": "En az 8 karakter kullan ki parola tahminlere dayansın.",
+    "passwordShort": "Bu da olur. Ama 8 ya da daha fazla karakterli bir parolayı tahmin etmek çok daha zor.",
     "metadata": "Fotoğraf meta verilerini kaldır",
     "metadataHint": "Kamera bilgileri ve GPS konumu, şifrelemeden önce JPEG fotoğraflardan çıkarılır.",
     "upload": "Yükle ve paylaş",

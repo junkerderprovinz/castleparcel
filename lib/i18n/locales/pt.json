@@ -78,7 +78,7 @@
     "password": "Palavra-passe",
     "passwordHint": "O destinatário precisa dela além do link. Envia-a por outro meio.",
     "passwordField": "Palavra-passe da partilha",
-    "passwordShort": "Usa pelo menos 8 caracteres, para a palavra-passe aguentar quem tente adivinhá-la.",
+    "passwordShort": "Assim também dá. Com 8 caracteres ou mais, a palavra-passe é muito mais difícil de adivinhar.",
     "metadata": "Remover metadados das fotos",
     "metadataHint": "Os dados da câmara e a posição GPS saem das fotos JPEG antes da encriptação.",
     "upload": "Carregar e partilhar",

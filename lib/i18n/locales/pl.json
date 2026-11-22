@@ -79,7 +79,7 @@
     "password": "Hasło",
     "passwordHint": "Odbiorca potrzebuje go oprócz linku. Wyślij je inną drogą.",
     "passwordField": "Hasło do udostępnienia",
-    "passwordShort": "Użyj co najmniej 8 znaków, żeby hasła nie dało się łatwo zgadnąć.",
+    "passwordShort": "Tak też można. Hasło z 8 lub więcej znakami dużo trudniej jednak zgadnąć.",
     "metadata": "Usuń metadane zdjęć",
     "metadataHint": "Dane aparatu i pozycja GPS znikają ze zdjęć JPEG przed szyfrowaniem.",
     "upload": "Prześlij i udostępnij",

@@ -97,7 +97,7 @@ try {
   await multiFileRoundTrip();
   await previewOfAnImage();
   await passwordShareRoundTrip();
-  await passwordTooShortIsExplained();
+  await shortPasswordGetsAHint();
   await olderFormatsStillOpen();
   // Resuming needs crypto.subtle, which a page on plain HTTP does not have.
   if (await secureBase()) {
@@ -241,20 +241,23 @@ async function passwordShareRoundTrip() {
   console.log("format 4 link-and-password share: wrong password refused, bundle downloaded, share gone ✓");
 }
 
-// A share password under 8 characters is explained and cannot be sent.
-async function passwordTooShortIsExplained() {
+// A share password under 8 characters gets a hint and can still be sent. An
+// empty one holds the upload back.
+async function shortPasswordGetsAHint() {
   const page = await open("short password", BASE);
   await page.setInputFiles('input[type="file"]', { name: "short.txt", mimeType: "text/plain", buffer: Buffer.from("x") });
   await page.locator("[data-cp=lock]").click();
+  const upload = page.locator("[data-cp=upload]");
+  if (!(await upload.isDisabled())) fail("short password: the upload button is enabled without a password");
   const field = page.locator('input[type="password"]');
-  await field.fill("seven77");
-  await page.locator("[data-cp=password-short]").getByText(/at least 8 characters/i).waitFor(WAIT);
-  if (!(await page.locator("[data-cp=upload]").isDisabled())) fail("short password: the upload button stays enabled");
+  await field.fill("pin");
+  await page.locator("[data-cp=password-short]").getByText(/8 characters or more/i).waitFor(WAIT);
+  if (await upload.isDisabled()) fail("short password: a three-character password holds the upload back");
   await field.fill("eight888");
   await page.locator("[data-cp=password-short]").waitFor({ state: "detached", ...WAIT });
-  if (await page.locator("[data-cp=upload]").isDisabled()) fail("short password: eight characters are refused");
+  if (await upload.isDisabled()) fail("short password: eight characters hold the upload back");
   await page.close();
-  console.log("password too short: explained, upload held back until 8 characters ✓");
+  console.log("short password: hint shown, upload allowed, empty password held back ✓");
 }
 
 async function secureBase() {

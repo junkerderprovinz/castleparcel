@@ -6,7 +6,7 @@ import { fileCount, size } from '@/src/format';
 import { G, fileGlyph, glyph } from '@/src/glyphs';
 import { t } from '@/src/i18n';
 import { pickFiles } from '@/src/intake';
-import { expiryChoices, hasJpeg, passwordTooShort, removeFile, resetSend, send, sizes, startUpload, total } from '@/src/upload';
+import { expiryChoices, hasJpeg, passwordMissing, passwordShort, removeFile, resetSend, send, sizes, startUpload, total } from '@/src/upload';
 import { eyeWords } from '@/src/ui';
 
 const expiries = computed(() => expiryChoices().map((e) => ({ value: e, label: t('expiry.' + e) })));
@@ -16,7 +16,8 @@ const limits = computed(() => (['none', 'once', 'count'] as const).map((id) => (
   attrs: { 'data-cp': `limit-${id}` },
 })));
 const summary = computed(() => t('options.total', { count: fileCount(send.items.length), size: size(total(sizes())) }));
-const short = computed(() => passwordTooShort(send.locked, send.password));
+const short = computed(() => passwordShort(send.locked, send.password));
+const missing = computed(() => passwordMissing(send.locked, send.password));
 const count = computed({ get: () => send.count, set: (v: number | null) => { send.count = v ?? 1; } });
 </script>
 
@@ -61,7 +62,7 @@ const count = computed({ get: () => send.count, set: (v: number | null) => { sen
 
     <p v-if="send.error" class="cp-error" role="alert">{{ send.error }}</p>
     <div class="cp-actions">
-      <Button size="key" tone="accent" :label="t('options.upload')" label-key="IconUpload" :disabled="!send.items.length || short" data-cp="upload" @click="startUpload" />
+      <Button size="key" tone="accent" :label="t('options.upload')" label-key="IconUpload" :disabled="!send.items.length || missing" data-cp="upload" @click="startUpload" />
     </div>
   </section>
 </template>

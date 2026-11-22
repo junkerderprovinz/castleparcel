@@ -33,8 +33,11 @@ export const SECRET_BYTES = 32;
 const TOKEN_BYTES = 2 + SECRET_BYTES;
 const TOKEN_CHARS = 46;
 
-/** NIST SP 800-63B's floor; the password is a second factor next to the token. */
-export const MIN_PASSWORD_LENGTH = 8;
+/**
+ * NIST SP 800-63B's floor. Below it the page suggests a longer password, but
+ * the sender decides: the password is a second factor next to the token.
+ */
+export const SUGGESTED_PASSWORD_LENGTH = 8;
 
 // Without normalization a password typed on macOS (NFD) would not match the
 // same password typed elsewhere (NFC).
@@ -42,8 +45,8 @@ export function normalizePassword(password: string): string {
   return password.normalize("NFC");
 }
 
-export function isPasswordLongEnough(password: string): boolean {
-  return [...normalizePassword(password)].length >= MIN_PASSWORD_LENGTH;
+export function isPasswordShort(password: string): boolean {
+  return [...normalizePassword(password)].length < SUGGESTED_PASSWORD_LENGTH;
 }
 
 /** base64url of version, mode byte and S: 46 characters for the URL fragment. */

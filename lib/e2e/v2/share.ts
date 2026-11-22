@@ -16,10 +16,8 @@ import { paddedContentLength, paddedHeaderLength } from "./padding";
 import { newToken, deriveKeys } from "./keys";
 import {
   FORMAT_VERSION,
-  MIN_PASSWORD_LENGTH,
   encodeToken,
   decodeToken,
-  isPasswordLongEnough,
   type KdfParams,
   type ShareKeys,
 } from "./token";
@@ -302,9 +300,7 @@ export async function createEncryptor(
   opts: { password?: string; kind?: Kind } = {},
 ): Promise<ShareEncryptor & { token: string }> {
   const { password } = opts;
-  if (password !== undefined && !isPasswordLongEnough(password)) {
-    throw new Error(`v2: the password needs at least ${MIN_PASSWORD_LENGTH} characters`);
-  }
+  if (password === "") throw new Error("v2: the password is empty");
   const sodium = await loadSodium();
   const token = await newToken(password === undefined ? "link" : "link+password");
   const keys = await deriveKeys(token, password);

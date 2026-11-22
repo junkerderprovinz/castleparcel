@@ -79,7 +79,7 @@
     "password": "Slaptažodis",
     "passwordHint": "Gavėjui jo reikės kartu su nuoroda. Nusiųsk jį kitu keliu.",
     "passwordField": "Bendrinimo slaptažodis",
-    "passwordShort": "Naudok bent 8 simbolius, kad slaptažodžio nebūtų lengva atspėti.",
+    "passwordShort": "Tiks ir taip. Bet 8 ar daugiau simbolių slaptažodį atspėti daug sunkiau.",
     "metadata": "Pašalinti nuotraukų metaduomenis",
     "metadataHint": "Prieš šifruojant iš JPEG nuotraukų pašalinami fotoaparato duomenys ir GPS vieta.",
     "upload": "Įkelti ir bendrinti",

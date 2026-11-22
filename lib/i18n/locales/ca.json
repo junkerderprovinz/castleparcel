@@ -78,7 +78,7 @@
     "password": "Contrasenya",
     "passwordHint": "Qui ho rebi la necessita a més de l'enllaç. Envia-la per un altre camí.",
     "passwordField": "Contrasenya de l'enviament",
-    "passwordShort": "Fes servir almenys 8 caràcters, perquè la contrasenya no sigui fàcil d'endevinar.",
+    "passwordShort": "Ja va bé. Amb 8 caràcters o més, la contrasenya és molt més difícil d'endevinar.",
     "metadata": "Treu les metadades de les fotos",
     "metadataHint": "Les dades de la càmera i la posició GPS surten de les fotos JPEG abans de xifrar-les.",
     "upload": "Puja i comparteix",

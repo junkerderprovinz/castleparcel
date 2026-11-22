@@ -78,7 +78,7 @@
     "password": "Contraseña",
     "passwordHint": "El destinatario la necesita además del enlace. Mándasela por otra vía.",
     "passwordField": "Contraseña del enlace",
-    "passwordShort": "Usa al menos 8 caracteres para que la contraseña aguante si alguien intenta adivinarla.",
+    "passwordShort": "Vale así. Con 8 caracteres o más, la contraseña es mucho más difícil de adivinar.",
     "metadata": "Eliminar metadatos de fotos",
     "metadataHint": "Los datos de la cámara y la posición GPS salen de las fotos JPEG antes de cifrarlas.",
     "upload": "Subir y compartir",

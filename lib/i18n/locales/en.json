@@ -77,7 +77,7 @@
     "password": "Password",
     "passwordHint": "The recipient needs it as well as the link. Send it another way.",
     "passwordField": "Share password",
-    "passwordShort": "Use at least 8 characters, so the password holds up against guessing.",
+    "passwordShort": "That works. With 8 characters or more, the password is much harder to guess.",
     "metadata": "Remove photo metadata",
     "metadataHint": "Camera details and the GPS position come out of JPEG photos before encrypting.",
     "upload": "Upload and share",

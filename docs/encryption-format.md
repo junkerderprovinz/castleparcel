@@ -106,8 +106,10 @@ The parameters are fixed by the mode byte. A later parameter set gets a new
 mode value, and the parameters are repeated in the encrypted header and checked
 there.
 
-Passwords must have at least 8 Unicode code points after NFC normalization
-(`isPasswordLongEnough`), the floor of NIST SP 800-63B.
+Any non-empty password is accepted. Under 8 Unicode code points after NFC
+normalization (`isPasswordShort`), the floor of NIST SP 800-63B, the page
+suggests a longer one but still sends the share. A short password only weakens
+the second factor: the link's 256-bit secret is still needed to try a guess.
 
 ## Blob layout
 

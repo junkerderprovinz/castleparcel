@@ -77,7 +77,7 @@
     "password": "Jelszó",
     "passwordHint": "A címzettnek a link mellett erre is szüksége lesz. Küldd el neki más úton.",
     "passwordField": "Megosztási jelszó",
-    "passwordShort": "Legalább 8 karaktert használj, hogy a jelszót ne lehessen könnyen kitalálni.",
+    "passwordShort": "Ez is megy. 8 vagy több karakterrel viszont a jelszót sokkal nehezebb kitalálni.",
     "metadata": "Fotó-metaadatok eltávolítása",
     "metadataHint": "A kamera adatai és a GPS-pozíció titkosítás előtt kikerülnek a JPEG fotókból.",
     "upload": "Feltöltés és megosztás",
