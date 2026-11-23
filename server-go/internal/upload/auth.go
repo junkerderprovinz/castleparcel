@@ -2,7 +2,13 @@
 // upload password gate.
 package upload
 
-import "crypto/subtle"
+import (
+	"context"
+	"crypto/subtle"
+	"net/http"
+
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
+)
 
 // UploadTokenHeader carries the upload password, as the client sends it from
 // src/upload.ts.
@@ -40,4 +46,21 @@ func IsUploadAuthorized(token string, protected bool, secret string) bool {
 		return false
 	}
 	return uploadTokenMatches(token, secret)
+}
+
+type admittedKey struct{}
+
+// Admit marks r as an upload the owner's sign-in let through, which counts in
+// place of the upload password.
+func Admit(r *http.Request) *http.Request {
+	return r.WithContext(context.WithValue(r.Context(), admittedKey{}, true))
+}
+
+// Allowed reports whether r may write an upload: Admit let it through, or it
+// passes the upload password gate.
+func Allowed(r *http.Request, cfg config.Config) bool {
+	if admitted, _ := r.Context().Value(admittedKey{}).(bool); admitted {
+		return true
+	}
+	return IsUploadAuthorized(r.Header.Get(UploadTokenHeader), cfg.UploadProtected, cfg.UploadPassword)
 }

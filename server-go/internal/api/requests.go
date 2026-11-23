@@ -54,7 +54,7 @@ func CreateRequestHandler(cfg config.Config, db *sql.DB, now func() time.Time) h
 		now = time.Now
 	}
 	return func(w http.ResponseWriter, r *http.Request) {
-		if !upload.IsUploadAuthorized(r.Header.Get(upload.UploadTokenHeader), cfg.UploadProtected, cfg.UploadPassword) {
+		if !upload.Allowed(r, cfg) {
 			writeJSONError(w, http.StatusUnauthorized, "upload password required")
 			return
 		}

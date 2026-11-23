@@ -59,6 +59,12 @@ func parsePrefix(entry string) (netip.Prefix, error) {
 	return netip.PrefixFrom(addr, addr.BitLen()), nil
 }
 
+// All reports whether every peer counts as a proxy, from TRUST_PROXY=true.
+func (p Proxies) All() bool { return p.all }
+
+// Prefixes are the addresses and ranges of the listed proxies.
+func (p Proxies) Prefixes() []netip.Prefix { return p.prefixes }
+
 func (p Proxies) trusts(addr netip.Addr) bool {
 	if p.all {
 		return true

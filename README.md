@@ -115,9 +115,10 @@ The files and links in these pictures are made up.
 - **Photos travel light.** JPEGs lose their EXIF and GPS data in the browser before encryption, unless you switch it off.
 - **Pleasant to use.** Paste a screenshot with Ctrl+V, install it as an app and share to it from Android, preview images, video, audio, text and PDF before downloading, and read it all in 42 languages.
 - **Safe to put online.** Per-IP rate limits, an optional daily upload cap per visitor, a storage quota, an expiry cap and an optional upload password. A strict Content-Security-Policy keeps foreign scripts off the page, and share pages tell search engines to stay away.
+- **Owner sign-in, if you want it.** Without a password CastleParcel stays open as before. Set one under Settings and only you send files, plus guests who know the upload password. Two-factor authentication, passkeys, API tokens and sign-in services such as Pocket ID or authentik come with it. Recipients never sign in.
 - **One small container.** A static Go binary on a distroless base with a single SQLite file, for amd64 and arm64, with SBOM and provenance attestations and a CVE scan on every build.
 
-It has no user accounts, no OIDC or LDAP, no email and no S3 storage. If you need those, [Pingvin Share](https://github.com/stonith404/pingvin-share) is the bigger tool that inspired this one.
+It has no user accounts beyond the owner, no LDAP, no email and no S3 storage. If you need those, [Pingvin Share](https://github.com/stonith404/pingvin-share) is the bigger tool that inspired this one.
 
 <br>
 
@@ -183,7 +184,9 @@ proxy_send_timeout 3600s;
 proxy_request_buffering off;
 ```
 
-On an instance anyone can reach, `UPLOAD_PASSWORD` keeps strangers from uploading while every share link still works for its recipient. Behind a reverse proxy, set `TRUST_PROXY` to the proxy's address so the rate limits count real visitors instead of the proxy.
+On an instance anyone can reach, set a password under Settings, Sign-in. From then on only you send files, and every share link still works for its recipient. To let others send too, give them the `UPLOAD_PASSWORD`. While no password is set, `UPLOAD_PASSWORD` also guards the Sign-in tab, so nobody without it can set the first one. Passkeys and sign-in services need `BASE_URL`. Forgot the password? The sign-in page takes a code from the container log.
+
+Behind a reverse proxy, set `TRUST_PROXY` to the proxy's address so the rate limits count real visitors instead of the proxy.
 
 ### Settings
 
@@ -191,15 +194,16 @@ Everything is set through environment variables. A value the server cannot read 
 
 | Variable | Default | What it does |
 | --- | --- | --- |
-| `BASE_URL` | none | Public address for share links. Without it, links use the address the uploader opened. |
+| `BASE_URL` | none | Public address for share links. Without it, links use the address the uploader opened. Passkeys and sign-in services need it. |
 | `DATA_DIR` | `/data` | Where the uploaded files live. |
-| `CONFIG_DIR` | `/config` | Where the SQLite database lives. |
+| `CONFIG_DIR` | `/config` | Where the SQLite database and the sign-in key live. |
 | `PORT` | `3000` | Port the server listens on. |
 | `MAX_FILE_SIZE` | `0` | Largest upload in bytes. `0` means no limit. |
 | `DEFAULT_EXPIRY` | `7d` | Expiry picked for a new share: `1h`, `6h`, `1d`, `7d`, `30d` or `never`. |
 | `MAX_EXPIRY` | none | Longest expiry an uploader can choose, from the same values. |
 | `STORAGE_QUOTA` | `0` | Bytes all shares together may use, uploads in progress included. `0` means no limit. |
-| `UPLOAD_PASSWORD` | none | Password needed to upload. Downloads never ask for it. |
+| `UPLOAD_PASSWORD` | none | Password guests need to upload. Until you set an owner password, everyone needs it. The signed-in owner never does, and downloads never ask for it. |
+| `CASTLEPARCEL_APP_KEY` | none | Key the sign-in is sealed with, 64 hexadecimal characters as `openssl rand -hex 32` prints them. Without it CastleParcel keeps one in `app.key` in `CONFIG_DIR`. |
 | `UPLOAD_LIMIT_PER_IP` | `0` | Bytes one visitor may upload in 24 hours. `0` means no limit. IPv6 visitors count per /64. The count stays in memory under a hash that changes with every restart, so the server never keeps an address. |
 | `RATE_LIMIT` | `true` | Per-visitor limits on creating uploads, on new downloads and on failed share lookups. |
 | `TRUST_PROXY` | `false` | Which reverse proxies may name the visitor in `X-Forwarded-For`. `true` trusts any, or list the proxies as addresses and CIDR ranges, such as `172.16.0.0/12,10.0.0.5`. |

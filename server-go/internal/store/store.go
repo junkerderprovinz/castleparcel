@@ -4,10 +4,30 @@ package store
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 
+	"github.com/junkerderprovinz/parleyport/kit/signin/sqlstore"
 	_ "modernc.org/sqlite"
 )
+
+// SignInTable keeps the documents of the owner's sign-in.
+const SignInTable = "signin_docs"
+
+// migrations bring a database from one version to the next, the first from a
+// database of a CastleParcel that kept no version. Each one is safe to run
+// again, so a start cut off between a migration and its version runs it once
+// more.
+var migrations = []func(*sql.DB) error{
+	applyBase,
+	func(db *sql.DB) error {
+		_, err := db.Exec(sqlstore.Schema(SignInTable))
+		return err
+	},
+}
+
+// SchemaVersion is the version of the databases this server writes.
+var SchemaVersion = len(migrations)
 
 // Open opens or creates the database at dbPath and applies the schema.
 //
@@ -33,10 +53,40 @@ func Open(dbPath string) (*sql.DB, error) {
 	return db, nil
 }
 
-// ApplySchema creates the tables and indexes and adds each later column of
-// files when it is missing, so it is safe to run on every start and on old
-// databases.
+// ApplySchema brings the database to SchemaVersion. A database a newer
+// CastleParcel wrote stops the start, since this one would not know what its
+// tables mean.
 func ApplySchema(db *sql.DB) error {
+	if _, err := db.Exec(`CREATE TABLE IF NOT EXISTS schema_version (version INTEGER NOT NULL)`); err != nil {
+		return fmt.Errorf("create schema_version: %w", err)
+	}
+	var at int
+	err := db.QueryRow(`SELECT version FROM schema_version`).Scan(&at)
+	switch {
+	case errors.Is(err, sql.ErrNoRows):
+		if _, err := db.Exec(`INSERT INTO schema_version (version) VALUES (0)`); err != nil {
+			return fmt.Errorf("start schema_version: %w", err)
+		}
+	case err != nil:
+		return fmt.Errorf("read schema_version: %w", err)
+	}
+	if at > SchemaVersion {
+		return fmt.Errorf("the database is version %d and this CastleParcel knows up to %d: start the newer CastleParcel again", at, SchemaVersion)
+	}
+	for v := at; v < SchemaVersion; v++ {
+		if err := migrations[v](db); err != nil {
+			return fmt.Errorf("migrate the database to version %d: %w", v+1, err)
+		}
+		if _, err := db.Exec(`UPDATE schema_version SET version = ?`, v+1); err != nil {
+			return fmt.Errorf("record version %d: %w", v+1, err)
+		}
+	}
+	return nil
+}
+
+// applyBase creates the tables and indexes of the CastleParcel that kept no
+// version and adds each later column of files when it is missing.
+func applyBase(db *sql.DB) error {
 	if _, err := db.Exec(`
 		CREATE TABLE IF NOT EXISTS files (
 			id             TEXT PRIMARY KEY,

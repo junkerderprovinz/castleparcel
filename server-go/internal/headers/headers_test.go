@@ -101,6 +101,14 @@ func TestPermissionsPolicyDeniesPowerfulFeatures(t *testing.T) {
 	}
 }
 
+func TestPermissionsPolicyLetsTheOwnerUsePasskeys(t *testing.T) {
+	for _, feature := range []string{"publickey-credentials-get", "publickey-credentials-create"} {
+		if !strings.Contains(PermissionsPolicy, feature+"=(self)") {
+			t.Errorf("Permissions-Policy %q does not allow %s on the page itself", PermissionsPolicy, feature)
+		}
+	}
+}
+
 func TestMiddleware_HandlerCanOverride(t *testing.T) {
 	h := Middleware(ContentSecurityPolicy(""))(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Referrer-Policy", "same-origin")

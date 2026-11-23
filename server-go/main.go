@@ -12,6 +12,7 @@ import (
 	"io"
 	"io/fs"
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 	"os/signal"
@@ -22,7 +23,9 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/junkerderprovinz/parleyport/kit/signin"
 
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/account"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/api"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/cleanup"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/clientmanifest"
@@ -107,7 +110,13 @@ func main() {
 		log.Fatalf("build tus handler: %v", err)
 	}
 
-	r := newRouter(cfg, db, tusHandler, webFiles, shell, client)
+	auth, err := account.Open(cfg, db, slog.Default())
+	if err != nil {
+		log.Fatalf("open the sign-in: %v", err)
+	}
+	defer auth.Close()
+
+	r := newRouter(cfg, db, auth, tusHandler, webFiles, shell, client)
 
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
@@ -143,9 +152,10 @@ func main() {
 
 // newRouter wires every route the server serves. It is separate from main so
 // tests can run the real routing, rate limits included.
-func newRouter(cfg config.Config, db *sql.DB, tusHandler http.Handler, webFiles *static.Assets, shell []byte, client clientmanifest.Served) chi.Router {
+func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, tusHandler http.Handler, webFiles *static.Assets, shell []byte, client clientmanifest.Served) chi.Router {
 	r := chi.NewRouter()
 	r.Use(headers.Middleware(headers.ContentSecurityPolicy(cfg.LogoOrigin())))
+	r.Use(auth.Guard)
 	r.Get("/healthz", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusOK)
@@ -196,10 +206,19 @@ func newRouter(cfg config.Config, db *sql.DB, tusHandler http.Handler, webFiles 
 		requests = shares.Middleware(cfg.TrustedProxies, requests)
 	}
 
+	uploads := account.Uploads(auth, cfg)
+	files = uploads(files)
+	finalize = uploads(finalize).ServeHTTP
+	createRequest = uploads(createRequest).ServeHTTP
+
 	// chi keeps the full request path, which tusd matches against its
 	// BasePath "/files/".
 	r.Handle("/files", files)
 	r.Handle("/files/*", files)
+
+	signIn := account.Contract(auth, cfg, auth.Handler())
+	r.Handle(signin.APIPrefix+"*", signIn)
+	r.Handle(signin.BrowserPrefix+"*", signIn)
 
 	r.Post("/api/finalize", finalize)
 	r.Get("/api/d/{slug}", download)

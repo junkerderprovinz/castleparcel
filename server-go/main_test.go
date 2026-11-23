@@ -4,7 +4,9 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"io"
 	"io/fs"
+	"log/slog"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -12,6 +14,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/account"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/clientmanifest"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/static"
@@ -115,7 +118,12 @@ func newFullRouter(t *testing.T, mutate func(*config.Config)) http.Handler {
 	if err != nil {
 		t.Fatalf("load client manifest: %v", err)
 	}
-	return newRouter(cfg, db, tusHandler, clientFiles(t, assets), shell, client)
+	auth, err := account.Open(cfg, db, slog.New(slog.NewTextHandler(io.Discard, nil)))
+	if err != nil {
+		t.Fatalf("open the sign-in: %v", err)
+	}
+	t.Cleanup(func() { _ = auth.Close() })
+	return newRouter(cfg, db, auth, tusHandler, clientFiles(t, assets), shell, client)
 }
 
 func get(h http.Handler, path string) *httptest.ResponseRecorder {

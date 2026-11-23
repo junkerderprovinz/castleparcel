@@ -8,11 +8,12 @@ import (
 
 // PermissionsPolicy turns off the browser features the app never uses, so an
 // injected script could not reach for them either. Clipboard and fullscreen
-// keep their same-origin default for the copy button and the video preview.
+// keep their same-origin default for the copy button and the video preview,
+// and passkeys work on the page itself for the owner's sign-in.
 const PermissionsPolicy = "accelerometer=(), autoplay=(), bluetooth=(), browsing-topics=(), " +
 	"camera=(), display-capture=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), " +
-	"magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), " +
-	"screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()"
+	"magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-create=(self), " +
+	"publickey-credentials-get=(self), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()"
 
 // ContentSecurityPolicy returns the policy for the app. libsodium compiles its
 // WebAssembly at runtime, Vue sets inline style attributes, Vite inlines the

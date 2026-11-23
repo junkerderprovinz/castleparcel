@@ -55,8 +55,7 @@ func FinalizeHandler(cfg config.Config, db *sql.DB, now func() time.Time) http.H
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Checked before the body is read, so an unauthorized request stores
 		// nothing.
-		token := r.Header.Get(upload.UploadTokenHeader)
-		if !upload.IsUploadAuthorized(token, cfg.UploadProtected, cfg.UploadPassword) {
+		if !upload.Allowed(r, cfg) {
 			writeJSONError(w, http.StatusUnauthorized, "upload password required")
 			return
 		}

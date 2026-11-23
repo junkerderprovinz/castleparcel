@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Sign in as the owner.** Settings has a Sign-in tab. Set a password there and only you send files, while guests with `UPLOAD_PASSWORD` still can and every link opens as before. Two-factor authentication, passkeys, sessions, API tokens and sign-in services over OpenID Connect such as Pocket ID come with it, and you reset a forgotten password with a code from the container log. Without a password CastleParcel stays open as it was. While it is open, `UPLOAD_PASSWORD` also guards the Sign-in tab. The sign-in is sealed with a key in `app.key` in `CONFIG_DIR`, or with `CASTLEPARCEL_APP_KEY`.
+- **The database counts its versions.** A database from a later CastleParcel stops this one at the start instead of being misread.
+
 ### Changed
 
 - **The Info tab has a Version and a Components card.** The Version card shows CastleParcel with where its updates stand, and What's new, Check for updates and How to update in one last row. GlimStone's number moves to the Components card. Check for updates asks your server, which asks GitHub at most once an hour however many visitors press it, and How to update opens the new Updating section of the README.

@@ -128,3 +128,76 @@ func TestApplySchemaUpgradesOldDatabase(t *testing.T) {
 		t.Errorf("format default = %d, want 1", format)
 	}
 }
+
+func version(t *testing.T, db *sql.DB) int {
+	t.Helper()
+	var v int
+	if err := db.QueryRow("SELECT version FROM schema_version").Scan(&v); err != nil {
+		t.Fatalf("read schema_version: %v", err)
+	}
+	return v
+}
+
+func TestOpenRecordsTheSchemaVersion(t *testing.T) {
+	db, err := Open(filepath.Join(t.TempDir(), "db.sqlite"))
+	if err != nil {
+		t.Fatalf("Open: %v", err)
+	}
+	defer db.Close()
+
+	if got := version(t, db); got != SchemaVersion {
+		t.Errorf("schema_version = %d, want %d", got, SchemaVersion)
+	}
+	if _, err := db.Exec("SELECT kind, id, data FROM " + SignInTable); err != nil {
+		t.Errorf("sign-in table: %v", err)
+	}
+	var rows int
+	if err := db.QueryRow("SELECT COUNT(*) FROM schema_version").Scan(&rows); err != nil || rows != 1 {
+		t.Errorf("schema_version has %d rows (%v), want 1", rows, err)
+	}
+}
+
+func TestADatabaseWithoutVersionIsCountedFromTheStart(t *testing.T) {
+	dbPath := filepath.Join(t.TempDir(), "db.sqlite")
+	db, err := sql.Open("sqlite", dbPath)
+	if err != nil {
+		t.Fatalf("sql.Open: %v", err)
+	}
+	if err := applyBase(db); err != nil {
+		t.Fatalf("base schema: %v", err)
+	}
+	if _, err := db.Exec(`INSERT INTO files (id, slug, original_name, size, created_at) VALUES ('id1', 'slug1', '', 1, 1)`); err != nil {
+		t.Fatalf("insert: %v", err)
+	}
+	db.Close()
+
+	db, err = Open(dbPath)
+	if err != nil {
+		t.Fatalf("Open: %v", err)
+	}
+	defer db.Close()
+	if got := version(t, db); got != SchemaVersion {
+		t.Errorf("schema_version = %d, want %d", got, SchemaVersion)
+	}
+	var slug string
+	if err := db.QueryRow("SELECT slug FROM files WHERE id = 'id1'").Scan(&slug); err != nil || slug != "slug1" {
+		t.Errorf("share after the upgrade: %q, %v", slug, err)
+	}
+}
+
+func TestOpenRefusesADatabaseOfANewerVersion(t *testing.T) {
+	dbPath := filepath.Join(t.TempDir(), "db.sqlite")
+	db, err := Open(dbPath)
+	if err != nil {
+		t.Fatalf("Open: %v", err)
+	}
+	if _, err := db.Exec("UPDATE schema_version SET version = ?", SchemaVersion+1); err != nil {
+		t.Fatalf("bump version: %v", err)
+	}
+	db.Close()
+
+	if db, err := Open(dbPath); err == nil {
+		db.Close()
+		t.Fatal("Open took a database a newer CastleParcel wrote")
+	}
+}

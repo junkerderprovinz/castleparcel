@@ -54,6 +54,10 @@ type Config struct {
 	UploadPassword  string
 	UploadProtected bool
 
+	// AppKey is CASTLEPARCEL_APP_KEY, the key the owner's sign-in is sealed
+	// with. Empty keeps one in CONFIG_DIR.
+	AppKey string
+
 	AppName     string
 	AppLogo     string
 	AccentColor string
@@ -103,6 +107,8 @@ func Load() Config {
 
 		UploadPassword:  uploadPassword,
 		UploadProtected: len(uploadPassword) > 0,
+
+		AppKey: strings.TrimSpace(getenv("CASTLEPARCEL_APP_KEY", "")),
 
 		AppName:     getenv("APP_NAME", ""),
 		AppLogo:     getenv("APP_LOGO", ""),

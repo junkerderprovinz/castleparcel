@@ -103,6 +103,7 @@ func stripBasePath(next http.Handler) http.Handler {
 
 // uploadGate checks the optional upload password before any tus method reaches
 // tusd, so an unauthorized request never creates an upload or writes a byte.
+// The signed-in owner passes without it, see Admit.
 // An upload for a file request proves the request link instead, see
 // requestGate. The OPTIONS preflight passes, because browsers send no custom
 // headers on it.
@@ -124,8 +125,7 @@ func uploadGate(cfg config.Config, db *sql.DB, next http.Handler) http.Handler {
 			next.ServeHTTP(w, r)
 			return
 		}
-		token := r.Header.Get(UploadTokenHeader)
-		if !IsUploadAuthorized(token, cfg.UploadProtected, cfg.UploadPassword) {
+		if !Allowed(r, cfg) {
 			w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 			w.WriteHeader(http.StatusUnauthorized)
 			_, _ = w.Write([]byte("upload password required\n"))
