@@ -227,6 +227,15 @@ The featherdrop images stay on Docker Hub and GHCR, but they get no more updates
 - **ZimaOS and CasaOS:** add the [community store](https://github.com/junkerderprovinz/zimaos-apps#install) and install CastleParcel from it.
 - **umbrelOS:** add the [community app store](https://github.com/junkerderprovinz/umbrel-apps#install) and install CastleParcel from it.
 
+### Updating
+
+A container does not replace itself, so you update CastleParcel where you installed it. **Check for updates** under **Settings, Info** says when a newer release is out. Shares, links and settings live in `/data` and `/config` and stay as they are.
+
+- **Unraid:** on the **Docker** tab, choose **Check for Updates**, then **apply update** beside CastleParcel.
+- **docker run:** run `docker pull junkerderprovinz/castleparcel:latest`, remove the container and start it again with the same command.
+- **Compose:** run `docker compose pull`, then `docker compose up -d`, in the folder that holds the file.
+- **Other hosts:** update the app on the host's app page, which pulls the newer image.
+
 <br>
 
 <p><a id="7-how-ai-is-used-here" href="#7-how-ai-is-used-here"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/7-how-ai-is-used-here-dark.svg"><img src=".github/assets/sections/7-how-ai-is-used-here.svg" alt="7. How AI is used here" width="100%"></picture></a></p>

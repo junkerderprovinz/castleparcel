@@ -341,10 +341,6 @@
     "soon": "Kommer snart"
   },
   "info": {
-    "version": "Versjon",
-    "versionHint": "Et nummer åpner versjonsnotatene.",
-    "unreleased": "{v}, ikke utgitt ennå",
-    "releaseNotes": "Versjonsnotater",
     "help": "Hjelp",
     "report": "Problemer, ønsker eller forslag? Du må gjerne åpne en sak på GitHub eller stikke innom og si hei på Discord.",
     "repo": "GitHub",
@@ -362,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee tar kort og Apple Pay eller Google Pay. Siden åpnes i en ny fane.",
     "paypalText": "PayPal åpnes i en ny fane, med eller uten konto.",
     "cryptoText": "Velg en valuta, og send til adressen den viser.",
-    "open": "Åpne siden"
+    "open": "Åpne siden",
+    "notesTitle": "Nytt i {version}",
+    "notesLoading": "Laster inn utgivelsesnotater…",
+    "notesFailed": "Utgivelsesnotatene kunne ikke lastes inn her. Åpne dem på GitHub.",
+    "notesRetry": "Prøv igjen",
+    "notesOnGitHub": "Se hele utgivelsen på GitHub"
   }
 }

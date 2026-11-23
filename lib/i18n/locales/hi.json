@@ -341,10 +341,6 @@
     "soon": "जल्द आ रहा है"
   },
   "info": {
-    "version": "वर्शन",
-    "versionHint": "किसी नंबर पर क्लिक करने से उसके रिलीज़ नोट्स खुलते हैं।",
-    "unreleased": "{v}, अभी रिलीज़ नहीं हुआ",
-    "releaseNotes": "रिलीज़ नोट्स",
     "help": "मदद",
     "report": "कोई समस्या, इच्छा या सुझाव? GitHub पर बेझिझक issue खोलें, या Discord पर आकर हैलो कहें।",
     "repo": "GitHub",
@@ -362,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee कार्ड और Apple Pay या Google Pay लेता है। पेज एक नए टैब में खुलता है।",
     "paypalText": "PayPal एक नए टैब में खुलता है, अकाउंट के साथ या उसके बिना।",
     "cryptoText": "एक करेंसी चुनें, फिर दिखाए गए पते पर भेजें।",
-    "open": "पेज खोलें"
+    "open": "पेज खोलें",
+    "notesTitle": "{version} में नया",
+    "notesLoading": "रिलीज़ नोट्स लोड हो रहे हैं…",
+    "notesFailed": "रिलीज़ नोट्स यहाँ लोड नहीं हो पाए। इन्हें GitHub पर खोलें।",
+    "notesRetry": "फिर से कोशिश करें",
+    "notesOnGitHub": "GitHub पर पूरी रिलीज़ देखें"
   }
 }

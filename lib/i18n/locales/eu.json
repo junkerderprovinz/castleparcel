@@ -341,10 +341,6 @@
     "soon": "Laster"
   },
   "info": {
-    "version": "Bertsioa",
-    "versionHint": "Zenbaki batek bere bertsio-oharrak irekitzen ditu.",
-    "unreleased": "{v}, oraindik argitaratu gabe",
-    "releaseNotes": "Bertsio-oharrak",
     "help": "Laguntza",
     "report": "Arazoak, nahiak edo iradokizunak? Ireki issue bat GitHuben nahi duzunean, edo pasa zaitez Discordera kaixo esatera.",
     "repo": "GitHub",
@@ -362,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee orrian txartelak eta Apple Pay edo Google Pay onartzen dira. Orria fitxa berri batean irekitzen da.",
     "paypalText": "PayPal fitxa berri batean irekitzen da, kontuarekin edo gabe.",
     "cryptoText": "Aukeratu txanpon bat eta bidali erakusten duen helbidera.",
-    "open": "Ireki orria"
+    "open": "Ireki orria",
+    "notesTitle": "{version} bertsioko berritasunak",
+    "notesLoading": "Bertsio-oharrak kargatzen…",
+    "notesFailed": "Ezin izan dira bertsio-oharrak hemen kargatu. Ireki GitHub-en.",
+    "notesRetry": "Saiatu berriro",
+    "notesOnGitHub": "Ikusi bertsio osoa GitHub-en"
   }
 }

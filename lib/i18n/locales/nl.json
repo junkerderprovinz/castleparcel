@@ -341,10 +341,6 @@
     "soon": "Binnenkort"
   },
   "info": {
-    "version": "Versie",
-    "versionHint": "Een versienummer opent de bijbehorende release notes.",
-    "unreleased": "{v}, nog niet uitgebracht",
-    "releaseNotes": "Release notes",
     "help": "Hulp",
     "report": "Problemen, wensen of ideeën? Open gerust een issue op GitHub, of kom even hallo zeggen op Discord.",
     "repo": "GitHub",
@@ -362,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee neemt kaarten en Apple Pay of Google Pay aan. De pagina opent in een nieuw tabblad.",
     "paypalText": "PayPal opent in een nieuw tabblad, met of zonder account.",
     "cryptoText": "Kies een munteenheid en stuur naar het adres dat erbij staat.",
-    "open": "Pagina openen"
+    "open": "Pagina openen",
+    "notesTitle": "Nieuw in {version}",
+    "notesLoading": "Release-opmerkingen laden…",
+    "notesFailed": "De release-opmerkingen konden hier niet worden geladen. Open ze op GitHub.",
+    "notesRetry": "Opnieuw proberen",
+    "notesOnGitHub": "Volledige release op GitHub bekijken"
   }
 }

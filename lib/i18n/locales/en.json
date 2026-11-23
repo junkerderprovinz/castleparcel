@@ -341,10 +341,6 @@
     "soon": "Coming soon"
   },
   "info": {
-    "version": "Version",
-    "versionHint": "A number opens its release notes.",
-    "unreleased": "{v}, not released yet",
-    "releaseNotes": "Release notes",
     "help": "Help",
     "report": "Problems, wishes or suggestions? You're welcome to open an issue on GitHub, or come say hi on Discord.",
     "repo": "GitHub",
@@ -362,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee takes cards and Apple Pay or Google Pay. The page opens in a new tab.",
     "paypalText": "PayPal opens in a new tab, with or without an account.",
     "cryptoText": "Pick a currency, then send to the address it shows.",
-    "open": "Open the page"
+    "open": "Open the page",
+    "notesTitle": "New in {version}",
+    "notesLoading": "Loading release notes…",
+    "notesFailed": "Couldn't load the release notes here. Open them on GitHub.",
+    "notesRetry": "Try again",
+    "notesOnGitHub": "View full release on GitHub"
   }
 }

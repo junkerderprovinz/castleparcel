@@ -345,10 +345,6 @@
     "soon": "Bientôt"
   },
   "info": {
-    "version": "Version",
-    "versionHint": "Un numéro ouvre ses notes de version.",
-    "unreleased": "{v}, pas encore publiée",
-    "releaseNotes": "Notes de version",
     "help": "Aide",
     "report": "Un problème, une envie ou une idée ? N’hésite pas à ouvrir une issue sur GitHub, ou à passer dire bonjour sur Discord.",
     "repo": "GitHub",
@@ -366,6 +362,11 @@
     "coffeeText": "Buy Me a Coffee accepte les cartes ainsi qu’Apple Pay et Google Pay. La page s’ouvre dans un nouvel onglet.",
     "paypalText": "PayPal s’ouvre dans un nouvel onglet, avec ou sans compte.",
     "cryptoText": "Choisissez une monnaie, puis envoyez à l’adresse affichée.",
-    "open": "Ouvrir la page"
+    "open": "Ouvrir la page",
+    "notesTitle": "Nouveautés de la version {version}",
+    "notesLoading": "Chargement des notes de version…",
+    "notesFailed": "Impossible de charger les notes de version ici. Ouvrez-les sur GitHub.",
+    "notesRetry": "Réessayer",
+    "notesOnGitHub": "Voir la version complète sur GitHub"
   }
 }

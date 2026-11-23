@@ -349,10 +349,6 @@
     "soon": "Již brzy"
   },
   "info": {
-    "version": "Verze",
-    "versionHint": "Číslo verze otevře její poznámky k vydání.",
-    "unreleased": "{v}, zatím nevydaná",
-    "releaseNotes": "Poznámky k vydání",
     "help": "Nápověda",
     "report": "Problémy, přání nebo nápady? Klidně založte issue na GitHubu, nebo se zastavte pozdravit na Discordu.",
     "repo": "GitHub",
@@ -370,6 +366,11 @@
     "coffeeText": "Buy Me a Coffee přijímá karty a také Apple Pay nebo Google Pay. Stránka se otevře v nové kartě.",
     "paypalText": "PayPal se otevře v nové kartě, s účtem i bez něj.",
     "cryptoText": "Vyberte měnu a pošlete platbu na adresu, která se zobrazí.",
-    "open": "Otevřít stránku"
+    "open": "Otevřít stránku",
+    "notesTitle": "Novinky ve verzi {version}",
+    "notesLoading": "Načítání poznámek k vydání…",
+    "notesFailed": "Poznámky k vydání se zde nepodařilo načíst. Otevři je na GitHubu.",
+    "notesRetry": "Zkusit znovu",
+    "notesOnGitHub": "Zobrazit celé vydání na GitHubu"
   }
 }

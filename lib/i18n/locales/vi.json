@@ -337,10 +337,6 @@
     "soon": "Sắp ra mắt"
   },
   "info": {
-    "version": "Phiên bản",
-    "versionHint": "Nhấn vào một số để mở ghi chú phát hành của nó.",
-    "unreleased": "{v}, chưa phát hành",
-    "releaseNotes": "Ghi chú phát hành",
     "help": "Trợ giúp",
     "report": "Gặp sự cố, có mong muốn hay góp ý? Cứ thoải mái mở một issue trên GitHub hoặc ghé Discord chào một tiếng nhé.",
     "repo": "GitHub",
@@ -358,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee nhận thẻ và Apple Pay hoặc Google Pay. Trang sẽ mở trong một thẻ mới.",
     "paypalText": "PayPal mở trong một thẻ mới, có hoặc không cần tài khoản.",
     "cryptoText": "Chọn một loại tiền, rồi gửi đến địa chỉ hiện ra.",
-    "open": "Mở trang"
+    "open": "Mở trang",
+    "notesTitle": "Có gì mới trong {version}",
+    "notesLoading": "Đang tải ghi chú phát hành…",
+    "notesFailed": "Không thể tải ghi chú phát hành tại đây. Hãy mở trên GitHub.",
+    "notesRetry": "Thử lại",
+    "notesOnGitHub": "Xem bản phát hành đầy đủ trên GitHub"
   }
 }

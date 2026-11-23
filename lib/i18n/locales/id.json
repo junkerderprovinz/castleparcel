@@ -337,10 +337,6 @@
     "soon": "Segera hadir"
   },
   "info": {
-    "version": "Versi",
-    "versionHint": "Klik nomor versi untuk membuka catatan rilisnya.",
-    "unreleased": "{v}, belum dirilis",
-    "releaseNotes": "Catatan rilis",
     "help": "Bantuan",
     "report": "Ada masalah, keinginan, atau saran? Silakan buka issue di GitHub, atau mampir menyapa di Discord.",
     "repo": "GitHub",
@@ -358,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee menerima kartu serta Apple Pay atau Google Pay. Halamannya terbuka di tab baru.",
     "paypalText": "PayPal terbuka di tab baru, dengan atau tanpa akun.",
     "cryptoText": "Pilih mata uang, lalu kirim ke alamat yang ditampilkan.",
-    "open": "Buka halaman"
+    "open": "Buka halaman",
+    "notesTitle": "Baru di {version}",
+    "notesLoading": "Memuat catatan rilis…",
+    "notesFailed": "Catatan rilis gagal dimuat di sini. Buka di GitHub.",
+    "notesRetry": "Coba lagi",
+    "notesOnGitHub": "Lihat rilis lengkap di GitHub"
   }
 }

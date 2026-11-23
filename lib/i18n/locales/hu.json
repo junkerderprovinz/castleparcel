@@ -341,10 +341,6 @@
     "soon": "Hamarosan"
   },
   "info": {
-    "version": "Verzió",
-    "versionHint": "Egy verziószám megnyitja a hozzá tartozó kiadási megjegyzéseket.",
-    "unreleased": "{v}, még nem jelent meg",
-    "releaseNotes": "Kiadási megjegyzések",
     "help": "Súgó",
     "report": "Problémád, kívánságod vagy ötleted van? Nyiss nyugodtan egy issue-t a GitHubon, vagy ugorj be köszönni a Discordon.",
     "repo": "GitHub",
@@ -362,6 +358,11 @@
     "coffeeText": "A Buy Me a Coffee elfogad kártyát, valamint Apple Pay és Google Pay fizetést. Az oldal új lapon nyílik meg.",
     "paypalText": "A PayPal új lapon nyílik meg, fiókkal vagy anélkül.",
     "cryptoText": "Válassz pénznemet, majd küldd a megjelenő címre.",
-    "open": "Az oldal megnyitása"
+    "open": "Az oldal megnyitása",
+    "notesTitle": "{version} újdonságai",
+    "notesLoading": "Kiadási megjegyzések betöltése…",
+    "notesFailed": "A kiadási megjegyzéseket itt nem sikerült betölteni. Nyisd meg őket a GitHubon.",
+    "notesRetry": "Próbáld újra",
+    "notesOnGitHub": "Teljes kiadás megtekintése a GitHubon"
   }
 }

@@ -337,10 +337,6 @@
     "soon": "即将推出"
   },
   "info": {
-    "version": "版本",
-    "versionHint": "点击版本号可查看对应的发布说明。",
-    "unreleased": "{v}，尚未发布",
-    "releaseNotes": "发布说明",
     "help": "帮助",
     "report": "遇到问题、有愿望或建议？欢迎在 GitHub 上提 issue，或者来 Discord 打个招呼。",
     "repo": "GitHub",
@@ -358,6 +354,11 @@
     "coffeeText": "Buy Me a Coffee 支持银行卡以及 Apple Pay 或 Google Pay。页面会在新标签页中打开。",
     "paypalText": "PayPal 会在新标签页中打开，有没有账户都可以。",
     "cryptoText": "选一种币种，然后发送到它显示的地址。",
-    "open": "打开页面"
+    "open": "打开页面",
+    "notesTitle": "{version} 的新内容",
+    "notesLoading": "正在加载发行说明…",
+    "notesFailed": "无法在此加载发行说明。请在 GitHub 上打开。",
+    "notesRetry": "重试",
+    "notesOnGitHub": "在 GitHub 上查看完整发行版"
   }
 }

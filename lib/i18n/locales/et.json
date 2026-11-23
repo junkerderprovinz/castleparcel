@@ -341,10 +341,6 @@
     "soon": "Varsti"
   },
   "info": {
-    "version": "Versioon",
-    "versionHint": "Number näitab, mis selles versioonis uut on.",
-    "unreleased": "{v}, pole veel välja antud",
-    "releaseNotes": "Mis on uut",
     "help": "Abi",
     "report": "Probleemid, soovid või ettepanekud? Ava julgelt GitHubis issue või astu läbi ja ütle Discordis tere.",
     "repo": "GitHub",
@@ -362,6 +358,11 @@
     "coffeeText": "Buy Me a Coffee võtab vastu kaarte ning Apple Payd või Google Payd. Leht avaneb uuel vahekaardil.",
     "paypalText": "PayPal avaneb uuel vahekaardil, kontoga või ilma.",
     "cryptoText": "Vali valuuta ja saada näidatud aadressile.",
-    "open": "Ava leht"
+    "open": "Ava leht",
+    "notesTitle": "Uut versioonis {version}",
+    "notesLoading": "Väljalaskemärkmete laadimine…",
+    "notesFailed": "Väljalaskemärkmeid ei õnnestunud siin laadida. Ava need GitHubis.",
+    "notesRetry": "Proovi uuesti",
+    "notesOnGitHub": "Vaata täielikku väljalasket GitHubis"
   }
 }
