@@ -18,7 +18,7 @@ const UPDATE_GUIDE = `${REPO}#updating`;
 const words = computed(() => componentText(language()));
 
 // The page may only talk to its own server, which asks GitHub on its behalf.
-const update = ref<UpdateState>({ kind: 'current' });
+const update = ref<UpdateState>({ kind: 'unchecked' });
 async function check() {
   update.value = { kind: 'checking' };
   try {

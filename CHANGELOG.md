@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **The Info tab has a Version and a Components card.** The Version card shows CastleParcel with where its updates stand, and What's new, Check for updates and How to update in one last row. GlimStone's number moves to the Components card. Check for updates asks your server, which asks GitHub at most once an hour however many visitors press it, and How to update opens the new Updating section of the README.
 - **What's new opens the release notes in a window of the app,** in place of the GitHub page. While a newer release waits, it shows that release's notes. Your server fetches them from GitHub and keeps them for an hour.
+- GlimStone 4.8.5: the Version card says "Not checked yet" until you press Check for updates, and a long status in the Components card gets a line of its own on a narrow screen.
 
 ## [2.1.3] - 2026-11-17
 

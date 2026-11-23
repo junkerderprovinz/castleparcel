@@ -68,3 +68,10 @@ test("the About card is called About alone", async () => {
   const about = html.slice(html.indexOf('data-glim="InfoAboutCard"'));
   assert.doesNotMatch(about.slice(0, 600), /About CastleParcel/);
 });
+
+test("before the first check the Version card says it has not looked yet", async () => {
+  const html = await render();
+  const version = html.slice(html.indexOf('data-glim="InfoVersionCard"'), html.indexOf('data-glim="InfoComponentsCard"'));
+  assert.match(version, /Not checked yet/);
+  assert.doesNotMatch(version, /Up to date/);
+});
