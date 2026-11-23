@@ -76,7 +76,7 @@
     "password": "Sandi",
     "passwordHint": "Penerima butuh sandi ini selain tautannya. Kirim lewat jalur lain.",
     "passwordField": "Sandi kiriman",
-    "passwordShort": "Pakai minimal 8 karakter supaya sandinya tidak gampang ditebak.",
+    "passwordShort": "Bisa kok. Tapi sandi dengan 8 karakter atau lebih jauh lebih sulit ditebak.",
     "metadata": "Hapus metadata foto",
     "metadataHint": "Info kamera dan lokasi GPS dihapus dari foto JPEG sebelum dienkripsi.",
     "upload": "Unggah dan bagikan",

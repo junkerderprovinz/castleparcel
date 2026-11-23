@@ -77,7 +77,7 @@
     "password": "Pasahitza",
     "passwordHint": "Hartzaileak estekaz gain behar du. Bidali beste bide batetik.",
     "passwordField": "Partekatzearen pasahitza",
-    "passwordShort": "Erabili gutxienez 8 karaktere, pasahitza erraz asma ez dezaten.",
+    "passwordShort": "Ondo dago. 8 karaktere edo gehiagorekin, ordea, pasahitza askoz zailagoa da asmatzen.",
     "metadata": "Kendu argazkien metadatuak",
     "metadataHint": "Kameraren datuak eta GPS kokapena JPEG argazkietatik kentzen dira zifratu aurretik.",
     "upload": "Igo eta partekatu",

@@ -77,7 +77,7 @@
     "password": "Passord",
     "passwordHint": "Mottakeren trenger det i tillegg til lenken. Send det på en annen måte.",
     "passwordField": "Passord for delingen",
-    "passwordShort": "Bruk minst 8 tegn, så passordet tåler gjetting.",
+    "passwordShort": "Det går fint. Med 8 tegn eller flere er passordet mye vanskeligere å gjette.",
     "metadata": "Fjern fotometadata",
     "metadataHint": "Kameradetaljer og GPS-posisjon fjernes fra JPEG-bilder før krypteringen.",
     "upload": "Last opp og del",

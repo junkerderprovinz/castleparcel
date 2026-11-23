@@ -76,7 +76,7 @@
     "password": "비밀번호",
     "passwordHint": "받는 사람은 링크와 함께 이 비밀번호도 있어야 해요. 다른 방법으로 알려 주세요.",
     "passwordField": "공유 비밀번호",
-    "passwordShort": "쉽게 추측되지 않도록 8자 이상으로 정해 주세요.",
+    "passwordShort": "이대로도 괜찮습니다. 다만 8자 이상이면 훨씬 추측하기 어려워집니다.",
     "metadata": "사진 메타데이터 제거",
     "metadataHint": "암호화하기 전에 JPEG 사진에서 카메라 정보와 GPS 위치를 빼요.",
     "upload": "업로드 및 공유",

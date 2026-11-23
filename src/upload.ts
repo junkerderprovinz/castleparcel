@@ -16,7 +16,7 @@ import {
   type PendingUpload,
   type ResumeStore,
 } from "@/lib/e2e/upload-resume";
-import { isPasswordLongEnough } from "@/lib/e2e/v2/token";
+import { isPasswordShort } from "@/lib/e2e/v2/token";
 import { cryptoWorker } from "@/lib/e2e/v2/crypto-worker";
 import { baseUrl, config } from "@/src/config";
 import { wait } from "@/src/format";
@@ -98,7 +98,8 @@ export const total = (items: { size: number }[]) => items.reduce((sum, x) => sum
 export const sizes = () => send.items.map((x) => ({ name: x.file.name, size: x.file.size }));
 export const hasJpeg = () => send.items.some((x) => isStrippableType(x.file.type));
 export const expiryChoices = () => allowedExpiryOptions(config.maxExpiry).map((o) => o.value);
-export const passwordTooShort = (locked: boolean, password: string) => locked && !isPasswordLongEnough(password);
+export const passwordMissing = (locked: boolean, password: string) => locked && password === "";
+export const passwordShort = (locked: boolean, password: string) => locked && password !== "" && isPasswordShort(password);
 export const maxDownloads = (limit: Limit, count: number) =>
   limit === "none" ? null : limit === "once" ? 1 : Math.max(1, Math.floor(count || 1));
 

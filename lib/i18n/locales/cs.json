@@ -79,7 +79,7 @@
     "password": "Heslo",
     "passwordHint": "Příjemce ho potřebuje spolu s odkazem. Pošlete ho jinou cestou.",
     "passwordField": "Heslo ke sdílení",
-    "passwordShort": "Použijte aspoň 8 znaků, aby se heslo nedalo snadno uhodnout.",
+    "passwordShort": "To jde. Heslo s 8 nebo více znaky se ale uhodne mnohem hůř.",
     "metadata": "Odstranit metadata fotografií",
     "metadataHint": "Údaje o fotoaparátu a poloha GPS zmizí z fotek JPEG ještě před šifrováním.",
     "upload": "Nahrát a sdílet",

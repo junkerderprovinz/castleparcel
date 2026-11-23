@@ -76,7 +76,7 @@
     "password": "密码",
     "passwordHint": "收件人除了链接还需要这个密码。请用别的方式把密码告诉对方。",
     "passwordField": "分享密码",
-    "passwordShort": "请至少使用 8 个字符，这样密码不容易被猜到。",
+    "passwordShort": "这样也可以。不过，8 个字符或更长的密码要难猜得多。",
     "metadata": "移除照片元数据",
     "metadataHint": "加密前会从 JPEG 照片中去掉相机信息和 GPS 位置。",
     "upload": "上传并分享",

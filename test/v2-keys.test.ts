@@ -4,8 +4,8 @@ import { newToken, deriveKeys, passwordSalt, ARGON2ID } from "../lib/e2e/v2/keys
 import {
   encodeToken,
   decodeToken,
-  isPasswordLongEnough,
-  MIN_PASSWORD_LENGTH,
+  isPasswordShort,
+  SUGGESTED_PASSWORD_LENGTH,
 } from "../lib/e2e/v2/token";
 
 const SECRET = new Uint8Array(32).map((_, i) => i);
@@ -94,11 +94,17 @@ test("the keys record the Argon2id parameters they used", async () => {
   assert.equal(l.kdf, null);
 });
 
-test("passwords shorter than the minimum are refused, counted in code points", () => {
-  assert.equal(MIN_PASSWORD_LENGTH, 8);
-  assert.equal(isPasswordLongEnough("1234567"), false);
-  assert.equal(isPasswordLongEnough("12345678"), true);
-  assert.equal(isPasswordLongEnough("\u{1F512}".repeat(7)), false);
-  assert.equal(isPasswordLongEnough("\u{1F512}".repeat(8)), true);
-  assert.equal(isPasswordLongEnough("caféabc"), false);
+test("a password under the suggested length counts as short, counted in code points", () => {
+  assert.equal(SUGGESTED_PASSWORD_LENGTH, 8);
+  assert.equal(isPasswordShort("1234567"), true);
+  assert.equal(isPasswordShort("12345678"), false);
+  assert.equal(isPasswordShort("\u{1F512}".repeat(7)), true);
+  assert.equal(isPasswordShort("\u{1F512}".repeat(8)), false);
+  assert.equal(isPasswordShort("caféabc"), true);
+});
+
+test("a short password still goes through Argon2id", async () => {
+  const k = await deriveKeys({ mode: "link+password", secret: SECRET }, "1");
+  assert.deepEqual(k.kdf, { alg: "argon2id13", ops: ARGON2ID.ops, mem: ARGON2ID.mem });
+  assert.notDeepEqual(k, await deriveKeys({ mode: "link+password", secret: SECRET }, "2"));
 });

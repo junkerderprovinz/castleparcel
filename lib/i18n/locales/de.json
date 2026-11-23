@@ -77,7 +77,7 @@
     "password": "Passwort",
     "passwordHint": "Der Empfänger braucht es zusätzlich zum Link. Schick es ihm auf einem anderen Weg.",
     "passwordField": "Passwort der Freigabe",
-    "passwordShort": "Nimm mindestens 8 Zeichen, damit das Passwort dem Raten standhält.",
+    "passwordShort": "Das geht. Mit 8 Zeichen oder mehr ist das Passwort aber viel schwerer zu erraten.",
     "metadata": "Fotodaten entfernen",
     "metadataHint": "Kameradaten und GPS-Position fliegen vor dem Verschlüsseln aus JPEG-Fotos.",
     "upload": "Hochladen und teilen",

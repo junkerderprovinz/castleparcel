@@ -118,11 +118,17 @@ test("a single file round-trips in link and password mode", async () => {
   assert.deepEqual(plain, data);
 });
 
-test("a short password is refused at upload", async () => {
-  await assert.rejects(
-    createEncryptor([{ name: "n", type: "t", size: 1 }], { password: "short" }),
-    /password/,
-  );
+test("a short password is the sender's choice and round-trips", async () => {
+  const data = bytes(5);
+  const enc = await createEncryptor([{ name: "n", type: "t", size: 5 }], { password: "pin" });
+  const blob = await encryptAll(enc, data);
+  const { header, plain } = await decryptAll(blob, await openKeys(enc.token, "pin"));
+  assert.equal(header.mode, "link+password");
+  assert.deepEqual(plain, data);
+});
+
+test("an empty password is refused at upload", async () => {
+  await assert.rejects(createEncryptor([{ name: "n", type: "t", size: 1 }], { password: "" }), /password/);
 });
 
 test("a wrong password fails before any content is returned", async () => {

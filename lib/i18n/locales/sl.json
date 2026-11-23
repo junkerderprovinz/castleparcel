@@ -79,7 +79,7 @@
     "password": "Geslo",
     "passwordHint": "Prejemnik ga potrebuje poleg povezave. Pošlji mu ga po drugi poti.",
     "passwordField": "Geslo za deljenje",
-    "passwordShort": "Uporabi vsaj 8 znakov, da gesla ne bo lahko uganiti.",
+    "passwordShort": "Tudi tako gre. Geslo z 8 ali več znaki pa je veliko teže uganiti.",
     "metadata": "Odstrani metapodatke fotografij",
     "metadataHint": "Podatki o fotoaparatu in položaj GPS se pred šifriranjem odstranijo iz fotografij JPEG.",
     "upload": "Naloži in deli",

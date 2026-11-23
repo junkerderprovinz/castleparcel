@@ -78,7 +78,7 @@
     "password": "Password",
     "passwordHint": "Il destinatario ne ha bisogno oltre al link. Mandagliela per un’altra via.",
     "passwordField": "Password della condivisione",
-    "passwordShort": "Usa almeno 8 caratteri, così la password resiste a chi prova a indovinarla.",
+    "passwordShort": "Va bene così. Con 8 caratteri o più, però, la password è molto più difficile da indovinare.",
     "metadata": "Rimuovi metadati foto",
     "metadataHint": "I dati della fotocamera e la posizione GPS vengono tolti dalle foto JPEG prima della cifratura.",
     "upload": "Carica e condividi",

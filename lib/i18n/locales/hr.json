@@ -78,7 +78,7 @@
     "password": "Lozinka",
     "passwordHint": "Primatelju treba uz poveznicu. Pošalji mu je nekim drugim putem.",
     "passwordField": "Lozinka za dijeljenje",
-    "passwordShort": "Koristi barem 8 znakova da se lozinka ne može lako pogoditi.",
+    "passwordShort": "Može i tako. S 8 ili više znakova lozinku je ipak puno teže pogoditi.",
     "metadata": "Ukloni metapodatke fotografija",
     "metadataHint": "Podaci o fotoaparatu i GPS lokacija uklanjaju se iz JPEG fotografija prije šifriranja.",
     "upload": "Prenesi i podijeli",

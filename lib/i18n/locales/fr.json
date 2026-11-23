@@ -78,7 +78,7 @@
     "password": "Mot de passe",
     "passwordHint": "Le destinataire en a besoin en plus du lien. Envoyez-le par un autre moyen.",
     "passwordField": "Mot de passe du partage",
-    "passwordShort": "Utilisez au moins 8 caractères pour que le mot de passe résiste aux devinettes.",
+    "passwordShort": "Ça marche. Avec 8 caractères ou plus, le mot de passe est bien plus difficile à deviner.",
     "metadata": "Supprimer les métadonnées photo",
     "metadataHint": "Les infos de l’appareil et la position GPS sont retirées des photos JPEG avant le chiffrement.",
     "upload": "Envoyer et partager",

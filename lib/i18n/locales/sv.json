@@ -77,7 +77,7 @@
     "password": "Lösenord",
     "passwordHint": "Mottagaren behöver det utöver länken. Skicka det på ett annat sätt.",
     "passwordField": "Lösenord för delningen",
-    "passwordShort": "Använd minst 8 tecken, så att lösenordet står emot gissningar.",
+    "passwordShort": "Det går bra. Med 8 tecken eller fler är lösenordet mycket svårare att gissa.",
     "metadata": "Ta bort fotometadata",
     "metadataHint": "Kamerauppgifter och GPS-position tas bort från JPEG-foton före krypteringen.",
     "upload": "Ladda upp och dela",

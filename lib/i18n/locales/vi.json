@@ -76,7 +76,7 @@
     "password": "Mật khẩu",
     "passwordHint": "Người nhận cần cả mật khẩu lẫn liên kết. Hãy gửi mật khẩu theo một cách khác.",
     "passwordField": "Mật khẩu chia sẻ",
-    "passwordShort": "Hãy dùng ít nhất 8 ký tự để mật khẩu khó bị đoán ra.",
+    "passwordShort": "Như vậy cũng được. Nhưng mật khẩu từ 8 ký tự trở lên khó đoán hơn nhiều.",
     "metadata": "Xóa siêu dữ liệu ảnh",
     "metadataHint": "Thông tin máy ảnh và vị trí GPS được xóa khỏi ảnh JPEG trước khi mã hóa.",
     "upload": "Tải lên và chia sẻ",

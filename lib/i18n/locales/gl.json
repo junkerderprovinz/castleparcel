@@ -77,7 +77,7 @@
     "password": "Contrasinal",
     "passwordHint": "Quen o reciba necesítao ademais da ligazón. Mándao por outra vía.",
     "passwordField": "Contrasinal do envío",
-    "passwordShort": "Usa polo menos 8 caracteres, para que o contrasinal aguante se alguén intenta adiviñalo.",
+    "passwordShort": "Vale así. Con 8 caracteres ou máis, o contrasinal é moito máis difícil de adiviñar.",
     "metadata": "Quitar metadatos das fotos",
     "metadataHint": "Os datos da cámara e a posición GPS saen das fotos JPEG antes de cifralas.",
     "upload": "Subir e compartir",

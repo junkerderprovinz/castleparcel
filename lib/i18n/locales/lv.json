@@ -78,7 +78,7 @@
     "password": "Parole",
     "passwordHint": "Saņēmējam tā vajadzīga papildus saitei. Nosūti to citā ceļā.",
     "passwordField": "Kopīgojuma parole",
-    "passwordShort": "Izmanto vismaz 8 rakstzīmes, lai paroli nebūtu viegli uzminēt.",
+    "passwordShort": "Der arī tā. Taču paroli ar 8 vai vairāk rakstzīmēm uzminēt ir daudz grūtāk.",
     "metadata": "Noņemt foto metadatus",
     "metadataHint": "Pirms šifrēšanas no JPEG fotoattēliem tiek izņemti kameras dati un GPS atrašanās vieta.",
     "upload": "Augšupielādēt un kopīgot",

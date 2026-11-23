@@ -78,7 +78,7 @@
     "password": "Parolă",
     "passwordHint": "Destinatarul are nevoie de ea pe lângă link. Trimite-o pe altă cale.",
     "passwordField": "Parola partajării",
-    "passwordShort": "Folosește cel puțin 8 caractere, ca parola să nu poată fi ghicită ușor.",
+    "passwordShort": "Merge și așa. Cu 8 caractere sau mai multe, însă, parola e mult mai greu de ghicit.",
     "metadata": "Elimină metadatele foto",
     "metadataHint": "Detaliile camerei și poziția GPS sunt scoase din fotografiile JPEG înainte de criptare.",
     "upload": "Încarcă și partajează",

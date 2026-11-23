@@ -77,7 +77,7 @@
     "password": "Wachtwoord",
     "passwordHint": "De ontvanger heeft het naast de link nodig. Stuur het via een andere weg.",
     "passwordField": "Wachtwoord voor de share",
-    "passwordShort": "Gebruik minstens 8 tekens, zodat het wachtwoord niet makkelijk te raden is.",
+    "passwordShort": "Dat kan. Met 8 tekens of meer is het wachtwoord wel veel moeilijker te raden.",
     "metadata": "Fotometadata verwijderen",
     "metadataHint": "Cameragegevens en de GPS-locatie gaan uit JPEG-foto's voordat ze versleuteld worden.",
     "upload": "Uploaden en delen",

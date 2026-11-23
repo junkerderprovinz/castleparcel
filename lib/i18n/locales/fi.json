@@ -77,7 +77,7 @@
     "password": "Salasana",
     "passwordHint": "Vastaanottaja tarvitsee sen linkin lisäksi. Lähetä se jotain toista kautta.",
     "passwordField": "Jaon salasana",
-    "passwordShort": "Käytä vähintään 8 merkkiä, jotta salasanaa ei ole helppo arvata.",
+    "passwordShort": "Käy se näinkin. Vähintään 8 merkin salasanaa on kuitenkin paljon vaikeampi arvata.",
     "metadata": "Poista kuvan metatiedot",
     "metadataHint": "Kameran tiedot ja GPS-sijainti poistetaan JPEG-kuvista ennen salausta.",
     "upload": "Lähetä ja jaa",
