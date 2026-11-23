@@ -22,6 +22,7 @@ import { baseUrl, config } from "@/src/config";
 import { wait } from "@/src/format";
 import { t } from "@/src/i18n";
 import { prefs } from "@/src/prefs";
+import { account, uploadsClosed } from "@/src/signin/state";
 
 // The header server-go/internal/upload/auth.go checks, and where the upload
 // password stays for this tab. It never goes to localStorage.
@@ -50,7 +51,7 @@ export interface Sent {
 
 export const gate = reactive({ token: storedUploadToken(), error: "" });
 
-export const uploadLocked = () => config.uploadProtected && !gate.token;
+export const uploadLocked = () => uploadsClosed(config.uploadProtected, gate.token);
 
 export function unlockUploads(token: string) {
   gate.token = token;
@@ -202,9 +203,14 @@ export function refusal(e: unknown): { status: number; retryAfter: number | null
   return m ? { status: Number(m[1]), retryAfter: null } : null;
 }
 
-/** Says why an upload did not go through. A wrong upload password locks the gate again instead. */
+/** Says why an upload did not go through. A session that ran out shows the sign-in, and a wrong upload password
+ * locks the gate again. */
 export function explainUpload(e: unknown): string {
   const r = refusal(e);
+  if (r?.status === 401 && account.signedIn) {
+    account.signedIn = false;
+    return "";
+  }
   if (r?.status === 401 && config.uploadProtected) {
     lockUploads();
     return "";

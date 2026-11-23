@@ -10,11 +10,13 @@ import Apps from './Apps.vue';
 import General from './General.vue';
 import Info from './Info.vue';
 import Look from './Look.vue';
+import SignIn from './SignIn.vue';
 
 const TABS = [
   { id: 'general', g: 'IconTabGeneral', component: General },
   { id: 'look', g: 'IconTabLook', component: Look },
   { id: 'app', g: 'IconTabApp', component: Apps },
+  { id: 'signin', g: 'IconTabSecurity', component: SignIn },
   { id: 'info', g: 'IconInfo', component: Info },
 ] as const;
 type Tab = (typeof TABS)[number]['id'];

@@ -119,6 +119,8 @@ try {
   await historyWalksTheSteps();
   await infoTabStaysInSettings();
   await castleLoaderPlays();
+  // Last, since the owner's password closes the castle for every step after it.
+  await onlyTheOwnerSendsOnceThereIsAPassword();
   if (errors.length) fail("page/console errors occurred");
   console.log("E2E PASSED: zero-knowledge upload→download round trip verified");
 } catch (e) {
@@ -866,4 +868,45 @@ async function castleLoaderPlays() {
   await up.close();
   await dl.close();
   console.log("castle loader: drawn on its canvas during the upload and the download, in the castle's own box all along ✓");
+}
+
+// Once the owner sets a password, a stranger meets the sign-in card where the
+// castle took files, and the owner signs in, sends and signs out again. A
+// recipient still opens the link without signing in.
+async function onlyTheOwnerSendsOnceThereIsAPassword() {
+  const password = "an owner password for the run";
+  const page = await open("owner", `${BASE}/settings/signin`);
+  const set = await page.evaluate(async (next) => {
+    const r = await fetch("/api/signin/v1/me/password", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ next }) });
+    return r.status;
+  }, password);
+  if (set !== 200) fail(`owner: the first password answered ${set}`);
+
+  const stranger = await browser.newContext();
+  const shut = watch(await stranger.newPage(), "stranger");
+  await shut.goto(BASE, { waitUntil: "domcontentloaded", ...WAIT });
+  await shut.locator("[data-cp=signin]").getByText(/Only the owner sends/).waitFor(WAIT);
+  if (await shut.locator("[data-cp=upload]").count()) fail("stranger: the castle still takes files");
+  await stranger.close();
+
+  // Setting the first password signed the owner in, so the owner signs out and back in through the card.
+  await page.goto(BASE, { waitUntil: "domcontentloaded", ...WAIT });
+  await page.locator("[data-cp=signout]").click();
+  await page.locator("#cp-signin-password").fill(password);
+  await page.locator("[data-cp=signin] button[type=submit]").click();
+  await page.locator("[data-cp=signout]").waitFor(WAIT);
+  const data = randomBytes(64 * 1024);
+  await page.setInputFiles('input[type="file"]', { name: "owner.bin", mimeType: "application/octet-stream", buffer: data });
+  await page.locator("[data-cp=upload]").click();
+  const shareUrl = await waitForLink(page, "/d/");
+  await page.close();
+
+  const recipient = await browser.newContext({ acceptDownloads: true });
+  const dl = watch(await recipient.newPage(), "recipient");
+  await dl.goto(shareUrl, { waitUntil: "domcontentloaded", ...WAIT });
+  await dl.getByText("owner.bin", { exact: true }).waitFor(WAIT);
+  const [download] = await Promise.all([dl.waitForEvent("download", WAIT), dl.locator("[data-cp=download-all]").click()]);
+  if (!readFileSync(await download.path()).equals(data)) fail("owner: the recipient's download does not match");
+  await recipient.close();
+  console.log("sign-in: a stranger meets the sign-in, the owner signs out, in again and sends, the recipient needs none ✓");
 }

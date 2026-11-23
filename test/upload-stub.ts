@@ -6,3 +6,5 @@ export const send = reactive({ stage: "home" as "home" | "options" | "uploading"
 export function resetSend() {
   Object.assign(send, { stage: "home", sent: null });
 }
+
+export const authHeaders = (): Record<string, string> => ({});

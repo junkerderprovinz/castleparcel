@@ -1,11 +1,14 @@
 <script setup lang="ts">
 // With UPLOAD_PASSWORD set, the castle asks before anyone sends. The server
 // never sends the secret, so a wrong one shows only once an upload is refused,
-// and then this gate comes back with the reason.
+// and then this gate comes back with the reason. Without one, only the owner
+// sends once there is an owner password, so the gate is the sign-in.
 import { Button, Card, FieldRow, PasswordField } from '@glimstone/vue';
 import { ref } from 'vue';
 import AppMark from '@/src/components/AppMark.vue';
+import { config } from '@/src/config';
 import { t } from '@/src/i18n';
+import SignInPage from '@/src/signin/SignInPage.vue';
 import { eyeWords, shake } from '@/src/ui';
 import { gate, unlockUploads } from '@/src/upload';
 
@@ -22,7 +25,10 @@ function unlock() {
 </script>
 
 <template>
-  <section class="cp-narrow">
+  <section v-if="!config.uploadProtected" class="cp-narrow">
+    <SignInPage :note="t('signin.ownerOnly')" />
+  </section>
+  <section v-else class="cp-narrow">
     <div class="cp-mark-small"><AppMark :size="150" /></div>
     <Card :title="t('gate.title')">
       <form class="cp-form" novalidate @submit.prevent="unlock">

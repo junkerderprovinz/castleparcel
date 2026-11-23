@@ -8,6 +8,7 @@ import { config, loadConfig } from "@/src/config";
 import { installGlyphs } from "@/src/glyphs";
 import { installIntake } from "@/src/intake";
 import { applyPrefs, keepPrefs } from "@/src/prefs";
+import { loadAccount } from "@/src/signin/kit";
 import App from "./App.vue";
 
 // The PWA share target needs a controlling worker before a share sheet posts
@@ -25,7 +26,7 @@ installGlyphs();
 installIntake();
 wireTooltips();
 
-void loadConfig().then(() => {
+void Promise.all([loadConfig(), loadAccount()]).then(() => {
   applyPrefs(serverAccent());
   keepPrefs(serverAccent);
   createApp(App).mount("#root");

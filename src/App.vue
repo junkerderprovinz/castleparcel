@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { UnavailableNotice } from '@glimstone/vue';
-import { computed, watchEffect } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
 import ToastHost from '@/src/components/ToastHost.vue';
 import TopBar from '@/src/components/TopBar.vue';
 import { config, insecure } from '@/src/config';
@@ -15,6 +15,8 @@ import Receive from '@/src/screens/Receive.vue';
 import SendTo from '@/src/screens/SendTo.vue';
 import Sender from '@/src/screens/Sender.vue';
 import Settings from '@/src/settings/Settings.vue';
+import { takeNote } from '@/src/signin/kit';
+import { toast } from '@/src/toast';
 
 // The routes that take a slug name it as their second part. A note and a request open under the castle of the start
 // page, so those three share one screen that stays put while the castle moves.
@@ -26,6 +28,12 @@ const screenKey = computed(() => (screen.value === Sender ? 'home' : route.parts
 
 watchEffect(() => {
   document.title = config.branding.appName;
+});
+
+// A sign-in, sign-out or reset reloads the page and leaves what it has to say for after.
+onMounted(() => {
+  const note = takeNote();
+  if (note) toast(note);
 });
 </script>
 

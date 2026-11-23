@@ -77,7 +77,7 @@ svg { display: block; }
 
 .cp-settings { width: min(64rem, 100%); display: grid; grid-template-columns: 12.75rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
 /* The tiles share their column's height, and with no sidebar beside it the column is only as tall as four tiles. */
-.cp-tiles { position: sticky; top: 1rem; height: 13rem; }
+.cp-tiles { position: sticky; top: 1rem; height: 16.25rem; }
 .cp-settings-body { display: flex; flex-direction: column; gap: 2.5rem; padding-top: .9rem; min-width: 0; }
 @media (max-width: 1024px) { .cp-settings { grid-template-columns: 3.25rem minmax(0, 1fr); } }
 .cp-flag { width: 1.25rem; height: .94rem; border-radius: 2px; object-fit: cover; display: block; }

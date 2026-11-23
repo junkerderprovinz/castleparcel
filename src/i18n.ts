@@ -4,6 +4,7 @@
 import { reactive } from "vue";
 import { COOKIE, resolveLanguage, writeLanguageCookie } from "@/lib/i18n/detect";
 import { DEFAULT_LANGUAGE, isRtl, LANGUAGES, localeOf, SUPPORTED } from "@/lib/i18n/languages";
+import { tables, type Table } from "@/lib/i18n/locales/index";
 import { plural as pluralIn, translate, type Params } from "@/lib/i18n/translate";
 
 function storedLanguage(): string | null {
@@ -40,3 +41,13 @@ export const languages = () => LANGUAGES;
 export const t = (key: string, params?: Params) => translate(state.lang, key, params);
 export const plural = (n: number, key: string, params?: Params) => pluralIn(state.lang, n, key, params);
 export const num = (n: number, options?: Intl.NumberFormatOptions) => n.toLocaleString(locale(), options);
+
+/** The forms of a counted text by plural category, for parts that pick the form themselves. */
+export function forms(key: string): Record<string, string> {
+  for (const code of [state.lang, DEFAULT_LANGUAGE]) {
+    let at: string | Table | undefined = tables[code];
+    for (const part of key.split(".")) at = typeof at === "object" ? at[part] : undefined;
+    if (typeof at === "object") return at as Record<string, string>;
+  }
+  return { other: key };
+}
