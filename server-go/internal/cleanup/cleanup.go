@@ -99,8 +99,12 @@ func deleteShares(uploadsDir string, db *sql.DB, nowMs int64) (int, error) {
 		if err != nil {
 			return deleted, err
 		}
-		if ok {
-			deleted++
+		if !ok {
+			continue
+		}
+		deleted++
+		if err := store.NoteExpired(db, nowMs, rec.Size); err != nil {
+			return deleted, err
 		}
 	}
 	if _, err := store.DeleteStaleResumes(db, nowMs); err != nil {

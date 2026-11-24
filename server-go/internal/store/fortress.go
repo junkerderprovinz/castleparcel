@@ -12,7 +12,8 @@ import (
 
 // The fortress keeps two documents, both sealed by the caller: this
 // instance's membership and the kit's own state. The log notes what happened
-// in the fortress, beside the shares and requests the other tables hold.
+// in the fortress, and the shares that ran out, whose rows are gone, beside
+// the shares and requests the other tables hold.
 func applyFortressSchema(db *sql.DB) error {
 	if _, err := db.Exec(`
 		CREATE TABLE IF NOT EXISTS fortress (
@@ -25,6 +26,11 @@ func applyFortressSchema(db *sql.DB) error {
 			code   TEXT NOT NULL,
 			app    TEXT NOT NULL DEFAULT '',
 			device TEXT NOT NULL DEFAULT ''
+		);
+		CREATE TABLE IF NOT EXISTS expired_shares (
+			id   INTEGER PRIMARY KEY AUTOINCREMENT,
+			at   INTEGER NOT NULL,
+			size INTEGER NOT NULL
 		);
 	`); err != nil {
 		return fmt.Errorf("create fortress tables: %w", err)
@@ -71,6 +77,15 @@ type FortressEvent struct {
 	Device string
 }
 
+// NoteExpired notes in the log that a share of size bytes ran out at at, by
+// its expiry or its last download.
+func NoteExpired(db *sql.DB, at, size int64) error {
+	if _, err := db.Exec(`INSERT INTO expired_shares (at, size) VALUES (?, ?)`, at, size); err != nil {
+		return fmt.Errorf("note an expired share: %w", err)
+	}
+	return nil
+}
+
 // AddFortressEvent notes e in the log.
 func AddFortressEvent(db *sql.DB, e FortressEvent) error {
 	if _, err := db.Exec(`INSERT INTO fortress_log (at, code, app, device) VALUES (?, ?, ?, ?)`,
@@ -85,12 +100,13 @@ const (
 	LogShare    = "share"
 	LogRequest  = "request"
 	LogReceived = "received"
+	LogExpired  = "expired"
 	LogFortress = "fortress"
 )
 
 // LogRow is one line of what this instance did and still keeps: a share
-// made, a file request opened, a file that arrived for one, or an event of
-// the fortress. Key orders the rows of one moment and names the row for as
+// made or run out, a file request opened, a file that arrived for one, or an
+// event of the fortress. Key orders the rows of one moment and names the row for as
 // long as it lasts, without the slug or the file's name, which open a share.
 type LogRow struct {
 	Key  string
@@ -108,6 +124,7 @@ var logSources = []string{
 	`SELECT '` + LogShare + `:' || printf('%020d', rowid) AS k, created_at, size, '', '', '' FROM files`,
 	`SELECT '` + LogRequest + `:' || printf('%020d', rowid) AS k, created_at, 0, '', '', '' FROM requests`,
 	`SELECT '` + LogReceived + `:' || printf('%020d', rowid) AS k, created_at, size, '', '', '' FROM request_uploads`,
+	`SELECT '` + LogExpired + `:' || printf('%020d', id) AS k, at AS created_at, size, '', '', '' FROM expired_shares`,
 	`SELECT '` + LogFortress + `:' || printf('%020d', id) AS k, at AS created_at, 0, code, app, device FROM fortress_log`,
 }
 
