@@ -56,7 +56,10 @@ const (
 )
 
 // membership is this instance's place in a fortress. Removed are the members
-// taken out here since the phrase last changed.
+// taken out here since the phrase last changed. It belongs to the instance and
+// outlasts any account that is blocked or removed, since whoever holds the
+// phrase can join a device anyway and changing the phrase is what shuts one
+// out.
 type membership struct {
 	Secret   []byte    `json:"secret"`
 	Seed     []byte    `json:"seed"`
