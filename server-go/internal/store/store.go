@@ -32,6 +32,7 @@ var migrations = []func(*sql.DB) error{
 		_, err := db.Exec(`ALTER TABLE requests ADD COLUMN account TEXT`)
 		return err
 	},
+	applyFortressSchema,
 }
 
 // SchemaVersion is the version of the databases this server writes.
