@@ -8,7 +8,7 @@
 // Text becomes SVG paths, so nothing depends on a font being installed.
 //
 // Usage:  npm i -g @resvg/resvg-js opentype.js && node scripts/render-assets.mjs
-import { readFileSync, writeFileSync, copyFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, copyFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
@@ -26,17 +26,14 @@ const pub = join(root, "public");
 const appSvg = join(assets, "castleparcel-app.svg");
 const logoSvg = readFileSync(join(assets, "castleparcel-logo.svg"), "utf8");
 
-async function font(file, url) {
-  const path = join(tmpdir(), file);
-  if (!existsSync(path)) {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`font fetch ${res.status}: ${url}`);
-    writeFileSync(path, Buffer.from(await res.arrayBuffer()));
-  }
-  return opentype.parse(readFileSync(path));
+// The house typeface is licensed, so it is read from a local folder and never committed.
+const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
+function houseFont(file) {
+  const b = readFileSync(join(fonts, file));
+  return opentype.parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength));
 }
-const nameFont = await font("CastleParcel-BreeSerif-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/breeserif/BreeSerif-Regular.ttf");
-const claimFont = await font("CastleParcel-Lato-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf");
+const nameFont = houseFont("bree-serif-regular.ttf");
+const claimFont = houseFont("bree-light.ttf");
 
 // The tile has rounded corners, and Community Applications and maskable
 // manifest icons both want a solid square, so the corners are filled white.
