@@ -116,6 +116,7 @@ The files and links in these pictures are made up.
 - **Pleasant to use.** Paste a screenshot with Ctrl+V, install it as an app and share to it from Android, preview images, video, audio, text and PDF before downloading, and read it all in 42 languages.
 - **Safe to put online.** Per-IP rate limits, an optional daily upload cap per visitor, a storage quota, an expiry cap and an optional upload password. A strict Content-Security-Policy keeps foreign scripts off the page, and share pages tell search engines to stay away.
 - **Owner sign-in, if you want it.** Without a password CastleParcel stays open as before. Set one under Settings and only you send files, plus guests who know the upload password. Two-factor authentication, passkeys, API tokens and sign-in services such as Pocket ID or authentik come with it. Recipients never sign in.
+- **Tells you what happened.** Notifications through ntfy, Gotify, Discord, Slack, Matrix, email, Apprise or a webhook when files arrive at a file request, when the store is almost full or when the password was reset.
 - **One small container.** A static Go binary on a distroless base with a single SQLite file, for amd64 and arm64, with SBOM and provenance attestations and a CVE scan on every build.
 
 It has no user accounts beyond the owner, no LDAP, no email and no S3 storage. If you need those, [Pingvin Share](https://github.com/stonith404/pingvin-share) is the bigger tool that inspired this one.
