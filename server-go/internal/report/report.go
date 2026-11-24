@@ -20,7 +20,7 @@ import (
 )
 
 // Version is the version of CastleParcel, the same as in package.json.
-const Version = "2.1.3"
+const Version = "2.2.0"
 
 // logoSVG is CastleParcel's mark, drawn smaller than src/assets has it so it
 // fits the size the contract allows an icon.
