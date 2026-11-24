@@ -6,7 +6,7 @@ toolchain go1.27.4
 
 require (
 	github.com/go-chi/chi/v5 v5.5.0
-	github.com/junkerderprovinz/parleyport/kit v1.1.0
+	github.com/junkerderprovinz/parleyport v1.3.4
 	github.com/tus/tusd/v2 v2.10.2
 	golang.org/x/exp v0.0.0-20261121134650-e1094eeca1b5
 	modernc.org/sqlite v1.63.0
@@ -16,7 +16,7 @@ require (
 	github.com/coreos/go-oidc/v3 v3.21.0 // indirect
 	github.com/dustin/go-humanize v1.1.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.4 // indirect
-	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
+	github.com/go-jose/go-jose/v4 v4.1.9 // indirect
 	github.com/go-viper/mapstructure/v2 v2.5.0 // indirect
 	github.com/go-webauthn/webauthn v0.18.2 // indirect
 	github.com/go-webauthn/x v0.3.1 // indirect
