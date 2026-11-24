@@ -3,9 +3,13 @@
 import { authHeaders } from "@/src/upload";
 import type { FortressInfo, MemberPermission, MemberStatus, RemovedMember } from "./view";
 
-/** A refusal of the server, by the code its body names, or "offline" when it did not answer. */
+/** A refusal of the server, by the code its body names, or "offline" when it did not answer. askPassword says that a
+ * fresh sign-in with the password lets the change through. */
 export class FortressError extends Error {
-  constructor(readonly code: string) {
+  constructor(
+    readonly code: string,
+    readonly askPassword = false,
+  ) {
     super(code);
   }
 }
@@ -20,7 +24,7 @@ async function call<T>(method: string, path: string, body?: unknown): Promise<T>
     throw new FortressError("offline");
   }
   const got = await res.json().catch(() => ({}));
-  if (!res.ok) throw new FortressError(typeof got.error === "string" ? got.error : "internal");
+  if (!res.ok) throw new FortressError(typeof got.error === "string" ? got.error : "internal", got.askPassword === true);
   return got as T;
 }
 

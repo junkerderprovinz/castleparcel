@@ -4,19 +4,23 @@
 // for the words. The other apps follow with their permissions, and the network card picks the relay and whether
 // to look on this network. CastleParcel runs as one instance, so the other apps always show.
 import {
-  fill, fortressText, openRefusalText, phraseFromText, phraseReady,
+  createFortressFlow, fill, fortressText, joinRefusalText, openRefusalText, phraseReady,
   type ChangeAnswer, type FortressAnswer, type FortressApp, type FortressInstance, type PhraseAnswer,
 } from '@glimstone/core';
-import { Button, Card, FieldRow, Fortress, FortressPairing, FortressStatusWindow, Selector, TextField, Toggle, Window } from '@glimstone/vue';
-import { computed, ref, shallowRef, watch } from 'vue';
+import {
+  Button, Card, FieldRow, Fortress, FortressPairing, FortressStatusWindow, Selector, SignInReauthWindow, TextField, Toggle, Window,
+} from '@glimstone/vue';
+import { computed, onBeforeUnmount, ref, shallowRef, watch } from 'vue';
 import { config } from '@/src/config';
+import { createAgain } from '@/src/fortress/again';
 import { FortressError, fortressApi } from '@/src/fortress/api';
 import { fortressApps, fortressPermissions, permissionOf, SELF, statusLines, type FortressInfo, type MemberStatus } from '@/src/fortress/view';
 import { language, locale, t } from '@/src/i18n';
 import Gate from '@/src/screens/Gate.vue';
 import SignInPage from '@/src/signin/SignInPage.vue';
+import { signIn } from '@/src/signin/kit';
 import { account } from '@/src/signin/state';
-import { ERROR_CODES, errorWords } from '@/src/signin/words';
+import { ERROR_CODES, errorWords, reauthText } from '@/src/signin/words';
 import { toast } from '@/src/toast';
 import { gate } from '@/src/upload';
 
@@ -60,6 +64,11 @@ const apps = computed(() => fortressApps(info.value?.members ?? [], ago));
 const permissions = computed(() => fortressPermissions(info.value?.permissions ?? [], info.value?.members ?? [], t));
 const removed = computed(() => (info.value?.removed ?? []).map((r) => (r.app ? fill(text.value.memberOn, { app: r.app, device: r.device }) : r.device)));
 
+// The phrase shows and changes only for a fresh sign-in. GlimStone's window asks for the password meanwhile.
+const again = createAgain((password) => signIn.confirm(password));
+const reauthApi = { ...signIn, reauth: again.reauth };
+const reauthWords = computed(reauthText);
+
 // The server writes the QR code's text, which names an own relay after the words. GlimStone asks for it by them.
 let shown: { words: string; code: string } | null = null;
 const phraseQr = (words: string[]) => (shown?.words === words.join(' ') ? shown.code : words.join(' '));
@@ -81,7 +90,7 @@ const onPermission = (id: string, on: boolean) => answer(() => fortressApi.permi
 
 async function onShowPhrase(): Promise<PhraseAnswer> {
   try {
-    const r = await fortressApi.showPhrase();
+    const r = await again.fresh(fortressApi.showPhrase);
     shown = { words: r.words.join(' '), code: r.code };
     return { words: r.words };
   } catch (e) {
@@ -90,7 +99,7 @@ async function onShowPhrase(): Promise<PhraseAnswer> {
 }
 async function onChangePhrase(): Promise<ChangeAnswer> {
   try {
-    const r = await fortressApi.changePhrase();
+    const r = await again.fresh(fortressApi.changePhrase);
     shown = { words: r.words.join(' '), code: r.code };
     void load();
     return { words: r.words, left: r.left.map((l) => (l.app ? fill(text.value.memberOn, { app: l.app, device: l.device }) : l.device)) };
@@ -123,19 +132,11 @@ function onOpen(app: FortressApp, instance: FortressInstance) {
   );
 }
 
-// The new words after a change this CastleParcel was away for.
-const newWords = ref<string | null>(null);
-const joining = ref(false);
-const newError = ref('');
-async function takeNewWords() {
-  const words = phraseFromText(newWords.value ?? '');
-  if (!phraseReady(words)) return;
-  joining.value = true;
-  const a = await onJoin(words);
-  joining.value = false;
-  if (a.ok) newWords.value = null;
-  else newError.value = a.error ?? (a.code === 'phrase' ? text.value.joinRefused : text.value.failed);
-}
+// The new words after a change this CastleParcel was away for. Joining with them keeps it the member it was.
+const flow = createFortressFlow(() => ({ onJoin, failed: text.value.failed, joinRefusal: (c) => joinRefusalText(text.value, c) }));
+const flowState = shallowRef(flow.state());
+onBeforeUnmount(flow.subscribe(() => (flowState.value = flow.state())));
+const newWords = computed(() => (flowState.value.window?.kind === 'join' ? flowState.value.window : null));
 
 const network = ref({ relay: 'project' as FortressInfo['relay']['mode'], url: '', lan: true });
 const relays = computed(() => [
@@ -182,7 +183,7 @@ function pickLAN(on: boolean) {
     >
       <div v-if="info.phraseChanged" class="glim-fortress-removed" data-fortress="moved" role="status">
         <span><strong>{{ text.changedTitle }}</strong> {{ fill(text.phraseMoved, { app: SELF.name }) }}</span>
-        <Button :label="text.enterPhrase" label-key="IconSignIn" tone="subtle" data-fortress="open-new-words" @click="newWords = ''; newError = ''" />
+        <Button :label="text.enterPhrase" label-key="IconSignIn" tone="subtle" data-fortress="open-new-words" @click="flow.openJoin" />
       </div>
     </FortressPairing>
     <Fortress
@@ -230,18 +231,41 @@ function pickLAN(on: boolean) {
       :on-close="() => (status = null)"
     />
     <Window
-      v-if="newWords !== null"
+      v-if="newWords"
       :title="text.changedTitle"
+      size="wide"
       :text="{ cancel: text.cancel, close: text.close }"
       :close-on-backdrop="false"
-      :actions="[{ label: text.join, labelKey: 'IconSignIn', primary: true, busy: joining, disabled: !phraseReady(phraseFromText(newWords)), onClick: () => { void takeNewWords(); return false; } }]"
-      @close="newWords = null"
+      :actions="[{
+        label: text.join, labelKey: 'IconSignIn', primary: true, busy: flowState.busy === 'join',
+        disabled: flowState.busy === 'join' || !phraseReady(newWords.words), attrs: { 'data-fortress': 'join' },
+        onClick: () => { void flow.join(); return false; },
+      }]"
+      @close="flow.close"
     >
-      <p>{{ fill(text.phraseMoved, { app: SELF.name }) }}</p>
-      <FieldRow :label="text.phraseTitle" :hint="text.phraseWhere">
-        <TextField v-model="newWords" data-fortress="new-words" autocomplete="off" autocapitalize="none" spellcheck="false" @keydown.enter="takeNewWords" />
-      </FieldRow>
-      <p v-if="newError" class="glim-fortress-error" role="alert">{{ newError }}</p>
+      <form class="glim-fortress-text" @submit.prevent="flow.join">
+        <p>{{ fill(text.phraseMoved, { app: SELF.name }) }}</p>
+        <div class="glim-phrase-fields">
+          <label v-for="(word, i) in newWords.words" :key="i" class="glim-phrase-field">
+            <span class="glim-phrase-number glim-num">{{ i + 1 }}</span>
+            <input
+              class="glim-input"
+              :data-word="i"
+              :value="word"
+              :aria-label="fill(text.word, { n: i + 1 })"
+              autocomplete="off"
+              autocapitalize="none"
+              autocorrect="off"
+              spellcheck="false"
+              @input="flow.enter(i, ($event.target as HTMLInputElement).value)"
+            >
+          </label>
+        </div>
+        <button type="submit" hidden />
+        <p class="glim-fortress-sub">{{ text.phraseWhere }}</p>
+        <p v-if="flowState.error" class="glim-fortress-error" role="alert">{{ flowState.error }}</p>
+      </form>
     </Window>
+    <SignInReauthWindow :api="reauthApi" :text="reauthWords" />
   </template>
 </template>
