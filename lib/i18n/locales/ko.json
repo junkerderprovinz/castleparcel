@@ -274,7 +274,8 @@
       "look": "모양",
       "app": "앱",
       "info": "정보",
-      "signin": "로그인"
+      "signin": "로그인",
+      "fortress": "요새"
     }
   },
   "general": {
@@ -666,5 +667,19 @@
     "role": {
       "admin": "관리자"
     }
+  },
+  "fortress": {
+    "network": "네트워크",
+    "relay": "릴레이",
+    "relayHint": "이 네트워크 밖의 멤버에게 닿아요. 봉인된 메시지만 전달해요.",
+    "relayProject": "프로젝트 릴레이",
+    "relayOff": "끄기",
+    "relayOwn": "내 릴레이",
+    "relayAddress": "릴레이 주소",
+    "relayAddressBad": "릴레이 주소처럼 보이지 않아요.",
+    "lan": "이 네트워크에서 찾기",
+    "lanHint": "같은 네트워크의 멤버는 릴레이 없이 바로 대화해요.",
+    "save": "저장",
+    "uiOpen": "{app} 페이지 열기"
   }
 }

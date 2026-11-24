@@ -282,7 +282,8 @@
       "look": "Aspeto",
       "app": "App",
       "info": "Info",
-      "signin": "Início de sessão"
+      "signin": "Início de sessão",
+      "fortress": "Fortaleza"
     }
   },
   "general": {
@@ -682,5 +683,19 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "fortress": {
+    "network": "Rede",
+    "relay": "Relay",
+    "relayHint": "Chega aos membros fora desta rede. Só passa mensagens seladas.",
+    "relayProject": "Relay do projeto",
+    "relayOff": "Desligado",
+    "relayOwn": "Relay próprio",
+    "relayAddress": "Endereço do teu relay",
+    "relayAddressBad": "Isso não parece o endereço de um relay.",
+    "lan": "Procurar nesta rede",
+    "lanHint": "Os membros da mesma rede falam diretamente, sem o relay.",
+    "save": "Guardar",
+    "uiOpen": "Abrir as páginas de {app}"
   }
 }

@@ -286,7 +286,8 @@
       "look": "Vzhled",
       "app": "Aplikace",
       "info": "Informace",
-      "signin": "Přihlášení"
+      "signin": "Přihlášení",
+      "fortress": "Pevnost"
     }
   },
   "general": {
@@ -690,5 +691,19 @@
     "role": {
       "admin": "Administrátor"
     }
+  },
+  "fortress": {
+    "network": "Síť",
+    "relay": "Přeposílač",
+    "relayHint": "Dosáhne na členy mimo tuto síť. Předává jen zapečetěné zprávy.",
+    "relayProject": "Přeposílač projektu",
+    "relayOff": "Vypnuto",
+    "relayOwn": "Vlastní přeposílač",
+    "relayAddress": "Adresa vašeho přeposílače",
+    "relayAddressBad": "To nevypadá jako adresa přeposílače.",
+    "lan": "Hledat v této síti",
+    "lanHint": "Členové ve stejné síti spolu mluví přímo, bez přeposílače.",
+    "save": "Uložit",
+    "uiOpen": "Otevřít stránky {app}"
   }
 }

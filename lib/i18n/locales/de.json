@@ -278,7 +278,8 @@
       "look": "Aussehen",
       "app": "App",
       "info": "Info",
-      "signin": "Anmeldung"
+      "signin": "Anmeldung",
+      "fortress": "Festung"
     }
   },
   "general": {
@@ -674,5 +675,19 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "fortress": {
+    "network": "Netzwerk",
+    "relay": "Relay",
+    "relayHint": "Erreicht die Mitglieder außerhalb dieses Netzwerks. Es reicht nur versiegelte Nachrichten weiter.",
+    "relayProject": "Projekt-Relay",
+    "relayOff": "Aus",
+    "relayOwn": "Eigenes Relay",
+    "relayAddress": "Adresse deines Relays",
+    "relayAddressBad": "Das sieht nicht nach der Adresse eines Relays aus.",
+    "lan": "In diesem Netzwerk suchen",
+    "lanHint": "Mitglieder im selben Netzwerk sprechen direkt miteinander, ohne das Relay.",
+    "save": "Speichern",
+    "uiOpen": "Seiten von {app} öffnen"
   }
 }

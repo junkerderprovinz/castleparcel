@@ -282,7 +282,8 @@
       "look": "Aparença",
       "app": "App",
       "info": "Info",
-      "signin": "Inici de sessió"
+      "signin": "Inici de sessió",
+      "fortress": "Fortalesa"
     }
   },
   "general": {
@@ -682,5 +683,19 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "fortress": {
+    "network": "Xarxa",
+    "relay": "Repetidor",
+    "relayHint": "Arriba als membres de fora d'aquesta xarxa. Només passa missatges segellats.",
+    "relayProject": "Repetidor del projecte",
+    "relayOff": "Desactivat",
+    "relayOwn": "Repetidor propi",
+    "relayAddress": "Adreça del teu repetidor",
+    "relayAddressBad": "No sembla l'adreça d'un repetidor.",
+    "lan": "Cerca en aquesta xarxa",
+    "lanHint": "Els membres de la mateixa xarxa parlen directament, sense el repetidor.",
+    "save": "Desa",
+    "uiOpen": "Obre les pàgines de {app}"
   }
 }

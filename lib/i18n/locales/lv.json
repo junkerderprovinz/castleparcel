@@ -282,7 +282,8 @@
       "look": "Izskats",
       "app": "Lietotne",
       "info": "Informācija",
-      "signin": "Pieteikšanās"
+      "signin": "Pieteikšanās",
+      "fortress": "Cietoksnis"
     }
   },
   "general": {
@@ -682,5 +683,19 @@
     "role": {
       "admin": "Administrators"
     }
+  },
+  "fortress": {
+    "network": "Tīkls",
+    "relay": "Relay",
+    "relayHint": "Sasniedz dalībniekus ārpus šī tīkla. Tas pārsūta tikai aizzīmogotas ziņas.",
+    "relayProject": "Projekta relay",
+    "relayOff": "Izslēgts",
+    "relayOwn": "Savs relay",
+    "relayAddress": "Tava relay adrese",
+    "relayAddressBad": "Tas neizskatās pēc relay adreses.",
+    "lan": "Meklēt šajā tīklā",
+    "lanHint": "Viena tīkla dalībnieki sarunājas tieši, bez relay.",
+    "save": "Saglabāt",
+    "uiOpen": "Atvērt {app} lapas"
   }
 }

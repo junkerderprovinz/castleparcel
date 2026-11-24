@@ -274,7 +274,8 @@
       "look": "外观",
       "app": "应用",
       "info": "信息",
-      "signin": "登录"
+      "signin": "登录",
+      "fortress": "堡垒"
     }
   },
   "general": {
@@ -666,5 +667,19 @@
     "role": {
       "admin": "管理员"
     }
+  },
+  "fortress": {
+    "network": "网络",
+    "relay": "中继",
+    "relayHint": "连接这个网络之外的成员。它只转发封好的消息。",
+    "relayProject": "项目中继",
+    "relayOff": "关闭",
+    "relayOwn": "自己的中继",
+    "relayAddress": "你的中继地址",
+    "relayAddressBad": "这看起来不像中继地址。",
+    "lan": "在这个网络中查找",
+    "lanHint": "同一网络中的成员直接交流，不经过中继。",
+    "save": "保存",
+    "uiOpen": "打开 {app} 的页面"
   }
 }

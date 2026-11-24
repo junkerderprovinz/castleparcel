@@ -278,7 +278,8 @@
       "look": "Ulkoasu",
       "app": "Sovellus",
       "info": "Tietoja",
-      "signin": "Kirjautuminen"
+      "signin": "Kirjautuminen",
+      "fortress": "Linnoitus"
     }
   },
   "general": {
@@ -674,5 +675,19 @@
     "role": {
       "admin": "Ylläpitäjä"
     }
+  },
+  "fortress": {
+    "network": "Verkko",
+    "relay": "Rele",
+    "relayHint": "Tavoittaa jäsenet tämän verkon ulkopuolelta. Se välittää vain sinetöityjä viestejä.",
+    "relayProject": "Projektin rele",
+    "relayOff": "Pois",
+    "relayOwn": "Oma rele",
+    "relayAddress": "Releesi osoite",
+    "relayAddressBad": "Tuo ei näytä releen osoitteelta.",
+    "lan": "Etsi tästä verkosta",
+    "lanHint": "Saman verkon jäsenet puhuvat suoraan keskenään ilman relettä.",
+    "save": "Tallenna",
+    "uiOpen": "Avaa sovelluksen {app} sivut"
   }
 }

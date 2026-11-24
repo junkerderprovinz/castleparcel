@@ -274,7 +274,8 @@
       "look": "外観",
       "app": "アプリ",
       "info": "情報",
-      "signin": "ログイン"
+      "signin": "ログイン",
+      "fortress": "要塞"
     }
   },
   "general": {
@@ -666,5 +667,19 @@
     "role": {
       "admin": "管理者"
     }
+  },
+  "fortress": {
+    "network": "ネットワーク",
+    "relay": "リレー",
+    "relayHint": "このネットワークの外にいるメンバーに届きます。封をしたメッセージだけを中継します。",
+    "relayProject": "プロジェクトのリレー",
+    "relayOff": "オフ",
+    "relayOwn": "自分のリレー",
+    "relayAddress": "リレーのアドレス",
+    "relayAddressBad": "リレーのアドレスではないようです。",
+    "lan": "このネットワークで探す",
+    "lanHint": "同じネットワークのメンバーはリレーを通さず直接やり取りします。",
+    "save": "保存",
+    "uiOpen": "{app}のページを開く"
   }
 }

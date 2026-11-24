@@ -274,7 +274,8 @@
       "look": "Tampilan",
       "app": "Aplikasi",
       "info": "Info",
-      "signin": "Masuk"
+      "signin": "Masuk",
+      "fortress": "Benteng"
     }
   },
   "general": {
@@ -666,5 +667,19 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "fortress": {
+    "network": "Jaringan",
+    "relay": "Relay",
+    "relayHint": "Menjangkau anggota di luar jaringan ini. Relay hanya meneruskan pesan yang tersegel.",
+    "relayProject": "Relay proyek",
+    "relayOff": "Mati",
+    "relayOwn": "Relay sendiri",
+    "relayAddress": "Alamat relay-mu",
+    "relayAddressBad": "Itu tidak terlihat seperti alamat relay.",
+    "lan": "Cari di jaringan ini",
+    "lanHint": "Anggota di jaringan yang sama berbicara langsung, tanpa relay.",
+    "save": "Simpan",
+    "uiOpen": "Buka halaman {app}"
   }
 }

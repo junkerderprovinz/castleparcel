@@ -274,7 +274,8 @@
       "look": "Penampilan",
       "app": "Aplikasi",
       "info": "Maklumat",
-      "signin": "Log masuk"
+      "signin": "Log masuk",
+      "fortress": "Kubu"
     }
   },
   "general": {
@@ -666,5 +667,19 @@
     "role": {
       "admin": "Pentadbir"
     }
+  },
+  "fortress": {
+    "network": "Rangkaian",
+    "relay": "Relay",
+    "relayHint": "Mencapai ahli di luar rangkaian ini. Ia hanya menghantar mesej yang dimeterai.",
+    "relayProject": "Relay projek",
+    "relayOff": "Mati",
+    "relayOwn": "Relay sendiri",
+    "relayAddress": "Alamat relay anda",
+    "relayAddressBad": "Itu tidak kelihatan seperti alamat relay.",
+    "lan": "Cari dalam rangkaian ini",
+    "lanHint": "Ahli dalam rangkaian yang sama bercakap terus, tanpa relay.",
+    "save": "Simpan",
+    "uiOpen": "Buka halaman {app}"
   }
 }

@@ -278,7 +278,8 @@
       "look": "Utseende",
       "app": "App",
       "info": "Info",
-      "signin": "Innlogging"
+      "signin": "Innlogging",
+      "fortress": "Festning"
     }
   },
   "general": {
@@ -674,5 +675,19 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "fortress": {
+    "network": "Nettverk",
+    "relay": "Relay",
+    "relayHint": "Når medlemmene utenfor dette nettverket. Det sender bare forseglede meldinger videre.",
+    "relayProject": "Prosjektets relay",
+    "relayOff": "Av",
+    "relayOwn": "Eget relay",
+    "relayAddress": "Adressen til relayet ditt",
+    "relayAddressBad": "Det ser ikke ut som adressen til et relay.",
+    "lan": "Søk i dette nettverket",
+    "lanHint": "Medlemmer på samme nettverk snakker direkte sammen, uten relayet.",
+    "save": "Lagre",
+    "uiOpen": "Åpne sidene til {app}"
   }
 }

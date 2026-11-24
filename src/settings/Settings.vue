@@ -1,12 +1,13 @@
 <script setup lang="ts">
 // Settings: a column of tiles beside the content, the tab selector turned on its side. General comes first, then
-// Appearance, as in every app of the house, and Info last.
+// Appearance, as in every app of the house, the Fortress just above Info, and Info last.
 import { Selector } from '@glimstone/vue';
 import { computed } from 'vue';
 import { glyph } from '@/src/glyphs';
 import { t } from '@/src/i18n';
 import { go, route } from '@/src/router';
 import Apps from './Apps.vue';
+import Fortress from './Fortress.vue';
 import General from './General.vue';
 import Info from './Info.vue';
 import Look from './Look.vue';
@@ -17,6 +18,7 @@ const TABS = [
   { id: 'look', g: 'IconTabLook', component: Look },
   { id: 'app', g: 'IconTabApp', component: Apps },
   { id: 'signin', g: 'IconTabSecurity', component: SignIn },
+  { id: 'fortress', g: 'IconLink', component: Fortress },
   { id: 'info', g: 'IconInfo', component: Info },
 ] as const;
 type Tab = (typeof TABS)[number]['id'];

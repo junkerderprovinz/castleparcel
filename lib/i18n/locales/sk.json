@@ -286,7 +286,8 @@
       "look": "Vzhľad",
       "app": "Aplikácia",
       "info": "Informácie",
-      "signin": "Prihlásenie"
+      "signin": "Prihlásenie",
+      "fortress": "Pevnosť"
     }
   },
   "general": {
@@ -690,5 +691,19 @@
     "role": {
       "admin": "Administrátor"
     }
+  },
+  "fortress": {
+    "network": "Sieť",
+    "relay": "Relay",
+    "relayHint": "Dosiahne členov mimo tejto siete. Odovzdáva len zapečatené správy.",
+    "relayProject": "Relay projektu",
+    "relayOff": "Vypnuté",
+    "relayOwn": "Vlastný relay",
+    "relayAddress": "Adresa tvojho relay",
+    "relayAddressBad": "Toto nevyzerá ako adresa relay.",
+    "lan": "Hľadať v tejto sieti",
+    "lanHint": "Členovia v tej istej sieti sa rozprávajú priamo, bez relay.",
+    "save": "Uložiť",
+    "uiOpen": "Otvoriť stránky {app}"
   }
 }

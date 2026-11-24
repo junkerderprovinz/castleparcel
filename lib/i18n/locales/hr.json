@@ -282,7 +282,8 @@
       "look": "Izgled",
       "app": "Aplikacija",
       "info": "Informacije",
-      "signin": "Prijava"
+      "signin": "Prijava",
+      "fortress": "Utvrda"
     }
   },
   "general": {
@@ -682,5 +683,19 @@
     "role": {
       "admin": "Administrator"
     }
+  },
+  "fortress": {
+    "network": "Mreža",
+    "relay": "Relej",
+    "relayHint": "Doseže članove izvan ove mreže. Prenosi samo zapečaćene poruke.",
+    "relayProject": "Relej projekta",
+    "relayOff": "Isključeno",
+    "relayOwn": "Vlastiti relej",
+    "relayAddress": "Adresa tvog releja",
+    "relayAddressBad": "To ne izgleda kao adresa releja.",
+    "lan": "Traži u ovoj mreži",
+    "lanHint": "Članovi u istoj mreži razgovaraju izravno, bez releja.",
+    "save": "Spremi",
+    "uiOpen": "Otvori stranice aplikacije {app}"
   }
 }

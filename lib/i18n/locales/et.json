@@ -278,7 +278,8 @@
       "look": "Välimus",
       "app": "Rakendus",
       "info": "Teave",
-      "signin": "Sisselogimine"
+      "signin": "Sisselogimine",
+      "fortress": "Kindlus"
     }
   },
   "general": {
@@ -674,5 +675,19 @@
     "role": {
       "admin": "Administraator"
     }
+  },
+  "fortress": {
+    "network": "Võrk",
+    "relay": "Edastaja",
+    "relayHint": "Jõuab liikmeteni väljaspool seda võrku. See edastab ainult pitseeritud sõnumeid.",
+    "relayProject": "Projekti edastaja",
+    "relayOff": "Väljas",
+    "relayOwn": "Oma edastaja",
+    "relayAddress": "Sinu edastaja aadress",
+    "relayAddressBad": "See ei paista olevat edastaja aadress.",
+    "lan": "Otsi selles võrgus",
+    "lanHint": "Samas võrgus olevad liikmed räägivad otse, ilma edastajata.",
+    "save": "Salvesta",
+    "uiOpen": "Ava rakenduse {app} lehed"
   }
 }
