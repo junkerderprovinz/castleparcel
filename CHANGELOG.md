@@ -25,23 +25,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GlimStone 4.8.5: the Version card says "Not checked yet" until you press Check for updates, and a long status in the Components card gets a line of its own on a narrow screen.
 - GlimStone 4.9.1, with its notifications card, and the link preview card in the house typeface.
 - A share password of any length works. Under 8 characters you get a hint, never a refusal.
-
-## [2.1.3] - 2026-11-17
-
-### Changed
-
-- **Help goes to Discord.** The Help card in the Info tab offers GitHub and CastleParcel's Discord server, and the mail button is gone, in all 42 languages. The help sentence reads the same as in the other apps of the family, and French readers are addressed with tu.
-- The GlimStone version in the Info tab opens GlimStone's newest release.
-- GlimStone 4.5.4: buttons, rows, menus and tiles hover in one color made from the accent, accent text in the light theme reads at 4.5:1 or more on every surface, and the focus ring is drawn solid in the accent's text color.
-
-## [2.1.2] - 2026-11-11
-
-### Changed
-
+- **Help goes to Discord.** The Help card in the Info tab offers GitHub and CastleParcel's Discord server, and the mail button is gone, in all 42 languages. The help sentence reads the same as in the other apps of the family, and French readers are addressed with tu. The GlimStone version in the Info tab opens GlimStone's newest release.
+- Buttons, rows, menus and tiles hover in one color made from the accent, accent text in the light theme reads at 4.5:1 or more on every surface, and the focus ring is drawn solid in the accent's text color.
 - The build pins every script and stylesheet in the page with an integrity hash whatever the letter case of its tag, so an uppercase `<SCRIPT>` can't slip past the check.
-- GlimStone 4.3.7, Rive canvas runtime 2.50.0, Node 24.22.3.
-
-## [2.1.1] - 2026-11-11
+- Rive canvas runtime 2.55.0, Node 24.22.3.
 
 ### Security
 
