@@ -682,5 +682,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Des fichiers arrivent sur une demande de fichiers",
+      "title": "Fichiers reçus",
+      "body": "Quelqu’un a envoyé des fichiers à l’une de vos demandes de fichiers. Votre lien de collecte les ouvre."
+    },
+    "storageFull": {
+      "label": "Stockage presque plein",
+      "title": "Stockage presque plein",
+      "body": "Les partages et les envois occupent {percent} de l’espace que CastleParcel peut utiliser. Une fois plein, les nouveaux envois s’arrêtent."
+    },
+    "passwordReset": {
+      "label": "Mot de passe réinitialisé",
+      "title": "Mot de passe réinitialisé via le journal",
+      "body": "Quelqu’un a réinitialisé le mot de passe du propriétaire avec le code du journal du conteneur, et toutes les sessions ont pris fin. Si ce n’était pas vous, définissez tout de suite un nouveau mot de passe."
+    },
+    "test": {
+      "title": "Test de CastleParcel",
+      "body": "Ce canal fonctionne. CastleParcel envoie ses messages ici."
+    }
   }
 }

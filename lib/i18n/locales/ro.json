@@ -682,5 +682,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Sosesc fișiere la o cerere de fișiere",
+      "title": "Au sosit fișiere",
+      "body": "Cineva a trimis fișiere la una dintre cererile tale de fișiere. Linkul tău de colectare le deschide."
+    },
+    "storageFull": {
+      "label": "Spațiul aproape plin",
+      "title": "Spațiul aproape plin",
+      "body": "Partajările și încărcările ocupă {percent} din spațiul pe care îl poate folosi CastleParcel. Când se umple, încărcările noi se opresc."
+    },
+    "passwordReset": {
+      "label": "Parolă resetată",
+      "title": "Parolă resetată prin jurnal",
+      "body": "Cineva a resetat parola proprietarului cu codul din jurnalul containerului și toate sesiunile s-au încheiat. Dacă nu ai fost tu, setează imediat o parolă nouă."
+    },
+    "test": {
+      "title": "Test de la CastleParcel",
+      "body": "Acest canal funcționează. CastleParcel își trimite mesajele aici."
+    }
   }
 }

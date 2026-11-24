@@ -674,5 +674,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Filer kommer in till en filbegäran",
+      "title": "Filer har kommit",
+      "body": "Någon har skickat filer till en av dina filbegäranden. Din hämtlänk öppnar dem."
+    },
+    "storageFull": {
+      "label": "Lagringen nästan full",
+      "title": "Lagringen nästan full",
+      "body": "Delningar och uppladdningar tar upp {percent} av utrymmet som CastleParcel får använda. När det är fullt stoppas nya uppladdningar."
+    },
+    "passwordReset": {
+      "label": "Lösenord återställt",
+      "title": "Lösenord återställt via loggen",
+      "body": "Någon har återställt ägarens lösenord med koden från containerloggen, och alla sessioner har avslutats. Var det inte du, sätt ett nytt lösenord direkt."
+    },
+    "test": {
+      "title": "Test från CastleParcel",
+      "body": "Den här kanalen fungerar. CastleParcel skickar sina meddelanden hit."
+    }
   }
 }

@@ -666,5 +666,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "File masuk ke permintaan file",
+      "title": "File sudah tiba",
+      "body": "Seseorang mengirim file ke salah satu permintaan file-mu. Tautan ambilmu membukanya."
+    },
+    "storageFull": {
+      "label": "Penyimpanan hampir penuh",
+      "title": "Penyimpanan hampir penuh",
+      "body": "Berbagi dan unggahan memakai {percent} dari ruang yang boleh dipakai CastleParcel. Setelah penuh, unggahan baru berhenti."
+    },
+    "passwordReset": {
+      "label": "Kata sandi direset",
+      "title": "Kata sandi direset lewat log",
+      "body": "Seseorang mereset kata sandi pemilik dengan kode dari log kontainer, dan semua sesi berakhir. Jika itu bukan kamu, segera atur kata sandi baru."
+    },
+    "test": {
+      "title": "Uji dari CastleParcel",
+      "body": "Saluran ini berfungsi. CastleParcel mengirim pesannya ke sini."
+    }
   }
 }

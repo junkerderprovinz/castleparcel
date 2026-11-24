@@ -690,5 +690,26 @@
     "role": {
       "admin": "Administrátor"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Na žádost o soubory přicházejí soubory",
+      "title": "Soubory dorazily",
+      "body": "Někdo poslal soubory na jednu z vašich žádostí o soubory. Váš odkaz k vyzvednutí je otevře."
+    },
+    "storageFull": {
+      "label": "Úložiště je skoro plné",
+      "title": "Úložiště je skoro plné",
+      "body": "Sdílení a nahrávky zabírají {percent} místa, které CastleParcel smí použít. Až se zaplní, nové nahrávání se zastaví."
+    },
+    "passwordReset": {
+      "label": "Heslo obnoveno",
+      "title": "Heslo obnoveno přes protokol",
+      "body": "Někdo obnovil heslo majitele kódem z protokolu kontejneru a všechny relace skončily. Pokud jste to nebyli vy, hned nastavte nové heslo."
+    },
+    "test": {
+      "title": "Test z CastleParcel",
+      "body": "Tento kanál funguje. CastleParcel sem posílá své zprávy."
+    }
   }
 }

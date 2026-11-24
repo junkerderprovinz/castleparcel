@@ -682,5 +682,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Chegam ficheiros a um pedido de ficheiros",
+      "title": "Ficheiros recebidos",
+      "body": "Alguém enviou ficheiros para um dos seus pedidos de ficheiros. A sua ligação de recolha abre-os."
+    },
+    "storageFull": {
+      "label": "Armazenamento quase cheio",
+      "title": "Armazenamento quase cheio",
+      "body": "As partilhas e os envios ocupam {percent} do espaço que o CastleParcel pode usar. Quando estiver cheio, os novos envios param."
+    },
+    "passwordReset": {
+      "label": "Palavra-passe reposta",
+      "title": "Palavra-passe reposta através do registo",
+      "body": "Alguém repôs a palavra-passe do proprietário com o código do registo do contentor e todas as sessões terminaram. Se não foi você, defina já uma nova palavra-passe."
+    },
+    "test": {
+      "title": "Teste do CastleParcel",
+      "body": "Este canal funciona. O CastleParcel envia aqui as suas mensagens."
+    }
   }
 }

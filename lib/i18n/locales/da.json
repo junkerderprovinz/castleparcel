@@ -674,5 +674,26 @@
     "role": {
       "admin": "Administrator"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Der kommer filer til en filanmodning",
+      "title": "Filer er kommet",
+      "body": "Nogen har sendt filer til en af dine filanmodninger. Dit afhentningslink åbner dem."
+    },
+    "storageFull": {
+      "label": "Lager næsten fuldt",
+      "title": "Lager næsten fuldt",
+      "body": "Delinger og uploads fylder {percent} af den plads, CastleParcel må bruge. Når den er fuld, stopper nye uploads."
+    },
+    "passwordReset": {
+      "label": "Adgangskode nulstillet",
+      "title": "Adgangskode nulstillet via loggen",
+      "body": "Nogen har nulstillet ejerens adgangskode med koden fra containerloggen, og alle sessioner er afsluttet. Var det ikke dig, så sæt en ny adgangskode med det samme."
+    },
+    "test": {
+      "title": "Test fra CastleParcel",
+      "body": "Denne kanal virker. CastleParcel sender sine beskeder hertil."
+    }
   }
 }

@@ -666,5 +666,26 @@
     "role": {
       "admin": "Pentadbir"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Fail tiba di permintaan fail",
+      "title": "Fail telah tiba",
+      "body": "Seseorang telah menghantar fail ke salah satu permintaan fail anda. Pautan kutipan anda membukanya."
+    },
+    "storageFull": {
+      "label": "Storan hampir penuh",
+      "title": "Storan hampir penuh",
+      "body": "Perkongsian dan muat naik menggunakan {percent} ruang yang boleh digunakan oleh CastleParcel. Apabila penuh, muat naik baharu berhenti."
+    },
+    "passwordReset": {
+      "label": "Kata laluan ditetapkan semula",
+      "title": "Kata laluan ditetapkan semula melalui log",
+      "body": "Seseorang telah menetapkan semula kata laluan pemilik dengan kod daripada log bekas, dan semua sesi telah tamat. Jika itu bukan anda, tetapkan kata laluan baharu dengan segera."
+    },
+    "test": {
+      "title": "Ujian daripada CastleParcel",
+      "body": "Saluran ini berfungsi. CastleParcel menghantar mesejnya ke sini."
+    }
   }
 }

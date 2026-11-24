@@ -33,8 +33,8 @@ const keyFile = "app.key"
 
 // Open opens the sign-in on db, sealed with the key from
 // CASTLEPARCEL_APP_KEY or from the key file in CONFIG_DIR, which the first
-// start writes.
-func Open(cfg config.Config, db *sql.DB, log *slog.Logger) (*signin.Auth, error) {
+// start writes. onReset, unless nil, hears of a reset through the log.
+func Open(cfg config.Config, db *sql.DB, log *slog.Logger, onReset func()) (*signin.Auth, error) {
 	key, err := loadKey(cfg)
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func Open(cfg config.Config, db *sql.DB, log *slog.Logger) (*signin.Auth, error)
 		Public:      func() *url.URL { return public(cfg.BaseURL) },
 		Proxies:     cfg.TrustedProxies.Prefixes(),
 		Logger:      log,
-		Hooks:       signin.Hooks{Ended: ended(db)},
+		Hooks:       signin.Hooks{Ended: ended(db, onReset)},
 	}
 	if cfg.TrustedProxies.All() {
 		sc.TrustedPeer = func(*http.Request) bool { return true }
@@ -75,8 +75,11 @@ var shutOut = map[signin.Ending]bool{
 // request link lets anybody keep uploading in its name. Shares stay: their
 // link belongs to the recipient now, and the management link deletes one
 // early.
-func ended(db *sql.DB) func(context.Context, string, signin.Ending) error {
+func ended(db *sql.DB, onReset func()) func(context.Context, string, signin.Ending) error {
 	return func(_ context.Context, account string, what signin.Ending) error {
+		if what == signin.EndReset && onReset != nil {
+			onReset()
+		}
 		if !shutOut[what] {
 			return nil
 		}
@@ -134,12 +137,42 @@ func Contract(auth *signin.Auth, cfg config.Config, next http.Handler) http.Hand
 	})
 }
 
-func refuse(w http.ResponseWriter, code string) {
+// Admins lets only the owner, signed in through the browser, reach the
+// settings behind next. While CastleParcel is open everyone may, as with the
+// sign-in itself, and an upload password then guards them as it guards the
+// sign-in. An API token never may, since the settings hold other services'
+// secrets.
+func Admins(auth *signin.Auth, cfg config.Config, next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		v, ok := signin.From(r.Context())
+		switch {
+		case !ok:
+			refuse(w, "signInFirst")
+		case v.Via == signin.ViaToken:
+			fail(w, http.StatusForbidden, "notWithToken")
+		case !v.AtLeast("admin"):
+			fail(w, http.StatusForbidden, "forbidden")
+		case v.Via == signin.ViaAnyone && cfg.UploadProtected && auth.Anyone() &&
+			!upload.IsUploadAuthorized(r.Header.Get(upload.UploadTokenHeader), true, cfg.UploadPassword):
+			refuse(w, "uploadPassword")
+		default:
+			next.ServeHTTP(w, r)
+		}
+	})
+}
+
+func refuse(w http.ResponseWriter, code string) { fail(w, http.StatusUnauthorized, code) }
+
+func fail(w http.ResponseWriter, status int, code string) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Cache-Control", "no-store")
-	w.WriteHeader(http.StatusUnauthorized)
+	w.WriteHeader(status)
 	_, _ = fmt.Fprintf(w, "{\"error\":%q}\n", code)
 }
+
+// Key returns the key the sign-in is sealed with, for the other secrets
+// CastleParcel keeps.
+func Key(cfg config.Config) ([]byte, error) { return loadKey(cfg) }
 
 // loadKey returns the key from CASTLEPARCEL_APP_KEY, or from the key file,
 // drawing and writing one on the first start.

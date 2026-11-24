@@ -674,5 +674,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Dateien kommen bei einer Dateianfrage an",
+      "title": "Dateien angekommen",
+      "body": "Jemand hat Dateien an eine deiner Dateianfragen geschickt. Dein Abhol-Link öffnet sie."
+    },
+    "storageFull": {
+      "label": "Speicher fast voll",
+      "title": "Speicher fast voll",
+      "body": "Freigaben und Uploads belegen {percent} des Platzes, den CastleParcel nutzen darf. Ist er voll, nimmt CastleParcel keine Uploads mehr an."
+    },
+    "passwordReset": {
+      "label": "Passwort zurückgesetzt",
+      "title": "Passwort über das Log zurückgesetzt",
+      "body": "Jemand hat das Passwort des Besitzers mit dem Code aus dem Container-Log zurückgesetzt, alle Sitzungen sind beendet. Warst du das nicht, setz gleich ein neues Passwort."
+    },
+    "test": {
+      "title": "Test von CastleParcel",
+      "body": "Dieser Kanal funktioniert. CastleParcel schickt seine Nachrichten hierher."
+    }
   }
 }

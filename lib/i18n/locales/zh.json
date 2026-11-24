@@ -666,5 +666,26 @@
     "role": {
       "admin": "管理员"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "文件请求收到文件",
+      "title": "文件已送达",
+      "body": "有人向你的某个文件请求发送了文件。你的领取链接可以打开它们。"
+    },
+    "storageFull": {
+      "label": "存储空间即将用尽",
+      "title": "存储空间即将用尽",
+      "body": "分享和上传已占用 CastleParcel 可用空间的 {percent}。空间用尽后，新的上传将停止。"
+    },
+    "passwordReset": {
+      "label": "密码已重置",
+      "title": "已通过日志重置密码",
+      "body": "有人用容器日志中的代码重置了所有者的密码，所有会话均已结束。如果不是你本人，请立即设置新密码。"
+    },
+    "test": {
+      "title": "来自 CastleParcel 的测试",
+      "body": "此通道可以正常工作。CastleParcel 会把消息发到这里。"
+    }
   }
 }

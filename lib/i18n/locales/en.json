@@ -674,5 +674,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Files arrive at a file request",
+      "title": "Files arrived",
+      "body": "Someone sent files to one of your file requests. Your collect link opens them."
+    },
+    "storageFull": {
+      "label": "Storage almost full",
+      "title": "Storage almost full",
+      "body": "Shares and uploads take up {percent} of the space CastleParcel may use. New uploads stop once it is full."
+    },
+    "passwordReset": {
+      "label": "Password reset",
+      "title": "Password reset through the log",
+      "body": "Someone reset the owner's password with the code from the container log, and every session ended. If that wasn't you, set a new password right away."
+    },
+    "test": {
+      "title": "Test from CastleParcel",
+      "body": "This channel works. CastleParcel sends its messages here."
+    }
   }
 }

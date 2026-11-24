@@ -682,5 +682,26 @@
     "role": {
       "admin": "Admin"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Arriben fitxers a una sol·licitud de fitxers",
+      "title": "Han arribat fitxers",
+      "body": "Algú ha enviat fitxers a una de les teves sol·licituds de fitxers. El teu enllaç de recollida els obre."
+    },
+    "storageFull": {
+      "label": "Emmagatzematge gairebé ple",
+      "title": "Emmagatzematge gairebé ple",
+      "body": "Les comparticions i les pujades ocupen {percent} de l'espai que CastleParcel pot fer servir. Quan s'ompli, les noves pujades s'aturaran."
+    },
+    "passwordReset": {
+      "label": "Contrasenya restablerta",
+      "title": "Contrasenya restablerta des del registre",
+      "body": "Algú ha restablert la contrasenya del propietari amb el codi del registre del contenidor i totes les sessions s'han tancat. Si no has estat tu, posa ara mateix una contrasenya nova."
+    },
+    "test": {
+      "title": "Prova de CastleParcel",
+      "body": "Aquest canal funciona. CastleParcel hi envia els seus missatges."
+    }
   }
 }

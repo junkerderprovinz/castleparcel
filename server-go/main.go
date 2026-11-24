@@ -31,6 +31,7 @@ import (
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/clientmanifest"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/headers"
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/notices"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/ratelimit"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/static"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/store"
@@ -110,19 +111,28 @@ func main() {
 		log.Fatalf("build tus handler: %v", err)
 	}
 
-	auth, err := account.Open(cfg, db, slog.Default())
+	key, err := account.Key(cfg)
+	if err != nil {
+		log.Fatalf("read the key: %v", err)
+	}
+	hub, err := notices.Open(cfg.ConfigDir, key, slog.Default())
+	if err != nil {
+		log.Fatalf("open the notifications: %v", err)
+	}
+	auth, err := account.Open(cfg, db, slog.Default(), func() { hub.Send(notices.PasswordReset, nil) })
 	if err != nil {
 		log.Fatalf("open the sign-in: %v", err)
 	}
 	defer auth.Close()
 
-	r := newRouter(cfg, db, auth, tusHandler, webFiles, shell, client)
+	r := newRouter(cfg, db, auth, hub, tusHandler, webFiles, shell, client)
 
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
 	var background sync.WaitGroup
 	background.Go(func() { cleanup.Run(ctx, cfg, db, cleanup.Interval) })
+	background.Go(func() { watchStorage(ctx, cfg, db, hub) })
 
 	srv := &http.Server{Addr: ":" + cfg.Port, Handler: r}
 	go func() {
@@ -152,7 +162,7 @@ func main() {
 
 // newRouter wires every route the server serves. It is separate from main so
 // tests can run the real routing, rate limits included.
-func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, tusHandler http.Handler, webFiles *static.Assets, shell []byte, client clientmanifest.Served) chi.Router {
+func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, hub *notices.Hub, tusHandler http.Handler, webFiles *static.Assets, shell []byte, client clientmanifest.Served) chi.Router {
 	r := chi.NewRouter()
 	r.Use(headers.Middleware(headers.ContentSecurityPolicy(cfg.LogoOrigin())))
 	r.Use(auth.Guard)
@@ -226,7 +236,10 @@ func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, tusHandler http
 	r.Get("/api/d/{slug}/header", header)
 	r.Delete("/api/m/{slug}", revoke)
 	r.Post("/api/requests", createRequest)
-	r.Mount("/api/r", requests)
+	r.Mount("/api/r", hub.AfterUpload(requests))
+	settings := account.Admins(auth, cfg, hub.Handler())
+	r.Handle("/api/notify", settings)
+	r.Handle("/api/notify/test", settings)
 	r.Get("/api/config", api.ConfigHandler(cfg))
 	releases := api.NewReleases()
 	r.Get("/api/latest-release", api.LatestReleaseHandler(releases))
@@ -243,6 +256,26 @@ func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, tusHandler http
 	r.MethodNotAllowed(spaHandler(webFiles, shell))
 
 	return r
+}
+
+// watchStorage tells the notification channels when the store is almost
+// full, looking every few minutes.
+func watchStorage(ctx context.Context, cfg config.Config, db *sql.DB, hub *notices.Hub) {
+	if cfg.StorageQuota <= 0 {
+		return
+	}
+	tick := time.NewTicker(5 * time.Minute)
+	defer tick.Stop()
+	for {
+		if used, err := store.QuotaUsage(db, ""); err == nil {
+			hub.Storage(used, cfg.StorageQuota)
+		}
+		select {
+		case <-ctx.Done():
+			return
+		case <-tick.C:
+		}
+	}
 }
 
 // healthcheckMain probes /api/healthcheck on the configured PORT and returns

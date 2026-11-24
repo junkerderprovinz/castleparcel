@@ -1,0 +1,884 @@
+{
+ "ar": {
+  "request.upload": {
+   "label": "وصول ملفات إلى طلب ملفات",
+   "title": "وصلت ملفات",
+   "body": "أرسل أحدهم ملفات إلى أحد طلبات الملفات الخاصة بك. رابط الاستلام الخاص بك يفتحها."
+  },
+  "storage.full": {
+   "label": "المساحة على وشك الامتلاء",
+   "title": "المساحة على وشك الامتلاء",
+   "body": "تشغل المشاركات وعمليات الرفع {percent} من المساحة التي يمكن لـ CastleParcel استخدامها. عند امتلائها تتوقف عمليات الرفع الجديدة."
+  },
+  "signin.reset": {
+   "label": "إعادة تعيين كلمة المرور",
+   "title": "أُعيد تعيين كلمة المرور عبر السجل",
+   "body": "أعاد أحدهم تعيين كلمة مرور المالك بالرمز الموجود في سجل الحاوية، وانتهت كل الجلسات. إن لم تكن أنت، فاضبط كلمة مرور جديدة فورًا."
+  },
+  "test": {
+   "title": "اختبار من CastleParcel",
+   "body": "هذه القناة تعمل. يرسل CastleParcel رسائله إلى هنا."
+  }
+ },
+ "bg": {
+  "request.upload": {
+   "label": "Пристигат файлове по заявка за файлове",
+   "title": "Пристигнаха файлове",
+   "body": "Някой изпрати файлове по една от твоите заявки за файлове. Линкът ти за получаване ги отваря."
+  },
+  "storage.full": {
+   "label": "Хранилището е почти пълно",
+   "title": "Хранилището е почти пълно",
+   "body": "Споделянията и качванията заемат {percent} от мястото, което CastleParcel може да ползва. Щом се напълни, новите качвания спират."
+  },
+  "signin.reset": {
+   "label": "Паролата е нулирана",
+   "title": "Паролата е нулирана през журнала",
+   "body": "Някой нулира паролата на собственика с кода от журнала на контейнера и всички сесии приключиха. Ако не си бил ти, задай веднага нова парола."
+  },
+  "test": {
+   "title": "Тест от CastleParcel",
+   "body": "Този канал работи. CastleParcel праща съобщенията си тук."
+  }
+ },
+ "ca": {
+  "request.upload": {
+   "label": "Arriben fitxers a una sol·licitud de fitxers",
+   "title": "Han arribat fitxers",
+   "body": "Algú ha enviat fitxers a una de les teves sol·licituds de fitxers. El teu enllaç de recollida els obre."
+  },
+  "storage.full": {
+   "label": "Emmagatzematge gairebé ple",
+   "title": "Emmagatzematge gairebé ple",
+   "body": "Les comparticions i les pujades ocupen {percent} de l'espai que CastleParcel pot fer servir. Quan s'ompli, les noves pujades s'aturaran."
+  },
+  "signin.reset": {
+   "label": "Contrasenya restablerta",
+   "title": "Contrasenya restablerta des del registre",
+   "body": "Algú ha restablert la contrasenya del propietari amb el codi del registre del contenidor i totes les sessions s'han tancat. Si no has estat tu, posa ara mateix una contrasenya nova."
+  },
+  "test": {
+   "title": "Prova de CastleParcel",
+   "body": "Aquest canal funciona. CastleParcel hi envia els seus missatges."
+  }
+ },
+ "cs": {
+  "request.upload": {
+   "label": "Na žádost o soubory přicházejí soubory",
+   "title": "Soubory dorazily",
+   "body": "Někdo poslal soubory na jednu z vašich žádostí o soubory. Váš odkaz k vyzvednutí je otevře."
+  },
+  "storage.full": {
+   "label": "Úložiště je skoro plné",
+   "title": "Úložiště je skoro plné",
+   "body": "Sdílení a nahrávky zabírají {percent} místa, které CastleParcel smí použít. Až se zaplní, nové nahrávání se zastaví."
+  },
+  "signin.reset": {
+   "label": "Heslo obnoveno",
+   "title": "Heslo obnoveno přes protokol",
+   "body": "Někdo obnovil heslo majitele kódem z protokolu kontejneru a všechny relace skončily. Pokud jste to nebyli vy, hned nastavte nové heslo."
+  },
+  "test": {
+   "title": "Test z CastleParcel",
+   "body": "Tento kanál funguje. CastleParcel sem posílá své zprávy."
+  }
+ },
+ "da": {
+  "request.upload": {
+   "label": "Der kommer filer til en filanmodning",
+   "title": "Filer er kommet",
+   "body": "Nogen har sendt filer til en af dine filanmodninger. Dit afhentningslink åbner dem."
+  },
+  "storage.full": {
+   "label": "Lager næsten fuldt",
+   "title": "Lager næsten fuldt",
+   "body": "Delinger og uploads fylder {percent} af den plads, CastleParcel må bruge. Når den er fuld, stopper nye uploads."
+  },
+  "signin.reset": {
+   "label": "Adgangskode nulstillet",
+   "title": "Adgangskode nulstillet via loggen",
+   "body": "Nogen har nulstillet ejerens adgangskode med koden fra containerloggen, og alle sessioner er afsluttet. Var det ikke dig, så sæt en ny adgangskode med det samme."
+  },
+  "test": {
+   "title": "Test fra CastleParcel",
+   "body": "Denne kanal virker. CastleParcel sender sine beskeder hertil."
+  }
+ },
+ "de": {
+  "request.upload": {
+   "label": "Dateien kommen bei einer Dateianfrage an",
+   "title": "Dateien angekommen",
+   "body": "Jemand hat Dateien an eine deiner Dateianfragen geschickt. Dein Abhol-Link öffnet sie."
+  },
+  "storage.full": {
+   "label": "Speicher fast voll",
+   "title": "Speicher fast voll",
+   "body": "Freigaben und Uploads belegen {percent} des Platzes, den CastleParcel nutzen darf. Ist er voll, nimmt CastleParcel keine Uploads mehr an."
+  },
+  "signin.reset": {
+   "label": "Passwort zurückgesetzt",
+   "title": "Passwort über das Log zurückgesetzt",
+   "body": "Jemand hat das Passwort des Besitzers mit dem Code aus dem Container-Log zurückgesetzt, alle Sitzungen sind beendet. Warst du das nicht, setz gleich ein neues Passwort."
+  },
+  "test": {
+   "title": "Test von CastleParcel",
+   "body": "Dieser Kanal funktioniert. CastleParcel schickt seine Nachrichten hierher."
+  }
+ },
+ "el": {
+  "request.upload": {
+   "label": "Φτάνουν αρχεία σε αίτημα αρχείων",
+   "title": "Ήρθαν αρχεία",
+   "body": "Κάποιος έστειλε αρχεία σε ένα από τα αιτήματα αρχείων σου. Ο σύνδεσμος παραλαβής σου τα ανοίγει."
+  },
+  "storage.full": {
+   "label": "Ο χώρος σχεδόν γεμάτος",
+   "title": "Ο χώρος σχεδόν γεμάτος",
+   "body": "Οι κοινοποιήσεις και οι μεταφορτώσεις πιάνουν {percent} του χώρου που μπορεί να χρησιμοποιεί το CastleParcel. Όταν γεμίσει, οι νέες μεταφορτώσεις σταματούν."
+  },
+  "signin.reset": {
+   "label": "Επαναφορά κωδικού",
+   "title": "Επαναφορά κωδικού μέσω του αρχείου καταγραφής",
+   "body": "Κάποιος επανέφερε τον κωδικό του ιδιοκτήτη με τον κωδικό από το αρχείο καταγραφής του κοντέινερ, και όλες οι συνεδρίες έληξαν. Αν δεν ήσουν εσύ, όρισε αμέσως νέο κωδικό."
+  },
+  "test": {
+   "title": "Δοκιμή από το CastleParcel",
+   "body": "Αυτό το κανάλι λειτουργεί. Το CastleParcel στέλνει εδώ τα μηνύματά του."
+  }
+ },
+ "en": {
+  "request.upload": {
+   "label": "Files arrive at a file request",
+   "title": "Files arrived",
+   "body": "Someone sent files to one of your file requests. Your collect link opens them."
+  },
+  "storage.full": {
+   "label": "Storage almost full",
+   "title": "Storage almost full",
+   "body": "Shares and uploads take up {percent} of the space CastleParcel may use. New uploads stop once it is full."
+  },
+  "signin.reset": {
+   "label": "Password reset",
+   "title": "Password reset through the log",
+   "body": "Someone reset the owner's password with the code from the container log, and every session ended. If that wasn't you, set a new password right away."
+  },
+  "test": {
+   "title": "Test from CastleParcel",
+   "body": "This channel works. CastleParcel sends its messages here."
+  }
+ },
+ "es": {
+  "request.upload": {
+   "label": "Llegan archivos a una solicitud de archivos",
+   "title": "Archivos recibidos",
+   "body": "Alguien envió archivos a una de tus solicitudes de archivos. Tu enlace de recogida los abre."
+  },
+  "storage.full": {
+   "label": "Almacenamiento casi lleno",
+   "title": "Almacenamiento casi lleno",
+   "body": "Los enlaces compartidos y las subidas ocupan {percent} del espacio que CastleParcel puede usar. Cuando se llene, no habrá más subidas."
+  },
+  "signin.reset": {
+   "label": "Contraseña restablecida",
+   "title": "Contraseña restablecida desde el registro",
+   "body": "Alguien restableció la contraseña del propietario con el código del registro del contenedor y todas las sesiones terminaron. Si no fuiste tú, pon una contraseña nueva ahora mismo."
+  },
+  "test": {
+   "title": "Prueba de CastleParcel",
+   "body": "Este canal funciona. CastleParcel envía aquí sus mensajes."
+  }
+ },
+ "et": {
+  "request.upload": {
+   "label": "Failipäringule saabub faile",
+   "title": "Failid saabusid",
+   "body": "Keegi saatis faile ühele sinu failipäringule. Sinu kättesaamislink avab need."
+  },
+  "storage.full": {
+   "label": "Salvestusruum peaaegu täis",
+   "title": "Salvestusruum peaaegu täis",
+   "body": "Jagamised ja üleslaadimised võtavad {percent} ruumist, mida CastleParcel tohib kasutada. Kui see täis saab, uued üleslaadimised peatuvad."
+  },
+  "signin.reset": {
+   "label": "Parool lähtestati",
+   "title": "Parool lähtestati logi kaudu",
+   "body": "Keegi lähtestas omaniku parooli konteineri logi koodiga ja kõik seansid lõppesid. Kui see polnud sina, määra kohe uus parool."
+  },
+  "test": {
+   "title": "Test CastleParcelilt",
+   "body": "See kanal töötab. CastleParcel saadab oma sõnumid siia."
+  }
+ },
+ "eu": {
+  "request.upload": {
+   "label": "Fitxategiak iristen dira fitxategi-eskaera batera",
+   "title": "Fitxategiak iritsi dira",
+   "body": "Norbaitek fitxategiak bidali ditu zure fitxategi-eskaeretako batera. Zure jasotzeko estekak irekitzen ditu."
+  },
+  "storage.full": {
+   "label": "Biltegia ia beteta",
+   "title": "Biltegia ia beteta",
+   "body": "Partekatzeek eta igoerek CastleParcelek erabil dezakeen lekuaren {percent} hartzen dute. Betetzen denean, igoera berriak geldituko dira."
+  },
+  "signin.reset": {
+   "label": "Pasahitza berrezarri da",
+   "title": "Pasahitza erregistroaren bidez berrezarri da",
+   "body": "Norbaitek jabearen pasahitza berrezarri du edukiontziaren erregistroko kodearekin, eta saio guztiak amaitu dira. Zu izan ez bazara, ezarri pasahitz berri bat berehala."
+  },
+  "test": {
+   "title": "CastleParcelen proba",
+   "body": "Kanal honek funtzionatzen du. CastleParcelek hona bidaltzen ditu bere mezuak."
+  }
+ },
+ "fa": {
+  "request.upload": {
+   "label": "رسیدن فایل به یک درخواست فایل",
+   "title": "فایل‌ها رسیدند",
+   "body": "کسی به یکی از درخواست‌های فایل شما فایل فرستاد. پیوند دریافت شما آن‌ها را باز می‌کند."
+  },
+  "storage.full": {
+   "label": "فضای ذخیره تقریباً پر است",
+   "title": "فضای ذخیره تقریباً پر است",
+   "body": "اشتراک‌ها و بارگذاری‌ها {percent} از فضایی را که CastleParcel می‌تواند استفاده کند گرفته‌اند. وقتی پر شود، بارگذاری‌های تازه متوقف می‌شوند."
+  },
+  "signin.reset": {
+   "label": "بازنشانی گذرواژه",
+   "title": "گذرواژه از راه گزارش بازنشانی شد",
+   "body": "کسی گذرواژهٔ مالک را با کد گزارش کانتینر بازنشانی کرد و همهٔ نشست‌ها پایان یافتند. اگر شما نبودید، همین حالا گذرواژهٔ تازه‌ای بگذارید."
+  },
+  "test": {
+   "title": "آزمایش از CastleParcel",
+   "body": "این کانال کار می‌کند. CastleParcel پیام‌هایش را به اینجا می‌فرستد."
+  }
+ },
+ "fi": {
+  "request.upload": {
+   "label": "Tiedostopyyntöön saapuu tiedostoja",
+   "title": "Tiedostoja saapui",
+   "body": "Joku lähetti tiedostoja yhteen tiedostopyyntöösi. Noutolinkkisi avaa ne."
+  },
+  "storage.full": {
+   "label": "Tallennustila lähes täynnä",
+   "title": "Tallennustila lähes täynnä",
+   "body": "Jaot ja lähetykset vievät {percent} tilasta, jota CastleParcel saa käyttää. Kun se täyttyy, uudet lähetykset loppuvat."
+  },
+  "signin.reset": {
+   "label": "Salasana nollattu",
+   "title": "Salasana nollattu lokin kautta",
+   "body": "Joku nollasi omistajan salasanan kontin lokin koodilla, ja kaikki istunnot päättyivät. Jos se et ollut sinä, aseta heti uusi salasana."
+  },
+  "test": {
+   "title": "Testi CastleParcelilta",
+   "body": "Tämä kanava toimii. CastleParcel lähettää viestinsä tänne."
+  }
+ },
+ "fr": {
+  "request.upload": {
+   "label": "Des fichiers arrivent sur une demande de fichiers",
+   "title": "Fichiers reçus",
+   "body": "Quelqu’un a envoyé des fichiers à l’une de vos demandes de fichiers. Votre lien de collecte les ouvre."
+  },
+  "storage.full": {
+   "label": "Stockage presque plein",
+   "title": "Stockage presque plein",
+   "body": "Les partages et les envois occupent {percent} de l’espace que CastleParcel peut utiliser. Une fois plein, les nouveaux envois s’arrêtent."
+  },
+  "signin.reset": {
+   "label": "Mot de passe réinitialisé",
+   "title": "Mot de passe réinitialisé via le journal",
+   "body": "Quelqu’un a réinitialisé le mot de passe du propriétaire avec le code du journal du conteneur, et toutes les sessions ont pris fin. Si ce n’était pas vous, définissez tout de suite un nouveau mot de passe."
+  },
+  "test": {
+   "title": "Test de CastleParcel",
+   "body": "Ce canal fonctionne. CastleParcel envoie ses messages ici."
+  }
+ },
+ "gl": {
+  "request.upload": {
+   "label": "Chegan ficheiros a unha solicitude de ficheiros",
+   "title": "Chegaron ficheiros",
+   "body": "Alguén enviou ficheiros a unha das túas solicitudes de ficheiros. A túa ligazón de recollida ábreos."
+  },
+  "storage.full": {
+   "label": "Almacenamento case cheo",
+   "title": "Almacenamento case cheo",
+   "body": "As comparticións e as subidas ocupan {percent} do espazo que CastleParcel pode usar. Cando se encha, as novas subidas paran."
+  },
+  "signin.reset": {
+   "label": "Contrasinal restablecido",
+   "title": "Contrasinal restablecido desde o rexistro",
+   "body": "Alguén restableceu o contrasinal do propietario co código do rexistro do contedor e todas as sesións remataron. Se non fuches ti, pon agora mesmo un contrasinal novo."
+  },
+  "test": {
+   "title": "Proba de CastleParcel",
+   "body": "Esta canle funciona. CastleParcel envía aquí as súas mensaxes."
+  }
+ },
+ "he": {
+  "request.upload": {
+   "label": "קבצים מגיעים לבקשת קבצים",
+   "title": "הגיעו קבצים",
+   "body": "מישהו שלח קבצים לאחת מבקשות הקבצים שלכם. קישור האיסוף שלכם פותח אותם."
+  },
+  "storage.full": {
+   "label": "האחסון כמעט מלא",
+   "title": "האחסון כמעט מלא",
+   "body": "שיתופים והעלאות תופסים {percent} מהמקום ש־CastleParcel רשאי להשתמש בו. כשהוא יתמלא, העלאות חדשות ייעצרו."
+  },
+  "signin.reset": {
+   "label": "איפוס סיסמה",
+   "title": "הסיסמה אופסה דרך היומן",
+   "body": "מישהו איפס את סיסמת הבעלים בעזרת הקוד מיומן הקונטיינר, וכל ההפעלות הסתיימו. אם זה לא הייתם אתם, הגדירו מיד סיסמה חדשה."
+  },
+  "test": {
+   "title": "בדיקה מ־CastleParcel",
+   "body": "הערוץ הזה עובד. CastleParcel שולח לכאן את ההודעות שלו."
+  }
+ },
+ "hi": {
+  "request.upload": {
+   "label": "किसी फ़ाइल अनुरोध पर फ़ाइलें आती हैं",
+   "title": "फ़ाइलें आ गईं",
+   "body": "किसी ने आपके किसी फ़ाइल अनुरोध पर फ़ाइलें भेजी हैं। आपका संग्रह लिंक उन्हें खोलता है।"
+  },
+  "storage.full": {
+   "label": "स्टोरेज लगभग भरा",
+   "title": "स्टोरेज लगभग भरा",
+   "body": "शेयर और अपलोड उस जगह का {percent} ले रहे हैं जो CastleParcel इस्तेमाल कर सकता है। भरते ही नए अपलोड रुक जाएँगे।"
+  },
+  "signin.reset": {
+   "label": "पासवर्ड रीसेट",
+   "title": "लॉग से पासवर्ड रीसेट हुआ",
+   "body": "किसी ने कंटेनर लॉग के कोड से मालिक का पासवर्ड रीसेट किया और सभी सत्र खत्म हो गए। अगर यह आप नहीं थे, तो तुरंत नया पासवर्ड सेट करें।"
+  },
+  "test": {
+   "title": "CastleParcel से परीक्षण",
+   "body": "यह चैनल काम करता है। CastleParcel अपने संदेश यहीं भेजता है।"
+  }
+ },
+ "hr": {
+  "request.upload": {
+   "label": "Na zahtjev za datoteke stižu datoteke",
+   "title": "Datoteke su stigle",
+   "body": "Netko je poslao datoteke na jedan od tvojih zahtjeva za datoteke. Tvoja poveznica za preuzimanje ih otvara."
+  },
+  "storage.full": {
+   "label": "Pohrana gotovo puna",
+   "title": "Pohrana gotovo puna",
+   "body": "Dijeljenja i prijenosi zauzimaju {percent} prostora koji CastleParcel smije koristiti. Kad se napuni, novi prijenosi se zaustavljaju."
+  },
+  "signin.reset": {
+   "label": "Lozinka vraćena",
+   "title": "Lozinka vraćena preko zapisnika",
+   "body": "Netko je vratio lozinku vlasnika kodom iz zapisnika spremnika i sve su sesije završile. Ako to nisi bio ti, odmah postavi novu lozinku."
+  },
+  "test": {
+   "title": "Test iz CastleParcela",
+   "body": "Ovaj kanal radi. CastleParcel ovamo šalje svoje poruke."
+  }
+ },
+ "hu": {
+  "request.upload": {
+   "label": "Fájlok érkeznek egy fájlkéréshez",
+   "title": "Fájlok érkeztek",
+   "body": "Valaki fájlokat küldött az egyik fájlkéréséhez. Az átvételi hivatkozása megnyitja őket."
+  },
+  "storage.full": {
+   "label": "A tárhely majdnem megtelt",
+   "title": "A tárhely majdnem megtelt",
+   "body": "A megosztások és feltöltések a CastleParcel számára engedélyezett hely {percent} részét foglalják. Ha megtelik, az új feltöltések leállnak."
+  },
+  "signin.reset": {
+   "label": "Jelszó visszaállítva",
+   "title": "Jelszó visszaállítva a naplóból",
+   "body": "Valaki visszaállította a tulajdonos jelszavát a konténer naplójában lévő kóddal, és minden munkamenet véget ért. Ha nem Ön volt, azonnal állítson be új jelszót."
+  },
+  "test": {
+   "title": "Teszt a CastleParceltől",
+   "body": "Ez a csatorna működik. A CastleParcel ide küldi az üzeneteit."
+  }
+ },
+ "id": {
+  "request.upload": {
+   "label": "File masuk ke permintaan file",
+   "title": "File sudah tiba",
+   "body": "Seseorang mengirim file ke salah satu permintaan file-mu. Tautan ambilmu membukanya."
+  },
+  "storage.full": {
+   "label": "Penyimpanan hampir penuh",
+   "title": "Penyimpanan hampir penuh",
+   "body": "Berbagi dan unggahan memakai {percent} dari ruang yang boleh dipakai CastleParcel. Setelah penuh, unggahan baru berhenti."
+  },
+  "signin.reset": {
+   "label": "Kata sandi direset",
+   "title": "Kata sandi direset lewat log",
+   "body": "Seseorang mereset kata sandi pemilik dengan kode dari log kontainer, dan semua sesi berakhir. Jika itu bukan kamu, segera atur kata sandi baru."
+  },
+  "test": {
+   "title": "Uji dari CastleParcel",
+   "body": "Saluran ini berfungsi. CastleParcel mengirim pesannya ke sini."
+  }
+ },
+ "is": {
+  "request.upload": {
+   "label": "Skrár berast í skráabeiðni",
+   "title": "Skrár bárust",
+   "body": "Einhver sendi skrár í eina af skráabeiðnunum þínum. Söfnunartengillinn þinn opnar þær."
+  },
+  "storage.full": {
+   "label": "Geymslan nærri full",
+   "title": "Geymslan nærri full",
+   "body": "Deilingar og upphleðslur taka {percent} af plássinu sem CastleParcel má nota. Þegar það fyllist stöðvast nýjar upphleðslur."
+  },
+  "signin.reset": {
+   "label": "Lykilorð endurstillt",
+   "title": "Lykilorð endurstillt í gegnum annálinn",
+   "body": "Einhver endurstillti lykilorð eigandans með kóðanum úr annál gámsins og öllum lotum lauk. Ef það varst ekki þú, settu strax nýtt lykilorð."
+  },
+  "test": {
+   "title": "Prófun frá CastleParcel",
+   "body": "Þessi rás virkar. CastleParcel sendir skilaboðin sín hingað."
+  }
+ },
+ "it": {
+  "request.upload": {
+   "label": "Arrivano file a una richiesta di file",
+   "title": "File arrivati",
+   "body": "Qualcuno ha inviato file a una delle tue richieste di file. Il tuo link di ritiro li apre."
+  },
+  "storage.full": {
+   "label": "Spazio quasi pieno",
+   "title": "Spazio quasi pieno",
+   "body": "Condivisioni e caricamenti occupano {percent} dello spazio che CastleParcel può usare. Quando è pieno, i nuovi caricamenti si fermano."
+  },
+  "signin.reset": {
+   "label": "Password reimpostata",
+   "title": "Password reimpostata dal log",
+   "body": "Qualcuno ha reimpostato la password del proprietario con il codice del log del container e tutte le sessioni sono terminate. Se non sei stato tu, imposta subito una nuova password."
+  },
+  "test": {
+   "title": "Prova da CastleParcel",
+   "body": "Questo canale funziona. CastleParcel invia qui i suoi messaggi."
+  }
+ },
+ "ja": {
+  "request.upload": {
+   "label": "ファイルリクエストにファイルが届く",
+   "title": "ファイルが届きました",
+   "body": "あなたのファイルリクエストのひとつに、誰かがファイルを送りました。受け取りリンクで開けます。"
+  },
+  "storage.full": {
+   "label": "ストレージがほぼいっぱい",
+   "title": "ストレージがほぼいっぱい",
+   "body": "共有とアップロードが、CastleParcel が使える容量の {percent} を占めています。いっぱいになると新しいアップロードは止まります。"
+  },
+  "signin.reset": {
+   "label": "パスワードのリセット",
+   "title": "ログ経由でパスワードがリセットされました",
+   "body": "コンテナーのログのコードで、所有者のパスワードがリセットされ、すべてのセッションが終了しました。心当たりがなければ、すぐに新しいパスワードを設定してください。"
+  },
+  "test": {
+   "title": "CastleParcel からのテスト",
+   "body": "このチャンネルは動作しています。CastleParcel はここにメッセージを送ります。"
+  }
+ },
+ "ko": {
+  "request.upload": {
+   "label": "파일 요청에 파일이 도착함",
+   "title": "파일이 도착했습니다",
+   "body": "누군가 내 파일 요청 중 하나로 파일을 보냈습니다. 수거 링크로 열 수 있습니다."
+  },
+  "storage.full": {
+   "label": "저장 공간이 거의 가득 참",
+   "title": "저장 공간이 거의 가득 참",
+   "body": "공유와 업로드가 CastleParcel이 쓸 수 있는 공간의 {percent}를 차지합니다. 가득 차면 새 업로드가 멈춥니다."
+  },
+  "signin.reset": {
+   "label": "비밀번호 재설정",
+   "title": "로그로 비밀번호가 재설정됨",
+   "body": "누군가 컨테이너 로그의 코드로 소유자 비밀번호를 재설정했고 모든 세션이 끝났습니다. 본인이 아니라면 바로 새 비밀번호를 설정하세요."
+  },
+  "test": {
+   "title": "CastleParcel 테스트",
+   "body": "이 채널은 작동합니다. CastleParcel은 여기로 메시지를 보냅니다."
+  }
+ },
+ "lt": {
+  "request.upload": {
+   "label": "Į failų užklausą atkeliauja failų",
+   "title": "Failai atkeliavo",
+   "body": "Kažkas išsiuntė failų į vieną iš jūsų failų užklausų. Jūsų atsiėmimo nuoroda juos atidaro."
+  },
+  "storage.full": {
+   "label": "Saugykla beveik pilna",
+   "title": "Saugykla beveik pilna",
+   "body": "Bendrinimai ir įkėlimai užima {percent} vietos, kurią CastleParcel gali naudoti. Kai ji prisipildys, nauji įkėlimai sustos."
+  },
+  "signin.reset": {
+   "label": "Slaptažodis atkurtas",
+   "title": "Slaptažodis atkurtas per žurnalą",
+   "body": "Kažkas atkūrė savininko slaptažodį konteinerio žurnalo kodu, ir visi seansai baigėsi. Jei tai buvote ne jūs, iškart nustatykite naują slaptažodį."
+  },
+  "test": {
+   "title": "CastleParcel bandymas",
+   "body": "Šis kanalas veikia. CastleParcel siunčia savo žinutes čia."
+  }
+ },
+ "lv": {
+  "request.upload": {
+   "label": "Failu pieprasījumam pienāk faili",
+   "title": "Faili ir pienākuši",
+   "body": "Kāds nosūtīja failus vienam no jūsu failu pieprasījumiem. Jūsu saņemšanas saite tos atver."
+  },
+  "storage.full": {
+   "label": "Krātuve gandrīz pilna",
+   "title": "Krātuve gandrīz pilna",
+   "body": "Kopīgojumi un augšupielādes aizņem {percent} no vietas, ko CastleParcel drīkst izmantot. Kad tā piepildīsies, jaunas augšupielādes apstāsies."
+  },
+  "signin.reset": {
+   "label": "Parole atiestatīta",
+   "title": "Parole atiestatīta caur žurnālu",
+   "body": "Kāds atiestatīja īpašnieka paroli ar kodu no konteinera žurnāla, un visas sesijas beidzās. Ja tas nebijāt jūs, uzreiz iestatiet jaunu paroli."
+  },
+  "test": {
+   "title": "CastleParcel pārbaude",
+   "body": "Šis kanāls darbojas. CastleParcel sūta savas ziņas šeit."
+  }
+ },
+ "ms": {
+  "request.upload": {
+   "label": "Fail tiba di permintaan fail",
+   "title": "Fail telah tiba",
+   "body": "Seseorang telah menghantar fail ke salah satu permintaan fail anda. Pautan kutipan anda membukanya."
+  },
+  "storage.full": {
+   "label": "Storan hampir penuh",
+   "title": "Storan hampir penuh",
+   "body": "Perkongsian dan muat naik menggunakan {percent} ruang yang boleh digunakan oleh CastleParcel. Apabila penuh, muat naik baharu berhenti."
+  },
+  "signin.reset": {
+   "label": "Kata laluan ditetapkan semula",
+   "title": "Kata laluan ditetapkan semula melalui log",
+   "body": "Seseorang telah menetapkan semula kata laluan pemilik dengan kod daripada log bekas, dan semua sesi telah tamat. Jika itu bukan anda, tetapkan kata laluan baharu dengan segera."
+  },
+  "test": {
+   "title": "Ujian daripada CastleParcel",
+   "body": "Saluran ini berfungsi. CastleParcel menghantar mesejnya ke sini."
+  }
+ },
+ "nl": {
+  "request.upload": {
+   "label": "Er komen bestanden binnen bij een bestandsverzoek",
+   "title": "Bestanden ontvangen",
+   "body": "Iemand heeft bestanden naar een van je bestandsverzoeken gestuurd. Je ophaallink opent ze."
+  },
+  "storage.full": {
+   "label": "Opslag bijna vol",
+   "title": "Opslag bijna vol",
+   "body": "Shares en uploads nemen {percent} in van de ruimte die CastleParcel mag gebruiken. Is die vol, dan stoppen nieuwe uploads."
+  },
+  "signin.reset": {
+   "label": "Wachtwoord hersteld",
+   "title": "Wachtwoord hersteld via het logboek",
+   "body": "Iemand heeft het wachtwoord van de eigenaar hersteld met de code uit het containerlogboek, en alle sessies zijn beëindigd. Was jij dat niet, stel dan meteen een nieuw wachtwoord in."
+  },
+  "test": {
+   "title": "Test van CastleParcel",
+   "body": "Dit kanaal werkt. CastleParcel stuurt zijn berichten hierheen."
+  }
+ },
+ "no": {
+  "request.upload": {
+   "label": "Det kommer filer til en filforespørsel",
+   "title": "Filer har kommet",
+   "body": "Noen har sendt filer til en av filforespørslene dine. Hentelenken din åpner dem."
+  },
+  "storage.full": {
+   "label": "Lagringen nesten full",
+   "title": "Lagringen nesten full",
+   "body": "Delinger og opplastinger tar {percent} av plassen CastleParcel får bruke. Når den er full, stopper nye opplastinger."
+  },
+  "signin.reset": {
+   "label": "Passord tilbakestilt",
+   "title": "Passord tilbakestilt via loggen",
+   "body": "Noen har tilbakestilt eierens passord med koden fra containerloggen, og alle økter er avsluttet. Var det ikke deg, sett et nytt passord med en gang."
+  },
+  "test": {
+   "title": "Test fra CastleParcel",
+   "body": "Denne kanalen virker. CastleParcel sender meldingene sine hit."
+  }
+ },
+ "pl": {
+  "request.upload": {
+   "label": "Pliki trafiają do prośby o pliki",
+   "title": "Pliki dotarły",
+   "body": "Ktoś wysłał pliki do jednej z twoich próśb o pliki. Twój link odbioru je otwiera."
+  },
+  "storage.full": {
+   "label": "Pamięć prawie pełna",
+   "title": "Pamięć prawie pełna",
+   "body": "Udostępnienia i przesyłki zajmują {percent} miejsca, z którego może korzystać CastleParcel. Gdy się zapełni, nowe przesyłki ustaną."
+  },
+  "signin.reset": {
+   "label": "Hasło zresetowane",
+   "title": "Hasło zresetowane przez dziennik",
+   "body": "Ktoś zresetował hasło właściciela kodem z dziennika kontenera i wszystkie sesje się zakończyły. Jeśli to nie ty, od razu ustaw nowe hasło."
+  },
+  "test": {
+   "title": "Test z CastleParcel",
+   "body": "Ten kanał działa. CastleParcel wysyła tu swoje wiadomości."
+  }
+ },
+ "pt": {
+  "request.upload": {
+   "label": "Chegam ficheiros a um pedido de ficheiros",
+   "title": "Ficheiros recebidos",
+   "body": "Alguém enviou ficheiros para um dos seus pedidos de ficheiros. A sua ligação de recolha abre-os."
+  },
+  "storage.full": {
+   "label": "Armazenamento quase cheio",
+   "title": "Armazenamento quase cheio",
+   "body": "As partilhas e os envios ocupam {percent} do espaço que o CastleParcel pode usar. Quando estiver cheio, os novos envios param."
+  },
+  "signin.reset": {
+   "label": "Palavra-passe reposta",
+   "title": "Palavra-passe reposta através do registo",
+   "body": "Alguém repôs a palavra-passe do proprietário com o código do registo do contentor e todas as sessões terminaram. Se não foi você, defina já uma nova palavra-passe."
+  },
+  "test": {
+   "title": "Teste do CastleParcel",
+   "body": "Este canal funciona. O CastleParcel envia aqui as suas mensagens."
+  }
+ },
+ "ro": {
+  "request.upload": {
+   "label": "Sosesc fișiere la o cerere de fișiere",
+   "title": "Au sosit fișiere",
+   "body": "Cineva a trimis fișiere la una dintre cererile tale de fișiere. Linkul tău de colectare le deschide."
+  },
+  "storage.full": {
+   "label": "Spațiul aproape plin",
+   "title": "Spațiul aproape plin",
+   "body": "Partajările și încărcările ocupă {percent} din spațiul pe care îl poate folosi CastleParcel. Când se umple, încărcările noi se opresc."
+  },
+  "signin.reset": {
+   "label": "Parolă resetată",
+   "title": "Parolă resetată prin jurnal",
+   "body": "Cineva a resetat parola proprietarului cu codul din jurnalul containerului și toate sesiunile s-au încheiat. Dacă nu ai fost tu, setează imediat o parolă nouă."
+  },
+  "test": {
+   "title": "Test de la CastleParcel",
+   "body": "Acest canal funcționează. CastleParcel își trimite mesajele aici."
+  }
+ },
+ "ru": {
+  "request.upload": {
+   "label": "Файлы приходят по запросу файлов",
+   "title": "Файлы пришли",
+   "body": "Кто-то отправил файлы по одному из ваших запросов файлов. Ваша ссылка для получения открывает их."
+  },
+  "storage.full": {
+   "label": "Хранилище почти заполнено",
+   "title": "Хранилище почти заполнено",
+   "body": "Ссылки и загрузки занимают {percent} места, которое может использовать CastleParcel. Когда оно заполнится, новые загрузки остановятся."
+  },
+  "signin.reset": {
+   "label": "Пароль сброшен",
+   "title": "Пароль сброшен через журнал",
+   "body": "Кто-то сбросил пароль владельца кодом из журнала контейнера, и все сеансы завершены. Если это были не вы, сразу задайте новый пароль."
+  },
+  "test": {
+   "title": "Проверка от CastleParcel",
+   "body": "Этот канал работает. CastleParcel отправляет сюда свои сообщения."
+  }
+ },
+ "sk": {
+  "request.upload": {
+   "label": "Na žiadosť o súbory prichádzajú súbory",
+   "title": "Súbory dorazili",
+   "body": "Niekto poslal súbory na jednu z vašich žiadostí o súbory. Váš odkaz na vyzdvihnutie ich otvorí."
+  },
+  "storage.full": {
+   "label": "Úložisko je takmer plné",
+   "title": "Úložisko je takmer plné",
+   "body": "Zdieľania a nahrávania zaberajú {percent} miesta, ktoré smie CastleParcel používať. Keď sa zaplní, nové nahrávanie sa zastaví."
+  },
+  "signin.reset": {
+   "label": "Heslo obnovené",
+   "title": "Heslo obnovené cez protokol",
+   "body": "Niekto obnovil heslo majiteľa kódom z protokolu kontajnera a všetky relácie skončili. Ak ste to neboli vy, hneď nastavte nové heslo."
+  },
+  "test": {
+   "title": "Test z CastleParcel",
+   "body": "Tento kanál funguje. CastleParcel sem posiela svoje správy."
+  }
+ },
+ "sl": {
+  "request.upload": {
+   "label": "Na zahtevo za datoteke prihajajo datoteke",
+   "title": "Datoteke so prispele",
+   "body": "Nekdo je poslal datoteke na eno od vaših zahtev za datoteke. Vaša povezava za prevzem jih odpre."
+  },
+  "storage.full": {
+   "label": "Shramba skoraj polna",
+   "title": "Shramba skoraj polna",
+   "body": "Deljenja in nalaganja zasedajo {percent} prostora, ki ga sme uporabljati CastleParcel. Ko se napolni, se nova nalaganja ustavijo."
+  },
+  "signin.reset": {
+   "label": "Geslo ponastavljeno",
+   "title": "Geslo ponastavljeno prek dnevnika",
+   "body": "Nekdo je ponastavil geslo lastnika s kodo iz dnevnika vsebnika in vse seje so se končale. Če to niste bili vi, takoj nastavite novo geslo."
+  },
+  "test": {
+   "title": "Preizkus iz CastleParcela",
+   "body": "Ta kanal deluje. CastleParcel sem pošilja svoja sporočila."
+  }
+ },
+ "sr": {
+  "request.upload": {
+   "label": "На захтев за датотеке стижу датотеке",
+   "title": "Датотеке су стигле",
+   "body": "Неко је послао датотеке на један од твојих захтева за датотеке. Твој линк за преузимање их отвара."
+  },
+  "storage.full": {
+   "label": "Складиште скоро пуно",
+   "title": "Складиште скоро пуно",
+   "body": "Дељења и отпремања заузимају {percent} простора који CastleParcel сме да користи. Када се напуни, нова отпремања се заустављају."
+  },
+  "signin.reset": {
+   "label": "Лозинка је ресетована",
+   "title": "Лозинка ресетована преко дневника",
+   "body": "Неко је ресетовао лозинку власника кодом из дневника контејнера и све сесије су завршене. Ако то ниси био ти, одмах постави нову лозинку."
+  },
+  "test": {
+   "title": "Тест из CastleParcel-а",
+   "body": "Овај канал ради. CastleParcel овде шаље своје поруке."
+  }
+ },
+ "sv": {
+  "request.upload": {
+   "label": "Filer kommer in till en filbegäran",
+   "title": "Filer har kommit",
+   "body": "Någon har skickat filer till en av dina filbegäranden. Din hämtlänk öppnar dem."
+  },
+  "storage.full": {
+   "label": "Lagringen nästan full",
+   "title": "Lagringen nästan full",
+   "body": "Delningar och uppladdningar tar upp {percent} av utrymmet som CastleParcel får använda. När det är fullt stoppas nya uppladdningar."
+  },
+  "signin.reset": {
+   "label": "Lösenord återställt",
+   "title": "Lösenord återställt via loggen",
+   "body": "Någon har återställt ägarens lösenord med koden från containerloggen, och alla sessioner har avslutats. Var det inte du, sätt ett nytt lösenord direkt."
+  },
+  "test": {
+   "title": "Test från CastleParcel",
+   "body": "Den här kanalen fungerar. CastleParcel skickar sina meddelanden hit."
+  }
+ },
+ "th": {
+  "request.upload": {
+   "label": "มีไฟล์ส่งมาที่คำขอไฟล์",
+   "title": "ไฟล์มาถึงแล้ว",
+   "body": "มีคนส่งไฟล์มาที่คำขอไฟล์หนึ่งของคุณ ลิงก์รับไฟล์ของคุณจะเปิดไฟล์เหล่านั้น"
+  },
+  "storage.full": {
+   "label": "พื้นที่เก็บข้อมูลใกล้เต็ม",
+   "title": "พื้นที่เก็บข้อมูลใกล้เต็ม",
+   "body": "การแชร์และการอัปโหลดใช้พื้นที่ไป {percent} ของพื้นที่ที่ CastleParcel ใช้ได้ เมื่อเต็มแล้วการอัปโหลดใหม่จะหยุด"
+  },
+  "signin.reset": {
+   "label": "รีเซ็ตรหัสผ่าน",
+   "title": "รีเซ็ตรหัสผ่านผ่านบันทึก",
+   "body": "มีคนรีเซ็ตรหัสผ่านของเจ้าของด้วยรหัสจากบันทึกของคอนเทนเนอร์ และทุกเซสชันสิ้นสุดแล้ว หากไม่ใช่คุณ โปรดตั้งรหัสผ่านใหม่ทันที"
+  },
+  "test": {
+   "title": "ทดสอบจาก CastleParcel",
+   "body": "ช่องทางนี้ใช้งานได้ CastleParcel ส่งข้อความมาที่นี่"
+  }
+ },
+ "tr": {
+  "request.upload": {
+   "label": "Bir dosya isteğine dosya geliyor",
+   "title": "Dosyalar geldi",
+   "body": "Biri dosya isteklerinden birine dosya gönderdi. Toplama bağlantın onları açar."
+  },
+  "storage.full": {
+   "label": "Depolama neredeyse dolu",
+   "title": "Depolama neredeyse dolu",
+   "body": "Paylaşımlar ve yüklemeler, CastleParcel’in kullanabileceği alanın {percent} kadarını kaplıyor. Dolunca yeni yüklemeler durur."
+  },
+  "signin.reset": {
+   "label": "Parola sıfırlandı",
+   "title": "Parola günlük üzerinden sıfırlandı",
+   "body": "Biri sahibin parolasını kapsayıcı günlüğündeki kodla sıfırladı ve tüm oturumlar kapandı. Bu sen değilsen hemen yeni bir parola belirle."
+  },
+  "test": {
+   "title": "CastleParcel’den deneme",
+   "body": "Bu kanal çalışıyor. CastleParcel mesajlarını buraya gönderir."
+  }
+ },
+ "uk": {
+  "request.upload": {
+   "label": "Файли надходять за запитом файлів",
+   "title": "Файли надійшли",
+   "body": "Хтось надіслав файли за одним із ваших запитів файлів. Ваше посилання для отримання відкриває їх."
+  },
+  "storage.full": {
+   "label": "Сховище майже заповнене",
+   "title": "Сховище майже заповнене",
+   "body": "Поширення й завантаження займають {percent} місця, яке може використовувати CastleParcel. Коли воно заповниться, нові завантаження зупиняться."
+  },
+  "signin.reset": {
+   "label": "Пароль скинуто",
+   "title": "Пароль скинуто через журнал",
+   "body": "Хтось скинув пароль власника кодом із журналу контейнера, і всі сеанси завершено. Якщо це були не ви, одразу задайте новий пароль."
+  },
+  "test": {
+   "title": "Перевірка від CastleParcel",
+   "body": "Цей канал працює. CastleParcel надсилає сюди свої повідомлення."
+  }
+ },
+ "vi": {
+  "request.upload": {
+   "label": "Có tệp gửi đến một yêu cầu tệp",
+   "title": "Tệp đã đến",
+   "body": "Ai đó đã gửi tệp đến một trong các yêu cầu tệp của bạn. Liên kết nhận của bạn sẽ mở chúng."
+  },
+  "storage.full": {
+   "label": "Bộ nhớ gần đầy",
+   "title": "Bộ nhớ gần đầy",
+   "body": "Các chia sẻ và tệp tải lên chiếm {percent} dung lượng mà CastleParcel được dùng. Khi đầy, các lượt tải lên mới sẽ dừng."
+  },
+  "signin.reset": {
+   "label": "Đặt lại mật khẩu",
+   "title": "Mật khẩu được đặt lại qua nhật ký",
+   "body": "Ai đó đã đặt lại mật khẩu của chủ sở hữu bằng mã trong nhật ký container và mọi phiên đã kết thúc. Nếu không phải bạn, hãy đặt mật khẩu mới ngay."
+  },
+  "test": {
+   "title": "Thử nghiệm từ CastleParcel",
+   "body": "Kênh này hoạt động. CastleParcel gửi tin nhắn đến đây."
+  }
+ },
+ "zh": {
+  "request.upload": {
+   "label": "文件请求收到文件",
+   "title": "文件已送达",
+   "body": "有人向你的某个文件请求发送了文件。你的领取链接可以打开它们。"
+  },
+  "storage.full": {
+   "label": "存储空间即将用尽",
+   "title": "存储空间即将用尽",
+   "body": "分享和上传已占用 CastleParcel 可用空间的 {percent}。空间用尽后，新的上传将停止。"
+  },
+  "signin.reset": {
+   "label": "密码已重置",
+   "title": "已通过日志重置密码",
+   "body": "有人用容器日志中的代码重置了所有者的密码，所有会话均已结束。如果不是你本人，请立即设置新密码。"
+  },
+  "test": {
+   "title": "来自 CastleParcel 的测试",
+   "body": "此通道可以正常工作。CastleParcel 会把消息发到这里。"
+  }
+ }
+}

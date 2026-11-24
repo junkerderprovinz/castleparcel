@@ -674,5 +674,26 @@
     "role": {
       "admin": "Stjórnandi"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Skrár berast í skráabeiðni",
+      "title": "Skrár bárust",
+      "body": "Einhver sendi skrár í eina af skráabeiðnunum þínum. Söfnunartengillinn þinn opnar þær."
+    },
+    "storageFull": {
+      "label": "Geymslan nærri full",
+      "title": "Geymslan nærri full",
+      "body": "Deilingar og upphleðslur taka {percent} af plássinu sem CastleParcel má nota. Þegar það fyllist stöðvast nýjar upphleðslur."
+    },
+    "passwordReset": {
+      "label": "Lykilorð endurstillt",
+      "title": "Lykilorð endurstillt í gegnum annálinn",
+      "body": "Einhver endurstillti lykilorð eigandans með kóðanum úr annál gámsins og öllum lotum lauk. Ef það varst ekki þú, settu strax nýtt lykilorð."
+    },
+    "test": {
+      "title": "Prófun frá CastleParcel",
+      "body": "Þessi rás virkar. CastleParcel sendir skilaboðin sín hingað."
+    }
   }
 }

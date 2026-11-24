@@ -18,6 +18,7 @@ import (
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/account"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/clientmanifest"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/notices"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/static"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/store"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/upload"
@@ -125,12 +126,20 @@ func newRouterAndStore(t *testing.T, mutate func(*config.Config)) (http.Handler,
 	if err != nil {
 		t.Fatalf("load client manifest: %v", err)
 	}
-	auth, err := account.Open(cfg, db, slog.New(slog.NewTextHandler(io.Discard, nil)))
+	auth, err := account.Open(cfg, db, slog.New(slog.NewTextHandler(io.Discard, nil)), nil)
 	if err != nil {
 		t.Fatalf("open the sign-in: %v", err)
 	}
 	t.Cleanup(func() { _ = auth.Close() })
-	return newRouter(cfg, db, auth, tusHandler, clientFiles(t, assets), shell, client), db
+	key, err := account.Key(cfg)
+	if err != nil {
+		t.Fatalf("key: %v", err)
+	}
+	hub, err := notices.Open(cfg.ConfigDir, key, nil)
+	if err != nil {
+		t.Fatalf("open the notifications: %v", err)
+	}
+	return newRouter(cfg, db, auth, hub, tusHandler, clientFiles(t, assets), shell, client), db
 }
 
 func get(h http.Handler, path string) *httptest.ResponseRecorder {

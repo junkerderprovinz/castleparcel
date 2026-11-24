@@ -674,5 +674,26 @@
     "role": {
       "admin": "Administratzailea"
     }
+  },
+  "notices": {
+    "requestUpload": {
+      "label": "Fitxategiak iristen dira fitxategi-eskaera batera",
+      "title": "Fitxategiak iritsi dira",
+      "body": "Norbaitek fitxategiak bidali ditu zure fitxategi-eskaeretako batera. Zure jasotzeko estekak irekitzen ditu."
+    },
+    "storageFull": {
+      "label": "Biltegia ia beteta",
+      "title": "Biltegia ia beteta",
+      "body": "Partekatzeek eta igoerek CastleParcelek erabil dezakeen lekuaren {percent} hartzen dute. Betetzen denean, igoera berriak geldituko dira."
+    },
+    "passwordReset": {
+      "label": "Pasahitza berrezarri da",
+      "title": "Pasahitza erregistroaren bidez berrezarri da",
+      "body": "Norbaitek jabearen pasahitza berrezarri du edukiontziaren erregistroko kodearekin, eta saio guztiak amaitu dira. Zu izan ez bazara, ezarri pasahitz berri bat berehala."
+    },
+    "test": {
+      "title": "CastleParcelen proba",
+      "body": "Kanal honek funtzionatzen du. CastleParcelek hona bidaltzen ditu bere mezuak."
+    }
   }
 }
