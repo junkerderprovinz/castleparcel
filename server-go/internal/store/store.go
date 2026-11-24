@@ -24,6 +24,14 @@ var migrations = []func(*sql.DB) error{
 		_, err := db.Exec(sqlstore.Schema(SignInTable))
 		return err
 	},
+	func(db *sql.DB) error {
+		var n int
+		if err := db.QueryRow(`SELECT COUNT(*) FROM pragma_table_info('requests') WHERE name = 'account'`).Scan(&n); err != nil || n > 0 {
+			return err
+		}
+		_, err := db.Exec(`ALTER TABLE requests ADD COLUMN account TEXT`)
+		return err
+	},
 }
 
 // SchemaVersion is the version of the databases this server writes.

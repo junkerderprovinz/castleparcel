@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/junkerderprovinz/parleyport/kit/signin"
 	"github.com/tus/tusd/v2/pkg/filestore"
 
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
@@ -96,6 +97,10 @@ func CreateRequestHandler(cfg config.Config, db *sql.DB, now func() time.Time) h
 			CreatedAt:        nowMs,
 			MaxUploads:       share.ParseMaxUploads(body.MaxUploads),
 			MaxSize:          body.MaxSize,
+		}
+		// An account shut out later takes its requests along, see account.ended.
+		if v, ok := signin.From(r.Context()); ok && v.Via != signin.ViaAnyone {
+			rec.Account = v.Account
 		}
 		slug, err := uniqueRequestSlug(db)
 		if err == nil {

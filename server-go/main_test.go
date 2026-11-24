@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/sha256"
+	"database/sql"
 	"encoding/hex"
 	"encoding/json"
 	"io"
@@ -84,6 +85,12 @@ func TestRenderShell_CustomAppName(t *testing.T) {
 // SQLite store.
 func newFullRouter(t *testing.T, mutate func(*config.Config)) http.Handler {
 	t.Helper()
+	h, _ := newRouterAndStore(t, mutate)
+	return h
+}
+
+func newRouterAndStore(t *testing.T, mutate func(*config.Config)) (http.Handler, *sql.DB) {
+	t.Helper()
 	dataDir := t.TempDir()
 	cfg := config.Config{
 		DataDir:       dataDir,
@@ -123,7 +130,7 @@ func newFullRouter(t *testing.T, mutate func(*config.Config)) http.Handler {
 		t.Fatalf("open the sign-in: %v", err)
 	}
 	t.Cleanup(func() { _ = auth.Close() })
-	return newRouter(cfg, db, auth, tusHandler, clientFiles(t, assets), shell, client)
+	return newRouter(cfg, db, auth, tusHandler, clientFiles(t, assets), shell, client), db
 }
 
 func get(h http.Handler, path string) *httptest.ResponseRecorder {

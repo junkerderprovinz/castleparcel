@@ -260,3 +260,30 @@ func TestDeleteRequestUpload_NeverCountsBelowZero(t *testing.T) {
 		t.Errorf("count after a delete that found nothing = %d, want 0", rec.UploadCount)
 	}
 }
+
+func TestClosingAnAccountsRequestsLeavesTheOthersOpen(t *testing.T) {
+	db := openTestDB(t)
+	mine, theirs, guest := newRequest("mine", nil, nil), newRequest("theirs", nil, nil), newRequest("guest", nil, nil)
+	mine.Account, theirs.Account = "acc1", "acc2"
+	for _, rec := range []RequestRecord{mine, theirs, guest} {
+		if err := CreateRequest(db, rec); err != nil {
+			t.Fatalf("create %s: %v", rec.Slug, err)
+		}
+	}
+	if got, _ := GetRequest(db, "mine"); got == nil || got.Account != "acc1" {
+		t.Fatalf("the request lost who opened it: %+v", got)
+	}
+	n, err := CloseRequestsOf(db, "acc1")
+	if err != nil || n != 1 {
+		t.Fatalf("CloseRequestsOf = %d, %v", n, err)
+	}
+	for slug, closed := range map[string]bool{"mine": true, "theirs": false, "guest": false} {
+		got, _ := GetRequest(db, slug)
+		if got.Expired(2) != closed {
+			t.Errorf("%s closed = %v, want %v", slug, got.Expired(2), closed)
+		}
+	}
+	if n, _ := CloseRequestsOf(db, ""); n != 0 {
+		t.Errorf("closing for no account closed %d guest requests", n)
+	}
+}

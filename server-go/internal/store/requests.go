@@ -21,6 +21,9 @@ type RequestRecord struct {
 	MaxUploads       *int64 // nil for unlimited
 	MaxSize          *int64 // largest upload in bytes, nil for the server's limit
 	UploadCount      int64
+	// Account is the signed-in account that opened the request, empty for a
+	// guest with the upload password or a CastleParcel without an owner.
+	Account string
 }
 
 // Expired reports whether the request's expiry has passed at nowMs.
@@ -66,14 +69,14 @@ func applyRequestSchema(db *sql.DB) error {
 }
 
 const selectRequestSQL = `SELECT slug, public_key, collect_token_hash, expires_at,
-	created_at, max_uploads, max_size, upload_count FROM requests`
+	created_at, max_uploads, max_size, upload_count, COALESCE(account, '') FROM requests`
 
 // CreateRequest inserts a new request.
 func CreateRequest(db *sql.DB, rec RequestRecord) error {
 	if _, err := db.Exec(
-		`INSERT INTO requests (slug, public_key, collect_token_hash, expires_at, created_at, max_uploads, max_size)
-		 VALUES (?, ?, ?, ?, ?, ?, ?)`,
-		rec.Slug, rec.PublicKey, rec.CollectTokenHash, rec.ExpiresAt, rec.CreatedAt, rec.MaxUploads, rec.MaxSize,
+		`INSERT INTO requests (slug, public_key, collect_token_hash, expires_at, created_at, max_uploads, max_size, account)
+		 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+		rec.Slug, rec.PublicKey, rec.CollectTokenHash, rec.ExpiresAt, rec.CreatedAt, rec.MaxUploads, rec.MaxSize, rec.Account,
 	); err != nil {
 		return fmt.Errorf("create request: %w", err)
 	}
@@ -188,6 +191,17 @@ func CloseRequest(db *sql.DB, slug string) error {
 	return nil
 }
 
+// CloseRequestsOf expires every request account opened, so neither its
+// request links nor its collect links work any longer. The cleanup then
+// removes them with their uploads.
+func CloseRequestsOf(db *sql.DB, account string) (int64, error) {
+	res, err := db.Exec(`UPDATE requests SET expires_at = 0 WHERE account = ? AND account <> ''`, account)
+	if err != nil {
+		return 0, fmt.Errorf("close requests of %s: %w", account, err)
+	}
+	return res.RowsAffected()
+}
+
 // DeleteRequestUpload deletes the row of one upload of a request and gives
 // its place back, so a request filled with junk opens again. ok is false when
 // the request has no such upload. The caller removes the blob first.
@@ -258,7 +272,7 @@ func ListExpiredRequests(db *sql.DB, nowMs int64) ([]RequestRecord, error) {
 func scanRequest(s rowScanner) (*RequestRecord, error) {
 	var rec RequestRecord
 	if err := s.Scan(&rec.Slug, &rec.PublicKey, &rec.CollectTokenHash, &rec.ExpiresAt,
-		&rec.CreatedAt, &rec.MaxUploads, &rec.MaxSize, &rec.UploadCount); err != nil {
+		&rec.CreatedAt, &rec.MaxUploads, &rec.MaxSize, &rec.UploadCount, &rec.Account); err != nil {
 		return nil, err
 	}
 	return &rec, nil

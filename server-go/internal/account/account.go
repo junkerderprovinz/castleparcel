@@ -57,11 +57,32 @@ func Open(cfg config.Config, db *sql.DB, log *slog.Logger) (*signin.Auth, error)
 		Public:      func() *url.URL { return public(cfg.BaseURL) },
 		Proxies:     cfg.TrustedProxies.Prefixes(),
 		Logger:      log,
+		Hooks:       signin.Hooks{Ended: ended(db)},
 	}
 	if cfg.TrustedProxies.All() {
 		sc.TrustedPeer = func(*http.Request) bool { return true }
 	}
 	return signin.Open(sc)
+}
+
+// shutOut are the endings after which an account keeps nothing it opened.
+var shutOut = map[signin.Ending]bool{
+	signin.EndBlocked: true, signin.EndRemoved: true, signin.EndRole: true, signin.EndRefused: true,
+	signin.EndRevoked: true, signin.EndReset: true, signin.EndResetOther: true,
+}
+
+// ended closes the file requests of an account that was shut out, since a
+// request link lets anybody keep uploading in its name. Shares stay: their
+// link belongs to the recipient now, and the management link deletes one
+// early.
+func ended(db *sql.DB) func(context.Context, string, signin.Ending) error {
+	return func(_ context.Context, account string, what signin.Ending) error {
+		if !shutOut[what] {
+			return nil
+		}
+		_, err := store.CloseRequestsOf(db, account)
+		return err
+	}
 }
 
 // Uploads guards the routes that start an upload. The signed-in owner passes
