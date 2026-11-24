@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Sign in as the owner.** Settings has a Sign-in tab. Set a password there and only you send files, while guests with `UPLOAD_PASSWORD` still can and every link opens as before. Two-factor authentication, passkeys, sessions, API tokens and sign-in services over OpenID Connect such as Pocket ID come with it, and you reset a forgotten password with a code from the container log. Without a password CastleParcel stays open as it was. While it is open, `UPLOAD_PASSWORD` also guards the Sign-in tab. The sign-in is sealed with a key in `app.key` in `CONFIG_DIR`, or with `CASTLEPARCEL_APP_KEY`.
 - **Notifications.** Settings has a Notifications tab for the owner. CastleParcel tells ntfy, Gotify, Discord, Slack, Matrix, email, Apprise or any webhook when files arrive at a file request, when the store is almost full and when the password was reset through the container log. The channels stay sealed in `CONFIG_DIR`.
 - **A file request ends with its account.** Blocking, removing or resetting the account that opened a request closes it, so nobody keeps uploading in that account's name.
+- **Dashboard labels.** Dashboards that read container labels list CastleParcel with its name, logo and description on their own. Put the address in the template's Dashboard Link field to make the entry a link.
 - **The database counts its versions.** A database from a later CastleParcel stops this one at the start instead of being misread.
 
 ### Changed

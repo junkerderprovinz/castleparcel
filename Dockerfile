@@ -53,6 +53,13 @@ LABEL org.opencontainers.image.source="https://github.com/junkerderprovinz/castl
 LABEL org.opencontainers.image.url="https://github.com/junkerderprovinz/castleparcel"
 LABEL org.opencontainers.image.description="CastleParcel: self-hosted zero-knowledge file sharer (Go backend)"
 LABEL org.opencontainers.image.licenses="AGPL-3.0-only"
+LABEL homepage.group="Tools" \
+      homepage.name="CastleParcel" \
+      homepage.icon="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/castleparcel/icon.png?v=2" \
+      homepage.description="Encrypted big-file transfers and share links" \
+      glance.name="CastleParcel" \
+      glance.icon="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/castleparcel/icon.png?v=2" \
+      glance.description="Encrypted big-file transfers and share links"
 COPY --from=gobuild /out/castleparcel /castleparcel
 COPY --from=client /app/LICENSE /licenses/LICENSE
 COPY --from=client /app/server-go/webroot/third-party-licenses.md /licenses/client.md
