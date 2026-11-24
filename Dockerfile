@@ -19,7 +19,6 @@ WORKDIR /app
 # Dependencies first for layer caching. postinstall copies the libsodium ESM
 # wrapper the browser bundle needs (see package.json), so it has to run.
 COPY package.json package-lock.json ./
-COPY vendor/ ./vendor/
 RUN npm ci --no-audit --no-fund
 COPY . .
 # scripts/build-client.mjs copies the build into server-go/webroot, with the

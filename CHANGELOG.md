@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-11-24
+
 ### Added
 
 - **Sign in as the owner.** Settings has a Sign-in tab. Set a password there and only you send files, while guests with `UPLOAD_PASSWORD` still can and every link opens as before. Two-factor authentication, passkeys, sessions, API tokens and sign-in services over OpenID Connect such as Pocket ID come with it, and you reset a forgotten password with a code from the container log. Without a password CastleParcel stays open as it was. While it is open, `UPLOAD_PASSWORD` also guards the Sign-in tab. The sign-in is sealed with a key in `app.key` in `CONFIG_DIR`, or with `CASTLEPARCEL_APP_KEY`.
 - **Notifications.** Settings has a Notifications tab for the owner. CastleParcel tells ntfy, Gotify, Discord, Slack, Matrix, email, Apprise or any webhook when files arrive at a file request, when the store is almost full and when the password was reset through the container log. The channels stay sealed in `CONFIG_DIR`.
+- **CastleParcel joins the fortress.** The Fortress tab sits right above Info: enter the twelve words, and the other apps of your household show up with their status and open from here. CastleParcel reports its running uploads and a nearly full storage quota to them. Showing or changing the phrase asks for your password first.
 - **A file request ends with its account.** Blocking, removing or resetting the account that opened a request closes it, so nobody keeps uploading in that account's name.
 - **Dashboard labels.** Dashboards that read container labels list CastleParcel with its name, logo and description on their own. Put the address in the template's Dashboard Link field to make the entry a link.
 - **The database counts its versions.** A database from a later CastleParcel stops this one at the start instead of being misread.
@@ -20,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **The Info tab has a Version and a Components card.** The Version card shows CastleParcel with where its updates stand, and What's new, Check for updates and How to update in one last row. GlimStone's number moves to the Components card. Check for updates asks your server, which asks GitHub at most once an hour however many visitors press it, and How to update opens the new Updating section of the README.
 - **What's new opens the release notes in a window of the app,** in place of the GitHub page. While a newer release waits, it shows that release's notes. Your server fetches them from GitHub and keeps them for an hour.
 - GlimStone 4.8.5: the Version card says "Not checked yet" until you press Check for updates, and a long status in the Components card gets a line of its own on a narrow screen.
+- GlimStone 4.9.1, with its notifications card, and the link preview card in the house typeface.
+- A share password of any length works. Under 8 characters you get a hint, never a refusal.
 
 ## [2.1.3] - 2026-11-17
 
