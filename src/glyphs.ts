@@ -25,18 +25,32 @@ export function glyph(name: string): FunctionalComponent {
   return components.get(name)!;
 }
 
-// The label keys GlimStone's own buttons carry, such as the Version card's.
+// The label keys GlimStone's own parts carry, as its site maps them: the Version card's, and the short verbs of
+// the notification card and the tiles. Any other key is a glyph's name, with or without its Icon.
 const LABEL_GLYPHS: Record<string, string> = {
   'version.whatsNew': 'IconWhatsNew',
   'version.check': 'IconSync',
   'version.guide': 'IconUpdateAvailable',
+  add: 'IconAdd',
+  delete: 'IconTrash',
+  remove: 'IconTrash',
+  edit: 'IconPencil',
+  save: 'IconSave',
+  test: 'IconCheck',
+  link: 'IconLink',
+  mail: 'IconMail',
 };
 
-// A button's label key is the name of its glyph, so the same verb wears the same mark everywhere.
+/** The glyph a label key stands for, or undefined where the set has none. */
+export function glyphNameFor(key: string): string | undefined {
+  const name = LABEL_GLYPHS[key] ?? (key.startsWith('Icon') ? key : `Icon${key.charAt(0).toUpperCase()}${key.slice(1)}`);
+  return GLYPHS[name] ? name : undefined;
+}
+
 export const installGlyphs = () =>
   setGlyphResolver((key) => {
-    const name = LABEL_GLYPHS[key] ?? key;
-    return GLYPHS[name] ? glyph(name) : undefined;
+    const name = glyphNameFor(key);
+    return name ? glyph(name) : undefined;
   });
 
 export type Kind = 'image' | 'video' | 'audio' | 'pdf' | 'text' | 'svg' | 'sheet' | 'archive' | 'file';
