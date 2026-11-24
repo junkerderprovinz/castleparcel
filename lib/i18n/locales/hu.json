@@ -676,6 +676,27 @@
       "admin": "Rendszergazda"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Fájlok érkeznek egy fájlkéréshez",
+      "title": "Fájlok érkeztek",
+      "body": "Valaki fájlokat küldött az egyik fájlkéréséhez. Az átvételi hivatkozása megnyitja őket."
+    },
+    "storageFull": {
+      "label": "A tárhely majdnem megtelt",
+      "title": "A tárhely majdnem megtelt",
+      "body": "A megosztások és feltöltések a CastleParcel számára engedélyezett hely {percent} részét foglalják. Ha megtelik, az új feltöltések leállnak."
+    },
+    "passwordReset": {
+      "label": "Jelszó visszaállítva",
+      "title": "Jelszó visszaállítva a naplóból",
+      "body": "Valaki visszaállította a tulajdonos jelszavát a konténer naplójában lévő kóddal, és minden munkamenet véget ért. Ha nem Ön volt, azonnal állítson be új jelszót."
+    },
+    "test": {
+      "title": "Teszt a CastleParceltől",
+      "body": "Ez a csatorna működik. A CastleParcel ide küldi az üzeneteit."
+    }
+  },
   "fortress": {
     "network": "Hálózat",
     "relay": "Relay",

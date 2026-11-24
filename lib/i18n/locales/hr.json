@@ -684,6 +684,27 @@
       "admin": "Administrator"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Na zahtjev za datoteke stižu datoteke",
+      "title": "Datoteke su stigle",
+      "body": "Netko je poslao datoteke na jedan od tvojih zahtjeva za datoteke. Tvoja poveznica za preuzimanje ih otvara."
+    },
+    "storageFull": {
+      "label": "Pohrana gotovo puna",
+      "title": "Pohrana gotovo puna",
+      "body": "Dijeljenja i prijenosi zauzimaju {percent} prostora koji CastleParcel smije koristiti. Kad se napuni, novi prijenosi se zaustavljaju."
+    },
+    "passwordReset": {
+      "label": "Lozinka vraćena",
+      "title": "Lozinka vraćena preko zapisnika",
+      "body": "Netko je vratio lozinku vlasnika kodom iz zapisnika spremnika i sve su sesije završile. Ako to nisi bio ti, odmah postavi novu lozinku."
+    },
+    "test": {
+      "title": "Test iz CastleParcela",
+      "body": "Ovaj kanal radi. CastleParcel ovamo šalje svoje poruke."
+    }
+  },
   "fortress": {
     "network": "Mreža",
     "relay": "Relej",

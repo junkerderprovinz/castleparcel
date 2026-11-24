@@ -676,6 +676,27 @@
       "admin": "Admin"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Det kommer filer til en filforespørsel",
+      "title": "Filer har kommet",
+      "body": "Noen har sendt filer til en av filforespørslene dine. Hentelenken din åpner dem."
+    },
+    "storageFull": {
+      "label": "Lagringen nesten full",
+      "title": "Lagringen nesten full",
+      "body": "Delinger og opplastinger tar {percent} av plassen CastleParcel får bruke. Når den er full, stopper nye opplastinger."
+    },
+    "passwordReset": {
+      "label": "Passord tilbakestilt",
+      "title": "Passord tilbakestilt via loggen",
+      "body": "Noen har tilbakestilt eierens passord med koden fra containerloggen, og alle økter er avsluttet. Var det ikke deg, sett et nytt passord med en gang."
+    },
+    "test": {
+      "title": "Test fra CastleParcel",
+      "body": "Denne kanalen virker. CastleParcel sender meldingene sine hit."
+    }
+  },
   "fortress": {
     "network": "Nettverk",
     "relay": "Relay",

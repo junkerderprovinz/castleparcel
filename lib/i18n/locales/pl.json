@@ -692,6 +692,27 @@
       "admin": "Administrator"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Pliki trafiają do prośby o pliki",
+      "title": "Pliki dotarły",
+      "body": "Ktoś wysłał pliki do jednej z twoich próśb o pliki. Twój link odbioru je otwiera."
+    },
+    "storageFull": {
+      "label": "Pamięć prawie pełna",
+      "title": "Pamięć prawie pełna",
+      "body": "Udostępnienia i przesyłki zajmują {percent} miejsca, z którego może korzystać CastleParcel. Gdy się zapełni, nowe przesyłki ustaną."
+    },
+    "passwordReset": {
+      "label": "Hasło zresetowane",
+      "title": "Hasło zresetowane przez dziennik",
+      "body": "Ktoś zresetował hasło właściciela kodem z dziennika kontenera i wszystkie sesje się zakończyły. Jeśli to nie ty, od razu ustaw nowe hasło."
+    },
+    "test": {
+      "title": "Test z CastleParcel",
+      "body": "Ten kanał działa. CastleParcel wysyła tu swoje wiadomości."
+    }
+  },
   "fortress": {
     "network": "Sieć",
     "relay": "Relay",

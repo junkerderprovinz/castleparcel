@@ -676,6 +676,27 @@
       "admin": "Admin"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Er komen bestanden binnen bij een bestandsverzoek",
+      "title": "Bestanden ontvangen",
+      "body": "Iemand heeft bestanden naar een van je bestandsverzoeken gestuurd. Je ophaallink opent ze."
+    },
+    "storageFull": {
+      "label": "Opslag bijna vol",
+      "title": "Opslag bijna vol",
+      "body": "Shares en uploads nemen {percent} in van de ruimte die CastleParcel mag gebruiken. Is die vol, dan stoppen nieuwe uploads."
+    },
+    "passwordReset": {
+      "label": "Wachtwoord hersteld",
+      "title": "Wachtwoord hersteld via het logboek",
+      "body": "Iemand heeft het wachtwoord van de eigenaar hersteld met de code uit het containerlogboek, en alle sessies zijn beëindigd. Was jij dat niet, stel dan meteen een nieuw wachtwoord in."
+    },
+    "test": {
+      "title": "Test van CastleParcel",
+      "body": "Dit kanaal werkt. CastleParcel stuurt zijn berichten hierheen."
+    }
+  },
   "fortress": {
     "network": "Netwerk",
     "relay": "Relay",

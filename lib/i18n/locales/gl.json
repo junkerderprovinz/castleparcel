@@ -676,6 +676,27 @@
       "admin": "Admin"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Chegan ficheiros a unha solicitude de ficheiros",
+      "title": "Chegaron ficheiros",
+      "body": "Alguén enviou ficheiros a unha das túas solicitudes de ficheiros. A túa ligazón de recollida ábreos."
+    },
+    "storageFull": {
+      "label": "Almacenamento case cheo",
+      "title": "Almacenamento case cheo",
+      "body": "As comparticións e as subidas ocupan {percent} do espazo que CastleParcel pode usar. Cando se encha, as novas subidas paran."
+    },
+    "passwordReset": {
+      "label": "Contrasinal restablecido",
+      "title": "Contrasinal restablecido desde o rexistro",
+      "body": "Alguén restableceu o contrasinal do propietario co código do rexistro do contedor e todas as sesións remataron. Se non fuches ti, pon agora mesmo un contrasinal novo."
+    },
+    "test": {
+      "title": "Proba de CastleParcel",
+      "body": "Esta canle funciona. CastleParcel envía aquí as súas mensaxes."
+    }
+  },
   "fortress": {
     "network": "Rede",
     "relay": "Relé",

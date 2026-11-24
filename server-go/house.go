@@ -56,8 +56,8 @@ func newHouse(cfg config.Config, db *sql.DB, auth *signin.Auth, log *slog.Logger
 // houseRoutes serves the fortress to the owner, the status to the owner, the
 // API tokens and the dashboards, the calls of the other members and the tabs
 // in which the owner opens their pages.
-func houseRoutes(r chi.Router, cfg config.Config, house *fortress.Service) {
-	routes := account.Owner(cfg)(house.Routes())
+func houseRoutes(r chi.Router, cfg config.Config, auth *signin.Auth, house *fortress.Service) {
+	routes := account.OwnPages(cfg, account.Admins(auth, cfg, house.Routes()))
 	r.Handle("/api/fortress", routes)
 	r.Handle("/api/fortress/*", routes)
 	reports := status.Handler(house.Status(), account.StatusReader(cfg))

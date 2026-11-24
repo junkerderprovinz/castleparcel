@@ -38,7 +38,7 @@ func open(t *testing.T, cfg config.Config) *signin.Auth {
 		t.Fatalf("open store: %v", err)
 	}
 	t.Cleanup(func() { _ = db.Close() })
-	auth, err := Open(cfg, db, slog.New(slog.NewTextHandler(io.Discard, nil)))
+	auth, err := Open(cfg, db, slog.New(slog.NewTextHandler(io.Discard, nil)), nil)
 	if err != nil {
 		t.Fatalf("Open: %v", err)
 	}
@@ -148,7 +148,7 @@ func TestABrokenKeyStopsTheStart(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer db.Close()
-	if auth, err := Open(cfg, db, nil); err == nil {
+	if auth, err := Open(cfg, db, nil, nil); err == nil {
 		_ = auth.Close()
 		t.Fatal("Open took a key that is no key")
 	}
@@ -255,11 +255,52 @@ func TestWhileOpenTheUploadPasswordGuardsTheSignIn(t *testing.T) {
 	}
 }
 
-// owned is app with a route behind Owner and the status behind StatusReader.
+func adminApp(auth *signin.Auth, cfg config.Config) http.Handler {
+	mux := http.NewServeMux()
+	mux.Handle(signin.APIPrefix, Contract(auth, cfg, auth.Handler()))
+	mux.Handle("/settings", Admins(auth, cfg, http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusNoContent) })))
+	return auth.Guard(mux)
+}
+
+func TestOnlyTheOwnerChangesTheSettingsOnceThereIsAPassword(t *testing.T) {
+	cfg := testConfig(t)
+	h := adminApp(open(t, cfg), cfg)
+	if w := call(h, "PUT", "/settings", nil); w.Code != http.StatusNoContent {
+		t.Errorf("open castle: %d", w.Code)
+	}
+	cookie := signIn(t, h)
+	if w := call(h, "PUT", "/settings", nil); w.Code != http.StatusUnauthorized {
+		t.Errorf("stranger: %d", w.Code)
+	}
+	if w := call(h, "PUT", "/settings", nil, "Cookie", cookie); w.Code != http.StatusNoContent {
+		t.Errorf("owner: %d", w.Code)
+	}
+	w := call(h, "POST", signin.APIPrefix+"me/tokens", map[string]any{"name": "all", "scopes": []string{"all"}}, "Cookie", cookie)
+	var made struct{ Value string }
+	_ = json.Unmarshal(w.Body.Bytes(), &made)
+	if w := call(h, "PUT", "/settings", nil, "Authorization", "Bearer "+made.Value); w.Code != http.StatusForbidden {
+		t.Errorf("API token: %d", w.Code)
+	}
+}
+
+func TestWhileOpenTheUploadPasswordGuardsTheSettings(t *testing.T) {
+	cfg := testConfig(t)
+	cfg.UploadPassword, cfg.UploadProtected = "guest secret", true
+	h := adminApp(open(t, cfg), cfg)
+	if w := call(h, "GET", "/settings", nil); w.Code != http.StatusUnauthorized || errorOf(w) != "uploadPassword" {
+		t.Errorf("without the upload password: %d %s", w.Code, w.Body)
+	}
+	if w := call(h, "GET", "/settings", nil, upload.UploadTokenHeader, "guest secret"); w.Code != http.StatusNoContent {
+		t.Errorf("with the upload password: %d", w.Code)
+	}
+}
+
+// owned is app with a route behind OwnPages and Admins, and the status
+// behind StatusReader.
 func owned(auth *signin.Auth, cfg config.Config) http.Handler {
 	mux := http.NewServeMux()
 	mux.Handle(signin.APIPrefix, Contract(auth, cfg, auth.Handler()))
-	mux.Handle("/owner", Owner(cfg)(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusNoContent) })))
+	mux.Handle("/owner", OwnPages(cfg, Admins(auth, cfg, http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusNoContent) }))))
 	mux.Handle(status.StatusPath, status.Handler(quiet{}, StatusReader(cfg)))
 	return auth.Guard(mux)
 }

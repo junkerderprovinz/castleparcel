@@ -692,6 +692,27 @@
       "admin": "Administratorius"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Į failų užklausą atkeliauja failų",
+      "title": "Failai atkeliavo",
+      "body": "Kažkas išsiuntė failų į vieną iš jūsų failų užklausų. Jūsų atsiėmimo nuoroda juos atidaro."
+    },
+    "storageFull": {
+      "label": "Saugykla beveik pilna",
+      "title": "Saugykla beveik pilna",
+      "body": "Bendrinimai ir įkėlimai užima {percent} vietos, kurią CastleParcel gali naudoti. Kai ji prisipildys, nauji įkėlimai sustos."
+    },
+    "passwordReset": {
+      "label": "Slaptažodis atkurtas",
+      "title": "Slaptažodis atkurtas per žurnalą",
+      "body": "Kažkas atkūrė savininko slaptažodį konteinerio žurnalo kodu, ir visi seansai baigėsi. Jei tai buvote ne jūs, iškart nustatykite naują slaptažodį."
+    },
+    "test": {
+      "title": "CastleParcel bandymas",
+      "body": "Šis kanalas veikia. CastleParcel siunčia savo žinutes čia."
+    }
+  },
   "fortress": {
     "network": "Tinklas",
     "relay": "Relay",

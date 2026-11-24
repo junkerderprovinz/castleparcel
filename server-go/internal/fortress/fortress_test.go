@@ -64,7 +64,7 @@ func openCastle(t *testing.T, dir, relayURL string) *castle {
 	}
 	t.Cleanup(func() { _ = db.Close() })
 	log := slog.New(slog.NewTextHandler(io.Discard, nil))
-	auth, err := account.Open(cfg, db, log)
+	auth, err := account.Open(cfg, db, log, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -87,7 +87,7 @@ func openCastle(t *testing.T, dir, relayURL string) *castle {
 			t.Fatal(err)
 		}
 	}
-	return &castle{Service: s, dir: dir, h: auth.Guard(account.Owner(cfg)(s.Routes()))}
+	return &castle{Service: s, dir: dir, h: auth.Guard(account.OwnPages(cfg, account.Admins(auth, cfg, s.Routes())))}
 }
 
 // bravo is another app of the fortress, with a status of its own.

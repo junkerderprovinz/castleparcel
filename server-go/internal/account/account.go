@@ -33,9 +33,15 @@ import (
 // is not set.
 const keyFile = "app.key"
 
-// Open opens the sign-in on db, sealed with CastleParcel's own key.
-func Open(cfg config.Config, db *sql.DB, log *slog.Logger) (*signin.Auth, error) {
-	seal, err := Seal(cfg)
+// Open opens the sign-in on db, sealed with the key from
+// CASTLEPARCEL_APP_KEY or from the key file in CONFIG_DIR, which the first
+// start writes. onReset, unless nil, hears of a reset through the log.
+func Open(cfg config.Config, db *sql.DB, log *slog.Logger, onReset func()) (*signin.Auth, error) {
+	key, err := loadKey(cfg)
+	if err != nil {
+		return nil, err
+	}
+	seal, err := signin.NewSealer(key)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +59,7 @@ func Open(cfg config.Config, db *sql.DB, log *slog.Logger) (*signin.Auth, error)
 		Public:      func() *url.URL { return public(cfg.BaseURL) },
 		Proxies:     cfg.TrustedProxies.Prefixes(),
 		Logger:      log,
-		Hooks:       signin.Hooks{Ended: ended(db)},
+		Hooks:       signin.Hooks{Ended: ended(db, onReset)},
 	}
 	if cfg.TrustedProxies.All() {
 		sc.TrustedPeer = func(*http.Request) bool { return true }
@@ -71,8 +77,11 @@ var shutOut = map[signin.Ending]bool{
 // request link lets anybody keep uploading in its name. Shares stay: their
 // link belongs to the recipient now, and the management link deletes one
 // early.
-func ended(db *sql.DB) func(context.Context, string, signin.Ending) error {
+func ended(db *sql.DB, onReset func()) func(context.Context, string, signin.Ending) error {
 	return func(_ context.Context, account string, what signin.Ending) error {
+		if what == signin.EndReset && onReset != nil {
+			onReset()
+		}
 		if !shutOut[what] {
 			return nil
 		}
@@ -130,6 +139,30 @@ func Contract(auth *signin.Auth, cfg config.Config, next http.Handler) http.Hand
 	})
 }
 
+// Admins lets only the owner, signed in through the browser, reach the
+// settings behind next. While CastleParcel is open everyone may, as with the
+// sign-in itself, and an upload password then guards them as it guards the
+// sign-in. An API token never may, since the settings hold other services'
+// secrets.
+func Admins(auth *signin.Auth, cfg config.Config, next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		v, ok := signin.From(r.Context())
+		switch {
+		case !ok:
+			refuse(w, "signInFirst")
+		case v.Via == signin.ViaToken:
+			fail(w, http.StatusForbidden, "notWithToken")
+		case !v.AtLeast("admin"):
+			fail(w, http.StatusForbidden, "forbidden")
+		case v.Via == signin.ViaAnyone && cfg.UploadProtected && auth.Anyone() &&
+			!upload.IsUploadAuthorized(r.Header.Get(upload.UploadTokenHeader), true, cfg.UploadPassword):
+			refuse(w, "uploadPassword")
+		default:
+			next.ServeHTTP(w, r)
+		}
+	})
+}
+
 func refuse(w http.ResponseWriter, code string) { fail(w, http.StatusUnauthorized, code) }
 
 func fail(w http.ResponseWriter, status int, code string) {
@@ -139,42 +172,28 @@ func fail(w http.ResponseWriter, status int, code string) {
 	_, _ = fmt.Fprintf(w, "{\"error\":%q}\n", code)
 }
 
-// Owner guards the routes only the owner reaches, such as the fortress: a
-// session of the admin, or while CastleParcel is open anyone past the upload
-// password when one is set. An API token never passes, nor a change sent
-// from another site's page.
-func Owner(cfg config.Config) func(http.Handler) http.Handler {
-	return func(next http.Handler) http.Handler {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			if r.Method != http.MethodGet && r.Method != http.MethodHead {
-				if !sameOrigin(r, cfg) {
-					fail(w, http.StatusForbidden, "crossSite")
-					return
-				}
-				if (r.ContentLength > 0 || len(r.TransferEncoding) > 0) && !isJSON(r) {
-					fail(w, http.StatusUnsupportedMediaType, "notJSON")
-					return
-				}
+// OwnPages refuses a change that comes from another site's page or carries
+// something other than JSON. While CastleParcel is open no cookie stands in
+// the way, so the page's origin is what keeps another site from joining or
+// leaving a fortress in the owner's browser.
+func OwnPages(cfg config.Config, next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet && r.Method != http.MethodHead {
+			if !sameOrigin(r, cfg) {
+				fail(w, http.StatusForbidden, "crossSite")
+				return
 			}
-			v, ok := signin.From(r.Context())
-			switch {
-			case !ok:
-				refuse(w, "signInFirst")
-			case v.Via == signin.ViaToken:
-				fail(w, http.StatusForbidden, "notWithToken")
-			case v.Via == signin.ViaAnyone && !upload.IsUploadAuthorized(r.Header.Get(upload.UploadTokenHeader), cfg.UploadProtected, cfg.UploadPassword):
-				refuse(w, "uploadPassword")
-			case !v.AtLeast("admin"):
-				fail(w, http.StatusForbidden, "forbidden")
-			default:
-				next.ServeHTTP(w, r)
+			if (r.ContentLength > 0 || len(r.TransferEncoding) > 0) && !isJSON(r) {
+				fail(w, http.StatusUnsupportedMediaType, "notJSON")
+				return
 			}
-		})
-	}
+		}
+		next.ServeHTTP(w, r)
+	})
 }
 
 // StatusReader decides who reads the status and the log: the owner as on
-// Owner's routes, and an API token of either scope.
+// the Admins routes, and an API token of either scope.
 func StatusReader(cfg config.Config) func(*http.Request) error {
 	return func(r *http.Request) error {
 		v, ok := signin.From(r.Context())
@@ -221,10 +240,14 @@ func isJSON(r *http.Request) bool {
 	return err == nil && t == "application/json"
 }
 
-// Seal is CastleParcel's own key, from CASTLEPARCEL_APP_KEY or the key file
-// in CONFIG_DIR, which the first start writes.
+// Key returns the key the sign-in is sealed with, for the other secrets
+// CastleParcel keeps.
+func Key(cfg config.Config) ([]byte, error) { return loadKey(cfg) }
+
+// Seal is CastleParcel's own key as a sealer, for what it keeps besides the
+// sign-in.
 func Seal(cfg config.Config) (signin.Sealer, error) {
-	key, err := loadKey(cfg)
+	key, err := Key(cfg)
 	if err != nil {
 		return nil, err
 	}

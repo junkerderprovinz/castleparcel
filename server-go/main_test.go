@@ -19,6 +19,7 @@ import (
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/clientmanifest"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/fortress"
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/notices"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/static"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/store"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/upload"
@@ -139,18 +140,26 @@ func newFullApp(t *testing.T, mutate func(*config.Config)) fullApp {
 	if err != nil {
 		t.Fatalf("load client manifest: %v", err)
 	}
-	auth, err := account.Open(cfg, db, slog.New(slog.NewTextHandler(io.Discard, nil)))
+	auth, err := account.Open(cfg, db, slog.New(slog.NewTextHandler(io.Discard, nil)), nil)
 	if err != nil {
 		t.Fatalf("open the sign-in: %v", err)
 	}
 	t.Cleanup(func() { _ = auth.Close() })
+	key, err := account.Key(cfg)
+	if err != nil {
+		t.Fatalf("key: %v", err)
+	}
+	hub, err := notices.Open(cfg.ConfigDir, key, nil)
+	if err != nil {
+		t.Fatalf("open the notifications: %v", err)
+	}
 	house, err := newHouse(cfg, db, auth, slog.New(slog.NewTextHandler(io.Discard, nil)))
 	if err != nil {
 		t.Fatalf("open the fortress: %v", err)
 	}
 	house.Start()
 	t.Cleanup(house.Close)
-	return fullApp{newRouter(cfg, db, auth, house, tusHandler, clientFiles(t, assets), shell, client), db, house}
+	return fullApp{newRouter(cfg, db, auth, hub, house, tusHandler, clientFiles(t, assets), shell, client), db, house}
 }
 
 func get(h http.Handler, path string) *httptest.ResponseRecorder {

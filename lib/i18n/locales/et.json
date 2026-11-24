@@ -676,6 +676,27 @@
       "admin": "Administraator"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Failipäringule saabub faile",
+      "title": "Failid saabusid",
+      "body": "Keegi saatis faile ühele sinu failipäringule. Sinu kättesaamislink avab need."
+    },
+    "storageFull": {
+      "label": "Salvestusruum peaaegu täis",
+      "title": "Salvestusruum peaaegu täis",
+      "body": "Jagamised ja üleslaadimised võtavad {percent} ruumist, mida CastleParcel tohib kasutada. Kui see täis saab, uued üleslaadimised peatuvad."
+    },
+    "passwordReset": {
+      "label": "Parool lähtestati",
+      "title": "Parool lähtestati logi kaudu",
+      "body": "Keegi lähtestas omaniku parooli konteineri logi koodiga ja kõik seansid lõppesid. Kui see polnud sina, määra kohe uus parool."
+    },
+    "test": {
+      "title": "Test CastleParcelilt",
+      "body": "See kanal töötab. CastleParcel saadab oma sõnumid siia."
+    }
+  },
   "fortress": {
     "network": "Võrk",
     "relay": "Edastaja",

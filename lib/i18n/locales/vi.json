@@ -668,6 +668,27 @@
       "admin": "Quản trị"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Có tệp gửi đến một yêu cầu tệp",
+      "title": "Tệp đã đến",
+      "body": "Ai đó đã gửi tệp đến một trong các yêu cầu tệp của bạn. Liên kết nhận của bạn sẽ mở chúng."
+    },
+    "storageFull": {
+      "label": "Bộ nhớ gần đầy",
+      "title": "Bộ nhớ gần đầy",
+      "body": "Các chia sẻ và tệp tải lên chiếm {percent} dung lượng mà CastleParcel được dùng. Khi đầy, các lượt tải lên mới sẽ dừng."
+    },
+    "passwordReset": {
+      "label": "Đặt lại mật khẩu",
+      "title": "Mật khẩu được đặt lại qua nhật ký",
+      "body": "Ai đó đã đặt lại mật khẩu của chủ sở hữu bằng mã trong nhật ký container và mọi phiên đã kết thúc. Nếu không phải bạn, hãy đặt mật khẩu mới ngay."
+    },
+    "test": {
+      "title": "Thử nghiệm từ CastleParcel",
+      "body": "Kênh này hoạt động. CastleParcel gửi tin nhắn đến đây."
+    }
+  },
   "fortress": {
     "network": "Mạng",
     "relay": "Relay",

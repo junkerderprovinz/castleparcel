@@ -126,3 +126,20 @@ func TestRouter_AnUploadStopsWithTheSessionThatStartedIt(t *testing.T) {
 		t.Errorf("PATCH after the session ended: %d %s", rec.Code, rec.Body)
 	}
 }
+
+func TestRouter_TheNotificationsBelongToTheOwner(t *testing.T) {
+	h := newFullRouter(t, withBaseURL)
+	if rec := send(h, http.MethodGet, "/api/notify", ""); rec.Code != http.StatusOK {
+		t.Errorf("open castle: %d %s", rec.Code, rec.Body)
+	}
+	cookie := ownerSession(t, h)
+	if rec := send(h, http.MethodGet, "/api/notify", ""); rec.Code != http.StatusUnauthorized {
+		t.Errorf("stranger: %d %s", rec.Code, rec.Body)
+	}
+	if rec := send(h, http.MethodPut, "/api/notify", `{"channels":[],"lang":"de"}`, "Cookie", cookie); rec.Code != http.StatusOK {
+		t.Errorf("owner saves: %d %s", rec.Code, rec.Body)
+	}
+	if rec := send(h, http.MethodGet, "/api/notify", "", "Cookie", cookie); rec.Code != http.StatusOK || !strings.Contains(rec.Body.String(), `"lang":"de"`) {
+		t.Errorf("owner loads: %d %s", rec.Code, rec.Body)
+	}
+}

@@ -24,7 +24,7 @@ func TestAnAccountShutOutLosesItsRequests(t *testing.T) {
 		if err := store.CreateRequest(db, rec); err != nil {
 			t.Fatal(err)
 		}
-		if err := ended(db)(context.Background(), "acc1", what); err != nil {
+		if err := ended(db, nil)(context.Background(), "acc1", what); err != nil {
 			t.Fatalf("%s: %v", what, err)
 		}
 		got, _ := store.GetRequest(db, "r1")
@@ -32,5 +32,23 @@ func TestAnAccountShutOutLosesItsRequests(t *testing.T) {
 			t.Errorf("%s: request closed = %v, want %v", what, got.Expired(2), closes)
 		}
 		db.Close()
+	}
+}
+
+func TestAResetIsToldOnce(t *testing.T) {
+	db, err := store.Open(filepath.Join(t.TempDir(), "db.sqlite"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+	told := 0
+	hook := ended(db, func() { told++ })
+	for _, what := range []signin.Ending{signin.EndReset, signin.EndBlocked, signin.EndPassword} {
+		if err := hook(context.Background(), "acc1", what); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if told != 1 {
+		t.Errorf("told %d times, want once for the reset", told)
 	}
 }

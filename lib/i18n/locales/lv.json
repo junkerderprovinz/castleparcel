@@ -684,6 +684,27 @@
       "admin": "Administrators"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Failu pieprasījumam pienāk faili",
+      "title": "Faili ir pienākuši",
+      "body": "Kāds nosūtīja failus vienam no jūsu failu pieprasījumiem. Jūsu saņemšanas saite tos atver."
+    },
+    "storageFull": {
+      "label": "Krātuve gandrīz pilna",
+      "title": "Krātuve gandrīz pilna",
+      "body": "Kopīgojumi un augšupielādes aizņem {percent} no vietas, ko CastleParcel drīkst izmantot. Kad tā piepildīsies, jaunas augšupielādes apstāsies."
+    },
+    "passwordReset": {
+      "label": "Parole atiestatīta",
+      "title": "Parole atiestatīta caur žurnālu",
+      "body": "Kāds atiestatīja īpašnieka paroli ar kodu no konteinera žurnāla, un visas sesijas beidzās. Ja tas nebijāt jūs, uzreiz iestatiet jaunu paroli."
+    },
+    "test": {
+      "title": "CastleParcel pārbaude",
+      "body": "Šis kanāls darbojas. CastleParcel sūta savas ziņas šeit."
+    }
+  },
   "fortress": {
     "network": "Tīkls",
     "relay": "Relay",

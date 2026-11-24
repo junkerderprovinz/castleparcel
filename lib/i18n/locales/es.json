@@ -684,6 +684,27 @@
       "admin": "Admin"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Llegan archivos a una solicitud de archivos",
+      "title": "Archivos recibidos",
+      "body": "Alguien envió archivos a una de tus solicitudes de archivos. Tu enlace de recogida los abre."
+    },
+    "storageFull": {
+      "label": "Almacenamiento casi lleno",
+      "title": "Almacenamiento casi lleno",
+      "body": "Los enlaces compartidos y las subidas ocupan {percent} del espacio que CastleParcel puede usar. Cuando se llene, no habrá más subidas."
+    },
+    "passwordReset": {
+      "label": "Contraseña restablecida",
+      "title": "Contraseña restablecida desde el registro",
+      "body": "Alguien restableció la contraseña del propietario con el código del registro del contenedor y todas las sesiones terminaron. Si no fuiste tú, pon una contraseña nueva ahora mismo."
+    },
+    "test": {
+      "title": "Prueba de CastleParcel",
+      "body": "Este canal funciona. CastleParcel envía aquí sus mensajes."
+    }
+  },
   "fortress": {
     "network": "Red",
     "relay": "Repetidor",

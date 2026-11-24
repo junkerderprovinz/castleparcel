@@ -676,6 +676,27 @@
       "admin": "Ylläpitäjä"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Tiedostopyyntöön saapuu tiedostoja",
+      "title": "Tiedostoja saapui",
+      "body": "Joku lähetti tiedostoja yhteen tiedostopyyntöösi. Noutolinkkisi avaa ne."
+    },
+    "storageFull": {
+      "label": "Tallennustila lähes täynnä",
+      "title": "Tallennustila lähes täynnä",
+      "body": "Jaot ja lähetykset vievät {percent} tilasta, jota CastleParcel saa käyttää. Kun se täyttyy, uudet lähetykset loppuvat."
+    },
+    "passwordReset": {
+      "label": "Salasana nollattu",
+      "title": "Salasana nollattu lokin kautta",
+      "body": "Joku nollasi omistajan salasanan kontin lokin koodilla, ja kaikki istunnot päättyivät. Jos se et ollut sinä, aseta heti uusi salasana."
+    },
+    "test": {
+      "title": "Testi CastleParcelilta",
+      "body": "Tämä kanava toimii. CastleParcel lähettää viestinsä tänne."
+    }
+  },
   "fortress": {
     "network": "Verkko",
     "relay": "Rele",

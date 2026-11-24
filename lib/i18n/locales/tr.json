@@ -676,6 +676,27 @@
       "admin": "Yönetici"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Bir dosya isteğine dosya geliyor",
+      "title": "Dosyalar geldi",
+      "body": "Biri dosya isteklerinden birine dosya gönderdi. Toplama bağlantın onları açar."
+    },
+    "storageFull": {
+      "label": "Depolama neredeyse dolu",
+      "title": "Depolama neredeyse dolu",
+      "body": "Paylaşımlar ve yüklemeler, CastleParcel’in kullanabileceği alanın {percent} kadarını kaplıyor. Dolunca yeni yüklemeler durur."
+    },
+    "passwordReset": {
+      "label": "Parola sıfırlandı",
+      "title": "Parola günlük üzerinden sıfırlandı",
+      "body": "Biri sahibin parolasını kapsayıcı günlüğündeki kodla sıfırladı ve tüm oturumlar kapandı. Bu sen değilsen hemen yeni bir parola belirle."
+    },
+    "test": {
+      "title": "CastleParcel’den deneme",
+      "body": "Bu kanal çalışıyor. CastleParcel mesajlarını buraya gönderir."
+    }
+  },
   "fortress": {
     "network": "Ağ",
     "relay": "Röle",

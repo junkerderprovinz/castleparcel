@@ -692,6 +692,27 @@
       "admin": "Skrbnik"
     }
   },
+  "notices": {
+    "requestUpload": {
+      "label": "Na zahtevo za datoteke prihajajo datoteke",
+      "title": "Datoteke so prispele",
+      "body": "Nekdo je poslal datoteke na eno od vaših zahtev za datoteke. Vaša povezava za prevzem jih odpre."
+    },
+    "storageFull": {
+      "label": "Shramba skoraj polna",
+      "title": "Shramba skoraj polna",
+      "body": "Deljenja in nalaganja zasedajo {percent} prostora, ki ga sme uporabljati CastleParcel. Ko se napolni, se nova nalaganja ustavijo."
+    },
+    "passwordReset": {
+      "label": "Geslo ponastavljeno",
+      "title": "Geslo ponastavljeno prek dnevnika",
+      "body": "Nekdo je ponastavil geslo lastnika s kodo iz dnevnika vsebnika in vse seje so se končale. Če to niste bili vi, takoj nastavite novo geslo."
+    },
+    "test": {
+      "title": "Preizkus iz CastleParcela",
+      "body": "Ta kanal deluje. CastleParcel sem pošilja svoja sporočila."
+    }
+  },
   "fortress": {
     "network": "Omrežje",
     "relay": "Relay",
