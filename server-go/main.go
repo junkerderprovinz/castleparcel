@@ -23,6 +23,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	kitfortress "github.com/junkerderprovinz/parleyport/kit/fortress"
 	"github.com/junkerderprovinz/parleyport/kit/signin"
 
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/account"
@@ -30,6 +31,7 @@ import (
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/cleanup"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/clientmanifest"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/fortress"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/headers"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/ratelimit"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/static"
@@ -116,7 +118,14 @@ func main() {
 	}
 	defer auth.Close()
 
-	r := newRouter(cfg, db, auth, tusHandler, webFiles, shell, client)
+	house, err := newHouse(cfg, db, auth, slog.Default())
+	if err != nil {
+		log.Fatalf("open the fortress: %v", err)
+	}
+	house.Start()
+	defer house.Close()
+
+	r := newRouter(cfg, db, auth, house, tusHandler, webFiles, shell, client)
 
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
@@ -152,9 +161,9 @@ func main() {
 
 // newRouter wires every route the server serves. It is separate from main so
 // tests can run the real routing, rate limits included.
-func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, tusHandler http.Handler, webFiles *static.Assets, shell []byte, client clientmanifest.Served) chi.Router {
+func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, house *fortress.Service, tusHandler http.Handler, webFiles *static.Assets, shell []byte, client clientmanifest.Served) chi.Router {
 	r := chi.NewRouter()
-	r.Use(headers.Middleware(headers.ContentSecurityPolicy(cfg.LogoOrigin())))
+	r.Use(headers.Middleware(headers.ContentSecurityPolicy(cfg.LogoOrigin()), kitfortress.OpenPath))
 	r.Use(auth.Guard)
 	r.Get("/healthz", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
@@ -219,6 +228,7 @@ func newRouter(cfg config.Config, db *sql.DB, auth *signin.Auth, tusHandler http
 	signIn := account.Contract(auth, cfg, auth.Handler())
 	r.Handle(signin.APIPrefix+"*", signIn)
 	r.Handle(signin.BrowserPrefix+"*", signIn)
+	houseRoutes(r, cfg, house)
 
 	r.Post("/api/finalize", finalize)
 	r.Get("/api/d/{slug}", download)

@@ -43,10 +43,19 @@ func ContentSecurityPolicy(logoOrigin string) string {
 }
 
 // Middleware sets the security headers before next runs, so a handler can
-// still replace one for its own response.
-func Middleware(csp string) func(http.Handler) http.Handler {
+// still replace one for its own response. The paths under own set their
+// headers themselves: the fortress's tabs frame another member's page below
+// their bar, which frame-ancestors 'none' and DENY would forbid, and give it
+// a sandbox of its own.
+func Middleware(csp string, own ...string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			for _, prefix := range own {
+				if strings.HasPrefix(r.URL.Path, prefix) {
+					next.ServeHTTP(w, r)
+					return
+				}
+			}
 			h := w.Header()
 			h.Set("Content-Security-Policy", csp)
 			h.Set("Referrer-Policy", "no-referrer")

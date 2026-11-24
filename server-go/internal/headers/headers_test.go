@@ -121,3 +121,17 @@ func TestMiddleware_HandlerCanOverride(t *testing.T) {
 		t.Errorf("Referrer-Policy = %q, want the handler's own value", got)
 	}
 }
+
+// The fortress's tab frames another member's page under its bar, at the same
+// address. Our frame-ancestors 'none' and DENY would keep that page out, and
+// the kit gives the bar and the page policies of their own.
+func TestMiddleware_LeavesTheirOwnPathsToTheFortressTabs(t *testing.T) {
+	h := Middleware(ContentSecurityPolicy(""), "/fortress/open/")(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {}))
+	for path, framed := range map[string]bool{"/fortress/open/abc/": true, "/fortress/openly": false, "/": false} {
+		rec := httptest.NewRecorder()
+		h.ServeHTTP(rec, httptest.NewRequest(http.MethodGet, path, nil))
+		if got := rec.Header().Get("X-Frame-Options") == ""; got != framed {
+			t.Errorf("%s: X-Frame-Options %q", path, rec.Header().Get("X-Frame-Options"))
+		}
+	}
+}

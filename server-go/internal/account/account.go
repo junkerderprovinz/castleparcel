@@ -11,6 +11,7 @@ import (
 	"errors"
 	"fmt"
 	"log/slog"
+	"mime"
 	"net"
 	"net/http"
 	"net/url"
@@ -21,6 +22,7 @@ import (
 
 	"github.com/junkerderprovinz/parleyport/kit/signin"
 	"github.com/junkerderprovinz/parleyport/kit/signin/sqlstore"
+	"github.com/junkerderprovinz/parleyport/kit/status"
 
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/store"
@@ -31,15 +33,9 @@ import (
 // is not set.
 const keyFile = "app.key"
 
-// Open opens the sign-in on db, sealed with the key from
-// CASTLEPARCEL_APP_KEY or from the key file in CONFIG_DIR, which the first
-// start writes.
+// Open opens the sign-in on db, sealed with CastleParcel's own key.
 func Open(cfg config.Config, db *sql.DB, log *slog.Logger) (*signin.Auth, error) {
-	key, err := loadKey(cfg)
-	if err != nil {
-		return nil, err
-	}
-	seal, err := signin.NewSealer(key)
+	seal, err := Seal(cfg)
 	if err != nil {
 		return nil, err
 	}
@@ -134,11 +130,105 @@ func Contract(auth *signin.Auth, cfg config.Config, next http.Handler) http.Hand
 	})
 }
 
-func refuse(w http.ResponseWriter, code string) {
+func refuse(w http.ResponseWriter, code string) { fail(w, http.StatusUnauthorized, code) }
+
+func fail(w http.ResponseWriter, status int, code string) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Cache-Control", "no-store")
-	w.WriteHeader(http.StatusUnauthorized)
+	w.WriteHeader(status)
 	_, _ = fmt.Fprintf(w, "{\"error\":%q}\n", code)
+}
+
+// Owner guards the routes only the owner reaches, such as the fortress: a
+// session of the admin, or while CastleParcel is open anyone past the upload
+// password when one is set. An API token never passes, nor a change sent
+// from another site's page.
+func Owner(cfg config.Config) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.Method != http.MethodGet && r.Method != http.MethodHead {
+				if !sameOrigin(r, cfg) {
+					fail(w, http.StatusForbidden, "crossSite")
+					return
+				}
+				if (r.ContentLength > 0 || len(r.TransferEncoding) > 0) && !isJSON(r) {
+					fail(w, http.StatusUnsupportedMediaType, "notJSON")
+					return
+				}
+			}
+			v, ok := signin.From(r.Context())
+			switch {
+			case !ok:
+				refuse(w, "signInFirst")
+			case v.Via == signin.ViaToken:
+				fail(w, http.StatusForbidden, "notWithToken")
+			case v.Via == signin.ViaAnyone && !upload.IsUploadAuthorized(r.Header.Get(upload.UploadTokenHeader), cfg.UploadProtected, cfg.UploadPassword):
+				refuse(w, "uploadPassword")
+			case !v.AtLeast("admin"):
+				fail(w, http.StatusForbidden, "forbidden")
+			default:
+				next.ServeHTTP(w, r)
+			}
+		})
+	}
+}
+
+// StatusReader decides who reads the status and the log: the owner as on
+// Owner's routes, and an API token of either scope.
+func StatusReader(cfg config.Config) func(*http.Request) error {
+	return func(r *http.Request) error {
+		v, ok := signin.From(r.Context())
+		switch {
+		case !ok:
+			return status.ErrUnauthenticated
+		case v.Via == signin.ViaToken:
+			if slices.Contains(v.Scopes, "read") || slices.Contains(v.Scopes, "all") {
+				return nil
+			}
+			return status.ErrForbidden
+		case v.Via == signin.ViaAnyone && !upload.IsUploadAuthorized(r.Header.Get(upload.UploadTokenHeader), cfg.UploadProtected, cfg.UploadPassword):
+			return status.ErrUnauthenticated
+		case !v.AtLeast("admin"):
+			return status.ErrForbidden
+		}
+		return nil
+	}
+}
+
+// sameOrigin reports whether a change comes from CastleParcel's own pages,
+// as the sign-in decides it: by Sec-Fetch-Site, or else by an Origin that is
+// BASE_URL or the host the request went to.
+func sameOrigin(r *http.Request, cfg config.Config) bool {
+	switch r.Header.Get("Sec-Fetch-Site") {
+	case "same-origin", "none":
+		return true
+	case "":
+	default:
+		return false
+	}
+	origin := r.Header.Get("Origin")
+	if origin == "" {
+		return false
+	}
+	if u := public(cfg.BaseURL); u != nil && origin == u.Scheme+"://"+u.Host {
+		return true
+	}
+	return origin == "http://"+r.Host || origin == "https://"+r.Host
+}
+
+func isJSON(r *http.Request) bool {
+	t, _, err := mime.ParseMediaType(r.Header.Get("Content-Type"))
+	return err == nil && t == "application/json"
+}
+
+// Seal is CastleParcel's own key, from CASTLEPARCEL_APP_KEY or the key file
+// in CONFIG_DIR, which the first start writes.
+func Seal(cfg config.Config) (signin.Sealer, error) {
+	key, err := loadKey(cfg)
+	if err != nil {
+		return nil, err
+	}
+	return signin.NewSealer(key)
 }
 
 // loadKey returns the key from CASTLEPARCEL_APP_KEY, or from the key file,

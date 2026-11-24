@@ -18,6 +18,7 @@ import (
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/account"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/clientmanifest"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/fortress"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/static"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/store"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/upload"
@@ -85,11 +86,24 @@ func TestRenderShell_CustomAppName(t *testing.T) {
 // SQLite store.
 func newFullRouter(t *testing.T, mutate func(*config.Config)) http.Handler {
 	t.Helper()
-	h, _ := newRouterAndStore(t, mutate)
-	return h
+	return newFullApp(t, mutate).h
 }
 
 func newRouterAndStore(t *testing.T, mutate func(*config.Config)) (http.Handler, *sql.DB) {
+	t.Helper()
+	app := newFullApp(t, mutate)
+	return app.h, app.db
+}
+
+// fullApp is the production router with the database and the fortress
+// behind it.
+type fullApp struct {
+	h     http.Handler
+	db    *sql.DB
+	house *fortress.Service
+}
+
+func newFullApp(t *testing.T, mutate func(*config.Config)) fullApp {
 	t.Helper()
 	dataDir := t.TempDir()
 	cfg := config.Config{
@@ -130,7 +144,13 @@ func newRouterAndStore(t *testing.T, mutate func(*config.Config)) (http.Handler,
 		t.Fatalf("open the sign-in: %v", err)
 	}
 	t.Cleanup(func() { _ = auth.Close() })
-	return newRouter(cfg, db, auth, tusHandler, clientFiles(t, assets), shell, client), db
+	house, err := newHouse(cfg, db, auth, slog.New(slog.NewTextHandler(io.Discard, nil)))
+	if err != nil {
+		t.Fatalf("open the fortress: %v", err)
+	}
+	house.Start()
+	t.Cleanup(house.Close)
+	return fullApp{newRouter(cfg, db, auth, house, tusHandler, clientFiles(t, assets), shell, client), db, house}
 }
 
 func get(h http.Handler, path string) *httptest.ResponseRecorder {
