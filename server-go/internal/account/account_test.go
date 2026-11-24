@@ -292,3 +292,20 @@ func TestWhileOpenTheUploadPasswordGuardsTheSettings(t *testing.T) {
 		t.Errorf("with the upload password: %d", w.Code)
 	}
 }
+
+// CastleParcel serves its pages, its API and the sign-in from the root of its
+// host, so a path in BASE_URL never moves the sign-in's addresses.
+func TestTheSignInStaysAtTheRootWhateverPathBaseURLCarries(t *testing.T) {
+	for base, want := range map[string]string{
+		"https://Parcel.Example:443/sub/": "https://parcel.example",
+		"http://parcel.example:8080/a/b":  "http://parcel.example:8080",
+		"https://[::1]/x":                 "https://[::1]",
+	} {
+		if got := public(base); got == nil || got.String() != want {
+			t.Errorf("public(%q) = %v, want %s", base, got, want)
+		}
+	}
+	if public("not a url") != nil {
+		t.Error("an address without a host counts")
+	}
+}
