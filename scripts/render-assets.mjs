@@ -32,7 +32,7 @@ function houseFont(file) {
   const b = readFileSync(join(fonts, file));
   return opentype.parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength));
 }
-const nameFont = houseFont("bree-serif-light.ttf");
+const nameFont = houseFont("bree-serif-regular.ttf");
 const claimFont = houseFont("bree-light.ttf");
 
 // The tile has rounded corners, and Community Applications and maskable
