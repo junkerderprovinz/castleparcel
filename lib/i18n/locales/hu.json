@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Hálózat",
-    "relay": "Relay",
-    "relayHint": "Eléri a hálózaton kívüli tagokat. Csak lepecsételt üzeneteket továbbít.",
-    "relayProject": "A projekt relayje",
-    "relayOff": "Ki",
-    "relayOwn": "Saját relay",
-    "relayAddress": "A relayed címe",
-    "relayAddressBad": "Ez nem tűnik egy relay címének.",
-    "lan": "Keresés ezen a hálózaton",
-    "lanHint": "Az azonos hálózaton lévő tagok közvetlenül beszélnek, relay nélkül.",
-    "save": "Mentés",
     "uiOpen": "{app} oldalainak megnyitása"
   }
 }

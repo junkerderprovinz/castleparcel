@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Rede",
-    "relay": "Relé",
-    "relayHint": "Chega aos membros de fóra desta rede. Só pasa mensaxes seladas.",
-    "relayProject": "Relé do proxecto",
-    "relayOff": "Desactivado",
-    "relayOwn": "Relé propio",
-    "relayAddress": "Enderezo do teu relé",
-    "relayAddressBad": "Iso non parece o enderezo dun relé.",
-    "lan": "Buscar nesta rede",
-    "lanHint": "Os membros da mesma rede falan directamente, sen o relé.",
-    "save": "Gardar",
     "uiOpen": "Abrir as páxinas de {app}"
   }
 }

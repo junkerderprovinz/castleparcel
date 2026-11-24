@@ -714,17 +714,6 @@
     }
   },
   "fortress": {
-    "network": "Omrežje",
-    "relay": "Relay",
-    "relayHint": "Doseže člane zunaj tega omrežja. Posreduje samo zapečatena sporočila.",
-    "relayProject": "Relay projekta",
-    "relayOff": "Izklopljeno",
-    "relayOwn": "Lasten relay",
-    "relayAddress": "Naslov tvojega relaya",
-    "relayAddressBad": "To ni videti kot naslov relaya.",
-    "lan": "Išči v tem omrežju",
-    "lanHint": "Člani v istem omrežju se pogovarjajo neposredno, brez relaya.",
-    "save": "Shrani",
     "uiOpen": "Odpri strani aplikacije {app}"
   }
 }

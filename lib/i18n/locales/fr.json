@@ -706,17 +706,6 @@
     }
   },
   "fortress": {
-    "network": "Réseau",
-    "relay": "Relais",
-    "relayHint": "Atteint les membres hors de ce réseau. Il ne fait passer que des messages scellés.",
-    "relayProject": "Relais du projet",
-    "relayOff": "Désactivé",
-    "relayOwn": "Relais à vous",
-    "relayAddress": "Adresse de votre relais",
-    "relayAddressBad": "Cela ne ressemble pas à l'adresse d'un relais.",
-    "lan": "Chercher sur ce réseau",
-    "lanHint": "Les membres du même réseau se parlent directement, sans le relais.",
-    "save": "Enregistrer",
     "uiOpen": "Ouvrir les pages de {app}"
   }
 }

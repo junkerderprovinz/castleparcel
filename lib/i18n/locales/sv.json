@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Nätverk",
-    "relay": "Relä",
-    "relayHint": "Når medlemmarna utanför det här nätverket. Det skickar bara vidare förseglade meddelanden.",
-    "relayProject": "Projektets relä",
-    "relayOff": "Av",
-    "relayOwn": "Eget relä",
-    "relayAddress": "Adressen till ditt relä",
-    "relayAddressBad": "Det ser inte ut som adressen till ett relä.",
-    "lan": "Sök i det här nätverket",
-    "lanHint": "Medlemmar i samma nätverk pratar direkt med varandra, utan reläet.",
-    "save": "Spara",
     "uiOpen": "Öppna sidorna i {app}"
   }
 }

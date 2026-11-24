@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Netværk",
-    "relay": "Videresender",
-    "relayHint": "Når de medlemmer, der er uden for dette netværk. Den sender kun forseglede beskeder videre.",
-    "relayProject": "Projektets videresender",
-    "relayOff": "Fra",
-    "relayOwn": "Egen videresender",
-    "relayAddress": "Adressen på din videresender",
-    "relayAddressBad": "Det ligner ikke adressen på en videresender.",
-    "lan": "Søg på dette netværk",
-    "lanHint": "Medlemmer på samme netværk taler direkte sammen, uden videresenderen.",
-    "save": "Gem",
     "uiOpen": "Åbn siderne i {app}"
   }
 }

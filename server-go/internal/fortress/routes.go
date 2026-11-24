@@ -9,7 +9,6 @@ import (
 	"errors"
 	"io"
 	"net/http"
-	"net/url"
 	"slices"
 	"strings"
 	"time"
@@ -33,7 +32,6 @@ func (s *Service) Routes() http.Handler {
 	mux.HandleFunc("DELETE /api/fortress", s.leave)
 	mux.HandleFunc("DELETE /api/fortress/members/{id}", s.remove)
 	mux.HandleFunc("PUT /api/fortress/permissions", s.permission)
-	mux.HandleFunc("PUT /api/fortress/network", s.setNetwork)
 	mux.HandleFunc("POST /api/fortress/phrase/show", s.showPhrase)
 	mux.HandleFunc("POST /api/fortress/phrase", s.changePhrase)
 	mux.HandleFunc("POST /api/fortress/open/{id}", s.open)
@@ -263,45 +261,6 @@ func (s *Service) permission(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, s.view())
-}
-
-// setNetwork takes the relay, as "project", "off" or "own" with the address
-// of the own one, and whether the members are looked for on this network.
-func (s *Service) setNetwork(w http.ResponseWriter, r *http.Request) {
-	var req struct {
-		Relay string `json:"relay"`
-		URL   string `json:"url"`
-		LAN   bool   `json:"lan"`
-	}
-	if !readBody(w, r, &req) {
-		return
-	}
-	at := ""
-	switch req.Relay {
-	case string(group.RelayProject):
-	case string(group.RelayOff):
-		at = "off"
-	case string(group.RelayOwn):
-		if !relayAddress(req.URL) {
-			fail(w, http.StatusBadRequest, "relayAddress")
-			return
-		}
-		at = strings.TrimSpace(req.URL)
-	default:
-		fail(w, http.StatusBadRequest, "badRequest")
-		return
-	}
-	if err := s.SetNetwork(at, req.LAN); err != nil {
-		s.refuse(w, err)
-		return
-	}
-	writeJSON(w, s.view())
-}
-
-// relayAddress reports whether a is where an own relay could answer.
-func relayAddress(a string) bool {
-	u, err := url.Parse(strings.TrimSpace(a))
-	return err == nil && u.Host != "" && u.User == nil && slices.Contains([]string{"http", "https", "ws", "wss"}, u.Scheme)
 }
 
 // showPhrase shows the phrase to an owner who signed in moments ago, since

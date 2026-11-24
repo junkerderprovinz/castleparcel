@@ -714,17 +714,6 @@
     }
   },
   "fortress": {
-    "network": "Tinklas",
-    "relay": "Relay",
-    "relayHint": "Pasiekia narius už šio tinklo ribų. Jis perduoda tik užantspauduotas žinutes.",
-    "relayProject": "Projekto relay",
-    "relayOff": "Išjungta",
-    "relayOwn": "Savas relay",
-    "relayAddress": "Tavo relay adresas",
-    "relayAddressBad": "Tai nepanašu į relay adresą.",
-    "lan": "Ieškoti šiame tinkle",
-    "lanHint": "To paties tinklo nariai kalbasi tiesiogiai, be relay.",
-    "save": "Išsaugoti",
     "uiOpen": "Atverti {app} puslapius"
   }
 }

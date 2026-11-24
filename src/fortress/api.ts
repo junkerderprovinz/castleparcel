@@ -36,7 +36,6 @@ export const fortressApi = {
   leave: () => call<FortressInfo>("DELETE", "/api/fortress"),
   remove: (id: string) => call<FortressInfo>("DELETE", `/api/fortress/members/${encodeURIComponent(id)}`),
   permission: (p: MemberPermission) => call<FortressInfo>("PUT", "/api/fortress/permissions", p),
-  network: (relay: string, url: string, lan: boolean) => call<FortressInfo>("PUT", "/api/fortress/network", { relay, url, lan }),
   showPhrase: () => call<ShownPhrase>("POST", "/api/fortress/phrase/show"),
   changePhrase: () => call<ShownPhrase & { left: RemovedMember[] }>("POST", "/api/fortress/phrase"),
   open: (id: string) => call<{ path: string }>("POST", `/api/fortress/open/${encodeURIComponent(id)}`),

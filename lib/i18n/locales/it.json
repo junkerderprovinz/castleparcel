@@ -706,17 +706,6 @@
     }
   },
   "fortress": {
-    "network": "Rete",
-    "relay": "Relay",
-    "relayHint": "Raggiunge i membri fuori da questa rete. Fa passare solo messaggi sigillati.",
-    "relayProject": "Relay del progetto",
-    "relayOff": "Spento",
-    "relayOwn": "Relay tuo",
-    "relayAddress": "Indirizzo del tuo relay",
-    "relayAddressBad": "Non sembra l'indirizzo di un relay.",
-    "lan": "Cerca in questa rete",
-    "lanHint": "I membri nella stessa rete si parlano direttamente, senza relay.",
-    "save": "Salva",
     "uiOpen": "Apri le pagine di {app}"
   }
 }

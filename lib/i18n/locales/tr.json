@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Ağ",
-    "relay": "Röle",
-    "relayHint": "Bu ağın dışındaki üyelere ulaşır. Yalnızca mühürlü mesajları iletir.",
-    "relayProject": "Projenin rölesi",
-    "relayOff": "Kapalı",
-    "relayOwn": "Kendi rölen",
-    "relayAddress": "Rölenin adresi",
-    "relayAddressBad": "Bu bir röle adresine benzemiyor.",
-    "lan": "Bu ağda ara",
-    "lanHint": "Aynı ağdaki üyeler röle olmadan doğrudan konuşur.",
-    "save": "Kaydet",
     "uiOpen": "{app} sayfalarını aç"
   }
 }

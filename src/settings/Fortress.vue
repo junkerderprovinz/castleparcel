@@ -1,14 +1,15 @@
 <script setup lang="ts">
 // CastleParcel's place in the fortress. Inside one, the first card shows and changes the phrase behind a fresh
 // sign-in and leaves; once a member says the phrase changed and nobody in reach hands over the new one, it asks
-// for the words. The other apps follow with their permissions, and the network card picks the relay and whether
-// to look on this network. CastleParcel runs as one instance, so the other apps always show.
+// for the words. The other apps follow with their permissions. CastleParcel only pairs: it reaches the others
+// through the project's relay and on this network, with no choice to make. It runs as one instance, so the other
+// apps always show.
 import {
   createFortressFlow, fill, fortressText, joinRefusalText, openRefusalText, phraseReady,
   type ChangeAnswer, type FortressAnswer, type FortressApp, type FortressInstance, type PhraseAnswer,
 } from '@glimstone/core';
 import {
-  Button, Card, FieldRow, Fortress, FortressPairing, FortressStatusWindow, Selector, SignInReauthWindow, TextField, Toggle, Window,
+  Button, Fortress, FortressPairing, FortressStatusWindow, SignInReauthWindow, Window,
 } from '@glimstone/vue';
 import { computed, onBeforeUnmount, ref, shallowRef, watch } from 'vue';
 import { config } from '@/src/config';
@@ -43,7 +44,6 @@ const code = (e: unknown) => (e instanceof FortressError ? e.code : 'internal');
 
 function refusal(e: unknown): string {
   const c = code(e);
-  if (c === 'relayAddress') return t('fortress.relayAddressBad');
   if ((ERROR_CODES as readonly string[]).includes(c)) return errorWords()[c as keyof ReturnType<typeof errorWords>] ?? text.value.failed;
   return text.value.failed;
 }
@@ -51,7 +51,6 @@ function refusal(e: unknown): string {
 async function load() {
   try {
     info.value = await fortressApi.read();
-    network.value = { relay: info.value.relay.mode, url: info.value.relay.url, lan: info.value.lan };
   } catch (e) {
     toast(refusal(e), 'fail');
   }
@@ -137,32 +136,6 @@ const flow = createFortressFlow(() => ({ onJoin, failed: text.value.failed, join
 const flowState = shallowRef(flow.state());
 onBeforeUnmount(flow.subscribe(() => (flowState.value = flow.state())));
 const newWords = computed(() => (flowState.value.window?.kind === 'join' ? flowState.value.window : null));
-
-const network = ref({ relay: 'project' as FortressInfo['relay']['mode'], url: '', lan: true });
-const relays = computed(() => [
-  { id: 'project' as const, label: t('fortress.relayProject') },
-  { id: 'off' as const, label: t('fortress.relayOff') },
-  { id: 'own' as const, label: t('fortress.relayOwn') },
-]);
-const saving = ref(false);
-async function saveNetwork() {
-  if (network.value.relay === 'own' && !network.value.url.trim()) return;
-  saving.value = true;
-  try {
-    info.value = await fortressApi.network(network.value.relay, network.value.url, network.value.lan);
-  } catch (e) {
-    toast(refusal(e), 'fail');
-  }
-  saving.value = false;
-}
-function pickRelay(mode: FortressInfo['relay']['mode']) {
-  network.value.relay = mode;
-  if (mode !== 'own') void saveNetwork();
-}
-function pickLAN(on: boolean) {
-  network.value.lan = on;
-  void saveNetwork();
-}
 </script>
 
 <template>
@@ -206,18 +179,6 @@ function pickLAN(on: boolean) {
       :label-keys="LABEL_KEYS"
       :hue-start="1"
     />
-    <Card :title="t('fortress.network')" :hue-index="apps.length + 3">
-      <FieldRow :label="t('fortress.relay')" :hint="t('fortress.relayHint')">
-        <Selector :model-value="network.relay" :items="relays" inline activation="manual" @update:model-value="pickRelay" />
-      </FieldRow>
-      <FieldRow v-if="network.relay === 'own'" :label="t('fortress.relayAddress')">
-        <TextField v-model="network.url" mono placeholder="https://relay.example" @keydown.enter="saveNetwork" />
-        <Button :label="t('fortress.save')" label-key="IconSave" :busy="saving" @click="saveNetwork" />
-      </FieldRow>
-      <FieldRow :label="t('fortress.lan')" :hint="t('fortress.lanHint')">
-        <Toggle :model-value="network.lan" @update:model-value="pickLAN" />
-      </FieldRow>
-    </Card>
     <FortressStatusWindow
       v-if="status"
       :app="status.app"

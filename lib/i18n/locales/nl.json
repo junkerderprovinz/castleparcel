@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Netwerk",
-    "relay": "Relay",
-    "relayHint": "Bereikt de leden buiten dit netwerk. Het geeft alleen verzegelde berichten door.",
-    "relayProject": "Relay van het project",
-    "relayOff": "Uit",
-    "relayOwn": "Eigen relay",
-    "relayAddress": "Adres van je relay",
-    "relayAddressBad": "Dat lijkt niet op het adres van een relay.",
-    "lan": "Zoeken in dit netwerk",
-    "lanHint": "Leden in hetzelfde netwerk praten rechtstreeks met elkaar, zonder de relay.",
-    "save": "Opslaan",
     "uiOpen": "Pagina's van {app} openen"
   }
 }

@@ -714,17 +714,6 @@
     }
   },
   "fortress": {
-    "network": "Сеть",
-    "relay": "Relay",
-    "relayHint": "Доходит до участников за пределами этой сети. Передаёт только запечатанные сообщения.",
-    "relayProject": "Relay проекта",
-    "relayOff": "Выключено",
-    "relayOwn": "Свой relay",
-    "relayAddress": "Адрес вашего relay",
-    "relayAddressBad": "Это не похоже на адрес relay.",
-    "lan": "Искать в этой сети",
-    "lanHint": "Участники в одной сети общаются напрямую, без relay.",
-    "save": "Сохранить",
     "uiOpen": "Открыть страницы {app}"
   }
 }

@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Net",
-    "relay": "Relay",
-    "relayHint": "Nær til meðlima utan þessa nets. Það sendir aðeins innsigluð skilaboð áfram.",
-    "relayProject": "Relay verkefnisins",
-    "relayOff": "Slökkt",
-    "relayOwn": "Eigið relay",
-    "relayAddress": "Vistfang relaysins þíns",
-    "relayAddressBad": "Þetta lítur ekki út eins og vistfang relays.",
-    "lan": "Leita á þessu neti",
-    "lanHint": "Meðlimir á sama neti tala beint saman, án relaysins.",
-    "save": "Vista",
     "uiOpen": "Opna síður {app}"
   }
 }

@@ -88,10 +88,11 @@ func TestAnotherAppsPagesOpenInATabWithTheKitsPolicies(t *testing.T) {
 		t.Fatal(err)
 	}
 	bravo := bravoPages(t, secret, srv.URL)
-	h := newFullRouter(t, withBaseURL)
-
-	if w := send(h, http.MethodPut, "/api/fortress/network", `{"relay":"own","url":"`+srv.URL+`","lan":false}`); w.Code != http.StatusOK {
-		t.Fatalf("network: %d %s", w.Code, w.Body)
+	app := newFullApp(t, withBaseURL)
+	h := app.h
+	// The page offers no network choice, so the test points the instance at its own relay directly.
+	if err := app.house.SetNetwork(srv.URL, false); err != nil {
+		t.Fatalf("network: %v", err)
 	}
 	if w := send(h, http.MethodPost, "/api/fortress/join", `{"phrase":"`+words+`"}`); w.Code != http.StatusOK {
 		t.Fatalf("join: %d %s", w.Code, w.Body)

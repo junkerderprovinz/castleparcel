@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Network",
-    "relay": "Relay",
-    "relayHint": "Reaches the members outside this network. It only passes on sealed messages.",
-    "relayProject": "Project relay",
-    "relayOff": "Off",
-    "relayOwn": "Own relay",
-    "relayAddress": "Address of your relay",
-    "relayAddressBad": "That doesn't look like the address of a relay.",
-    "lan": "Look on this network",
-    "lanHint": "Members on the same network talk to each other directly, without the relay.",
-    "save": "Save",
     "uiOpen": "Open the pages of {app}"
   }
 }

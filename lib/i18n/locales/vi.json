@@ -690,17 +690,6 @@
     }
   },
   "fortress": {
-    "network": "Mạng",
-    "relay": "Relay",
-    "relayHint": "Kết nối với các thành viên ngoài mạng này. Relay chỉ chuyển tiếp các tin nhắn đã niêm phong.",
-    "relayProject": "Relay của dự án",
-    "relayOff": "Tắt",
-    "relayOwn": "Relay riêng",
-    "relayAddress": "Địa chỉ relay của bạn",
-    "relayAddressBad": "Đây có vẻ không phải là địa chỉ của relay.",
-    "lan": "Tìm trong mạng này",
-    "lanHint": "Các thành viên cùng mạng nói chuyện trực tiếp với nhau, không qua relay.",
-    "save": "Lưu",
     "uiOpen": "Mở các trang của {app}"
   }
 }

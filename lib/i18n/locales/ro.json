@@ -706,17 +706,6 @@
     }
   },
   "fortress": {
-    "network": "Rețea",
-    "relay": "Relay",
-    "relayHint": "Ajunge la membrii din afara acestei rețele. Trece mai departe doar mesaje sigilate.",
-    "relayProject": "Relay-ul proiectului",
-    "relayOff": "Oprit",
-    "relayOwn": "Relay propriu",
-    "relayAddress": "Adresa relay-ului tău",
-    "relayAddressBad": "Nu pare adresa unui relay.",
-    "lan": "Caută în această rețea",
-    "lanHint": "Membrii din aceeași rețea vorbesc direct, fără relay.",
-    "save": "Salvează",
     "uiOpen": "Deschide paginile {app}"
   }
 }

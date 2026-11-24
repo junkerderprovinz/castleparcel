@@ -289,18 +289,13 @@ func TestLeavingForgetsTheMembershipButNotTheNetwork(t *testing.T) {
 	}
 }
 
-func TestAnOwnRelayNeedsAnAddress(t *testing.T) {
+func TestThePageOffersNoNetworkChoice(t *testing.T) {
 	c := openCastle(t, t.TempDir(), "")
-	for _, bad := range []string{"", "relay.example", "ftp://relay.example", "https://user@relay.example"} {
-		if code, out := c.call(t, "PUT", "/api/fortress/network", map[string]any{"relay": "own", "url": bad, "lan": true}); code != http.StatusBadRequest || out["error"] != "relayAddress" {
-			t.Errorf("%q = %d %v", bad, code, out)
-		}
+	if code, _ := c.call(t, "PUT", "/api/fortress/network", map[string]any{"relay": "off", "lan": false}); code != http.StatusNotFound && code != http.StatusMethodNotAllowed {
+		t.Errorf("PUT /api/fortress/network = %d, want no such route", code)
 	}
-	if code, out := c.call(t, "PUT", "/api/fortress/network", map[string]any{"relay": "off", "lan": true}); code != http.StatusOK || out["lan"] != true {
-		t.Errorf("relay off = %d %v", code, out)
-	}
-	if v := c.view(); v.Relay.Mode != group.RelayOff {
-		t.Errorf("relay = %+v", v.Relay)
+	if v := c.view(); v.Relay.Mode != group.RelayProject || !v.LAN {
+		t.Errorf("network = %+v, LAN %v, want the project's relay and this network", v.Relay, v.LAN)
 	}
 }
 

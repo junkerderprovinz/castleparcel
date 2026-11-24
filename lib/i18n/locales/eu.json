@@ -698,17 +698,6 @@
     }
   },
   "fortress": {
-    "network": "Sarea",
-    "relay": "Bitartekaria",
-    "relayHint": "Sare honetatik kanpoko kideengana iristen da. Zigilatutako mezuak bakarrik pasatzen ditu.",
-    "relayProject": "Proiektuaren bitartekaria",
-    "relayOff": "Desaktibatuta",
-    "relayOwn": "Bitartekari propioa",
-    "relayAddress": "Zure bitartekariaren helbidea",
-    "relayAddressBad": "Hori ez dirudi bitartekari baten helbidea.",
-    "lan": "Bilatu sare honetan",
-    "lanHint": "Sare bereko kideek zuzenean hitz egiten dute, bitartekaririk gabe.",
-    "save": "Gorde",
     "uiOpen": "Ireki {app}(r)en orriak"
   }
 }
