@@ -6,11 +6,12 @@
  *   castleparcel-banner-logo.svg/.png  light, logo only             (support thread)
  *
  * Both themes embed castleparcel-logo.svg, whose stone greys and gold read on either background.
- * CastleParcel has no wordmark font of its own, so the name is set in Bree Serif Light and the claim in Bree
- * Light, the house typeface. Text becomes SVG paths, so the SVG renders the same everywhere without the fonts.
+ * CastleParcel has no wordmark font of its own, so the name is set in Bree Serif Regular and the claim in
+ * Bree Light, the house typeface. Text becomes SVG paths, so the SVG renders the same everywhere without
+ * the fonts.
  *
- * Both fonts are licensed and never committed, so HOUSE_FONTS (default %LOCALAPPDATA%\halleluja-fonts) must hold
- * them as TTF.
+ * Bree Light is licensed, and neither font is committed, so HOUSE_FONTS (default
+ * %LOCALAPPDATA%\halleluja-fonts) must hold them as TTF.
  *
  * Deps (global): opentype.js, @resvg/resvg-js.
  * Run: node .github/assets/gen-banner.mjs
@@ -43,7 +44,7 @@ const THEMES = [
 ];
 
 const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
-const nameFont = opentype.parse(readFileSync(join(fonts, "bree-serif-light.ttf")).buffer);
+const nameFont = opentype.parse(readFileSync(join(fonts, "bree-serif-regular.ttf")).buffer);
 const claimFont = opentype.parse(readFileSync(join(fonts, "bree-light.ttf")).buffer);
 
 // The shared name size is 132; a name too long for the row beside the logo is set smaller rather than run off.

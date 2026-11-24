@@ -75,7 +75,7 @@ const dataUrl = (buf, type) => `data:${type};base64,${buf.toString("base64")}`;
 // The house typeface is licensed, so it is read from a local folder and never committed.
 const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
 const houseFont = (file) => dataUrl(readFileSync(join(fonts, file)), "font/ttf");
-const breeSerif = houseFont("bree-serif-light.ttf");
+const breeSerif = houseFont("bree-serif-regular.ttf");
 const bree = houseFont("bree-light.ttf");
 // The drawn browser bar keeps the sans of a real one.
 const lato = dataUrl(await cached("Lato-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf"), "font/ttf");
@@ -248,7 +248,7 @@ async function captures(browser, files) {
 }
 
 const STYLE = `
-@font-face { font-family: "Bree Serif"; font-weight: 300; src: url(${breeSerif}); }
+@font-face { font-family: "Bree Serif"; font-weight: 400; src: url(${breeSerif}); }
 @font-face { font-family: Bree; font-weight: 300; src: url(${bree}); }
 @font-face { font-family: Lato; src: url(${lato}); }
 * { box-sizing: border-box; margin: 0; }
@@ -259,7 +259,7 @@ body { position: relative; width: 1920px; height: 1000px; overflow: hidden; font
 .vignette { position: absolute; inset: 0; box-shadow: inset 0 0 200px rgba(0,0,0,.6); }
 .copy { position: absolute; left: 84px; top: 0; bottom: 0; width: 520px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .copy img { width: 96px; }
-h1 { font: 300 64px/1.12 "Bree Serif", serif; color: #f4f4f4; text-wrap: balance; }
+h1 { font: 400 64px/1.12 "Bree Serif", serif; color: #f4f4f4; text-wrap: balance; }
 h1 em { font-style: normal; color: #FCC419; }
 .sub { font: 300 28px/1.35 Bree, sans-serif; color: #9d9481; }
 .stage { position: absolute; left: 700px; width: ${WIN_W}px; perspective: 2400px; }
@@ -300,7 +300,7 @@ try {
   for (const shot of SHOTS) {
     const big = await browser.newPage({ viewport: { width: 1920, height: 1000 }, deviceScaleFactor: 2 });
     await big.setContent(frame(shot, shots[shot.capture]));
-    await big.evaluate(() => Promise.all(['300 1em "Bree Serif"', "300 1em Bree"].map((f) => document.fonts.load(f))));
+    await big.evaluate(() => Promise.all(['400 1em "Bree Serif"', "300 1em Bree"].map((f) => document.fonts.load(f))));
     await big.evaluate(() => document.fonts.ready);
     await big.evaluate(() => Promise.all([...document.images].map((img) => img.decode())));
     const png = await big.screenshot();
