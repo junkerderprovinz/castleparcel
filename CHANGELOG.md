@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.1] - 2026-11-25
+
+### Changed
+
+- **The Sign-in tab takes GlimStone 4.9.2.** Tokens, passkeys, sessions and sign-in services stand in the same rows as connections elsewhere: the service's logo or the kind's glyph on a tile, the name over a quiet line, and the buttons at the end. A long name wraps instead of being cut off.
+- **The password question sits in the password card,** as a switch under the password, and a sign-in service's switch sits at the end of its name's line with no On badge repeating it.
+- **Empty cards look like an empty list.** Without a password, the password card says "No password yet" over Set a password, and two-factor that is off says "Not set up yet" over Set up, the way the passkeys card does without a passkey.
+- **The empty password and two-factor cards in every language CastleParcel speaks.**
+
 ## [2.2.0] - 2026-11-24
 
 ### Added
