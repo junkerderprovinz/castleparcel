@@ -6,7 +6,7 @@ toolchain go1.27.4
 
 require (
 	github.com/go-chi/chi/v5 v5.5.0
-	github.com/junkerderprovinz/parleyport v1.3.4
+	github.com/junkerderprovinz/parleyport v1.3.7
 	github.com/tus/tusd/v2 v2.10.2
 	golang.org/x/exp v0.0.0-20261121134650-e1094eeca1b5
 	modernc.org/sqlite v1.63.0
