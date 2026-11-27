@@ -25,7 +25,7 @@ import (
 // newHouse is CastleParcel's fortress with the status it reports, closed
 // until Start.
 func newHouse(cfg config.Config, db *sql.DB, auth *signin.Auth, log *slog.Logger) (*fortress.Service, error) {
-	seal, err := account.Seal(cfg)
+	seal, err := account.Seal(cfg, db)
 	if err != nil {
 		return nil, err
 	}

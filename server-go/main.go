@@ -113,7 +113,7 @@ func main() {
 		log.Fatalf("build tus handler: %v", err)
 	}
 
-	key, err := account.Key(cfg)
+	key, err := account.Key(cfg, db)
 	if err != nil {
 		log.Fatalf("read the key: %v", err)
 	}

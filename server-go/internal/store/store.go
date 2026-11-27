@@ -35,6 +35,25 @@ var migrations = []func(*sql.DB) error{
 	applyFortressSchema,
 }
 
+// sealedTables keep rows sealed with CastleParcel's key: the sign-in, and the
+// fortress membership with the kit's state.
+var sealedTables = []string{SignInTable, "fortress"}
+
+// Sealed names a table that keeps something sealed with CastleParcel's key,
+// or returns "" while none does.
+func Sealed(db *sql.DB) (string, error) {
+	for _, table := range sealedTables {
+		var found bool
+		if err := db.QueryRow(`SELECT EXISTS (SELECT 1 FROM ` + table + `)`).Scan(&found); err != nil {
+			return "", fmt.Errorf("look into %s: %w", table, err)
+		}
+		if found {
+			return table, nil
+		}
+	}
+	return "", nil
+}
+
 // SchemaVersion is the version of the databases this server writes.
 var SchemaVersion = len(migrations)
 

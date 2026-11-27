@@ -33,7 +33,7 @@ func TestChannelsAreKeptSealed(t *testing.T) {
 	if err := h.Save(Config{Channels: []notify.Channel{webhook("hook", "https://hooks.example/in", "secret-token")}, Lang: "de"}); err != nil {
 		t.Fatalf("Save: %v", err)
 	}
-	raw, err := os.ReadFile(filepath.Join(dir, fileName))
+	raw, err := os.ReadFile(filepath.Join(dir, FileName))
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -10,6 +10,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"io/fs"
 	"log/slog"
 	"mime"
 	"net"
@@ -17,14 +18,17 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"runtime"
 	"slices"
 	"strings"
 
+	"github.com/gofrs/flock"
 	"github.com/junkerderprovinz/parleyport/kit/signin"
 	"github.com/junkerderprovinz/parleyport/kit/signin/sqlstore"
 	"github.com/junkerderprovinz/parleyport/kit/status"
 
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/notices"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/store"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/upload"
 )
@@ -37,7 +41,7 @@ const keyFile = "app.key"
 // CASTLEPARCEL_APP_KEY or from the key file in CONFIG_DIR, which the first
 // start writes. onReset, unless nil, hears of a reset through the log.
 func Open(cfg config.Config, db *sql.DB, log *slog.Logger, onReset func()) (*signin.Auth, error) {
-	key, err := loadKey(cfg)
+	key, err := loadKey(cfg, db)
 	if err != nil {
 		return nil, err
 	}
@@ -242,21 +246,25 @@ func isJSON(r *http.Request) bool {
 
 // Key returns the key the sign-in is sealed with, for the other secrets
 // CastleParcel keeps.
-func Key(cfg config.Config) ([]byte, error) { return loadKey(cfg) }
+func Key(cfg config.Config, db *sql.DB) ([]byte, error) { return loadKey(cfg, db) }
 
 // Seal is CastleParcel's own key as a sealer, for what it keeps besides the
 // sign-in.
-func Seal(cfg config.Config) (signin.Sealer, error) {
-	key, err := Key(cfg)
+func Seal(cfg config.Config, db *sql.DB) (signin.Sealer, error) {
+	key, err := Key(cfg, db)
 	if err != nil {
 		return nil, err
 	}
 	return signin.NewSealer(key)
 }
 
+// errUnfinished is a key file that is empty or holds the start of a key,
+// which is what a first start that died while writing it left behind.
+var errUnfinished = errors.New("the key file was never finished")
+
 // loadKey returns the key from CASTLEPARCEL_APP_KEY, or from the key file,
 // drawing and writing one on the first start.
-func loadKey(cfg config.Config) ([]byte, error) {
+func loadKey(cfg config.Config, db *sql.DB) ([]byte, error) {
 	if cfg.AppKey != "" {
 		key, err := parseKey(cfg.AppKey)
 		if err != nil {
@@ -265,38 +273,111 @@ func loadKey(cfg config.Config) ([]byte, error) {
 		return key, nil
 	}
 	path := filepath.Join(cfg.ConfigDir, keyFile)
-	body, err := os.ReadFile(path)
-	if err == nil {
-		key, err := parseKey(strings.TrimSpace(string(body)))
+	key, err := readKey(path)
+	if !needsKey(err) {
+		return key, err
+	}
+	lock := flock.New(path + ".lock")
+	if err := lock.Lock(); err != nil {
+		return nil, fmt.Errorf("lock %s: %w", lock.Path(), err)
+	}
+	defer lock.Unlock()
+
+	// Another start may have written the key while this one waited.
+	key, err = readKey(path)
+	if !needsKey(err) {
+		return key, err
+	}
+	if errors.Is(err, errUnfinished) {
+		used, err := keyInUse(cfg, db)
 		if err != nil {
-			return nil, fmt.Errorf("%s: %w", path, err)
+			return nil, err
 		}
-		return key, nil
+		if used != "" {
+			return nil, fmt.Errorf("%s holds no complete key, but %s was sealed with the one it should hold: put the key back or set CASTLEPARCEL_APP_KEY to it", path, used)
+		}
 	}
-	if !errors.Is(err, os.ErrNotExist) {
-		return nil, fmt.Errorf("read %s: %w", path, err)
-	}
-	key := make([]byte, 32)
+	key = make([]byte, 32)
 	if _, err := rand.Read(key); err != nil {
 		return nil, err
 	}
-	// O_EXCL, so two processes starting at once cannot each write their own.
-	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0o600)
-	if errors.Is(err, os.ErrExist) {
-		return loadKey(cfg)
-	}
-	if err != nil {
+	if err := writeKey(path, key); err != nil {
 		return nil, fmt.Errorf("write %s: %w", path, err)
 	}
-	_, werr := f.WriteString(hex.EncodeToString(key) + "\n")
-	if cerr := f.Close(); werr == nil {
-		werr = cerr
-	}
-	if werr != nil {
-		_ = os.Remove(path)
-		return nil, fmt.Errorf("write %s: %w", path, werr)
-	}
 	return key, nil
+}
+
+func readKey(path string) ([]byte, error) {
+	body, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("read %s: %w", path, err)
+	}
+	raw := strings.TrimSpace(string(body))
+	key, err := parseKey(raw)
+	if err == nil {
+		return key, nil
+	}
+	if len(raw) < 64 && strings.Trim(raw, "0123456789abcdef") == "" {
+		return nil, fmt.Errorf("%s: %w", path, errUnfinished)
+	}
+	return nil, fmt.Errorf("%s: %w", path, err)
+}
+
+func needsKey(err error) bool {
+	return errors.Is(err, fs.ErrNotExist) || errors.Is(err, errUnfinished)
+}
+
+// keyInUse names what is sealed with the key, if anything is. A key that
+// never made it into its file was never handed out, so nothing can be sealed
+// with it, but an empty file on its own does not prove that it was never
+// written: a power cut after an unsynced write leaves one too. A fresh key is
+// safe only while nothing it would fail to open exists.
+func keyInUse(cfg config.Config, db *sql.DB) (string, error) {
+	if _, err := os.Lstat(filepath.Join(cfg.ConfigDir, notices.FileName)); !errors.Is(err, fs.ErrNotExist) {
+		return notices.FileName, nil
+	}
+	return store.Sealed(db)
+}
+
+// writeKey syncs the key in a file of its own and renames it into place, so
+// no start ever reads part of a key and a power cut cannot empty the file.
+// The rename replaces nothing another start wrote, since every start that
+// writes holds the lock and has looked again first.
+func writeKey(path string, key []byte) error {
+	tmp := path + ".writing"
+	f, err := os.OpenFile(tmp, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o600)
+	if err != nil {
+		return err
+	}
+	_, err = f.WriteString(hex.EncodeToString(key) + "\n")
+	if err == nil {
+		err = f.Sync()
+	}
+	if cerr := f.Close(); err == nil {
+		err = cerr
+	}
+	if err == nil {
+		err = os.Rename(tmp, path)
+	}
+	if err != nil {
+		_ = os.Remove(tmp)
+		return err
+	}
+	syncDir(filepath.Dir(path))
+	return nil
+}
+
+// syncDir makes the rename itself survive a power cut. It is best effort:
+// Windows cannot sync a folder, some network filesystems refuse to, and the
+// key is already safe in its synced file either way.
+func syncDir(dir string) {
+	if runtime.GOOS == "windows" {
+		return
+	}
+	if d, err := os.Open(dir); err == nil {
+		_ = d.Sync()
+		_ = d.Close()
+	}
 }
 
 func parseKey(raw string) ([]byte, error) {

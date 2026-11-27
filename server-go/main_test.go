@@ -145,7 +145,7 @@ func newFullApp(t *testing.T, mutate func(*config.Config)) fullApp {
 		t.Fatalf("open the sign-in: %v", err)
 	}
 	t.Cleanup(func() { _ = auth.Close() })
-	key, err := account.Key(cfg)
+	key, err := account.Key(cfg, db)
 	if err != nil {
 		t.Fatalf("key: %v", err)
 	}

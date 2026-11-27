@@ -2,6 +2,7 @@ package account
 
 import (
 	"bytes"
+	"database/sql"
 	"encoding/hex"
 	"encoding/json"
 	"io"
@@ -12,11 +13,13 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/junkerderprovinz/parleyport/kit/signin"
 
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/config"
+	"github.com/junkerderprovinz/castleparcel/server-go/internal/notices"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/store"
 	"github.com/junkerderprovinz/castleparcel/server-go/internal/upload"
 )
@@ -149,6 +152,143 @@ func TestABrokenKeyStopsTheStart(t *testing.T) {
 	if auth, err := Open(cfg, db, nil, nil); err == nil {
 		_ = auth.Close()
 		t.Fatal("Open took a key that is no key")
+	}
+}
+
+// database is CastleParcel's database for cfg, as a start opens it.
+func database(t *testing.T, cfg config.Config) *sql.DB {
+	t.Helper()
+	db, err := store.Open(cfg.DBPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = db.Close() })
+	return db
+}
+
+func TestAKeyFileAStartLeftUnfinishedIsCompletedByTheNext(t *testing.T) {
+	for name, body := range map[string]string{"empty": "", "cut short": "3f9a0c71"} {
+		t.Run(name, func(t *testing.T) {
+			cfg := testConfig(t)
+			if err := os.WriteFile(filepath.Join(cfg.ConfigDir, keyFile), []byte(body), 0o600); err != nil {
+				t.Fatal(err)
+			}
+			db := database(t, cfg)
+			key, err := Key(cfg, db)
+			if err != nil {
+				t.Fatal(err)
+			}
+			open(t, cfg)
+			again, err := Key(cfg, db)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if len(key) != 32 || !bytes.Equal(key, again) {
+				t.Fatalf("the key changed between two starts: %x, %x", key, again)
+			}
+		})
+	}
+}
+
+func TestAnUnfinishedKeyFileStaysWhenSomethingIsSealedWithTheKey(t *testing.T) {
+	for name, seal := range map[string]func(t *testing.T, cfg config.Config){
+		"the sign-in": func(t *testing.T, cfg config.Config) {
+			signIn(t, app(open(t, cfg), cfg))
+		},
+		"the fortress": func(t *testing.T, cfg config.Config) {
+			if err := store.SaveFortressDoc(database(t, cfg), "membership", []byte("sealed")); err != nil {
+				t.Fatal(err)
+			}
+		},
+		"the notifications": func(t *testing.T, cfg config.Config) {
+			if err := os.WriteFile(filepath.Join(cfg.ConfigDir, notices.FileName), []byte("sealed"), 0o600); err != nil {
+				t.Fatal(err)
+			}
+		},
+	} {
+		t.Run(name, func(t *testing.T) {
+			cfg := testConfig(t)
+			seal(t, cfg)
+			path := filepath.Join(cfg.ConfigDir, keyFile)
+			if err := os.WriteFile(path, nil, 0o600); err != nil {
+				t.Fatal(err)
+			}
+			if _, err := Key(cfg, database(t, cfg)); err == nil {
+				t.Error("a fresh key was drawn although something was sealed with the lost one")
+			}
+			if body, err := os.ReadFile(path); err != nil || len(body) != 0 {
+				t.Errorf("the key file was touched: %q, %v", body, err)
+			}
+		})
+	}
+}
+
+func TestAKeyFileWithSomethingElseInItIsAnError(t *testing.T) {
+	cfg := testConfig(t)
+	path := filepath.Join(cfg.ConfigDir, keyFile)
+	if err := os.WriteFile(path, []byte("not a key at all\n"), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := Key(cfg, database(t, cfg)); err == nil {
+		t.Error("a file that holds no key was taken")
+	}
+	if body, _ := os.ReadFile(path); string(body) != "not a key at all\n" {
+		t.Errorf("the file was replaced: %q", body)
+	}
+}
+
+func TestStartsAtOnceAllGetTheKeyThatIsKept(t *testing.T) {
+	for range 50 {
+		cfg := testConfig(t)
+		db := database(t, cfg)
+		const starts = 8
+		keys := make([][]byte, starts)
+		errs := make([]error, starts)
+		gate := make(chan struct{})
+		var wg sync.WaitGroup
+		for i := range starts {
+			wg.Go(func() {
+				<-gate
+				keys[i], errs[i] = Key(cfg, db)
+			})
+		}
+		close(gate)
+		wg.Wait()
+		kept, err := os.ReadFile(filepath.Join(cfg.ConfigDir, keyFile))
+		if err != nil {
+			t.Fatal(err)
+		}
+		for i := range starts {
+			if errs[i] != nil {
+				t.Fatalf("start %d: %v", i, errs[i])
+			}
+			if hex.EncodeToString(keys[i]) != strings.TrimSpace(string(kept)) {
+				t.Fatalf("start %d got %x, the file keeps %s", i, keys[i], kept)
+			}
+		}
+	}
+}
+
+func TestTheKeyFileNeverShowsPartOfAKey(t *testing.T) {
+	for range 200 {
+		cfg := testConfig(t)
+		db := database(t, cfg)
+		path := filepath.Join(cfg.ConfigDir, keyFile)
+		seen := make(chan string, 1)
+		go func() {
+			for {
+				if body, err := os.ReadFile(path); err == nil {
+					seen <- string(body)
+					return
+				}
+			}
+		}()
+		if _, err := Key(cfg, db); err != nil {
+			t.Fatal(err)
+		}
+		if body := <-seen; len(strings.TrimSpace(body)) != 64 {
+			t.Fatalf("a start reading at the wrong moment found %q", body)
+		}
 	}
 }
 

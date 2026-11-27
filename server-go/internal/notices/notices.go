@@ -36,8 +36,11 @@ var severity = map[string]notify.Severity{
 	PasswordReset: notify.SeverityWarning,
 }
 
+// FileName is the file in the config folder that keeps the channels, sealed
+// with CastleParcel's key.
+const FileName = "notify.json"
+
 const (
-	fileName  = "notify.json"
 	sealLabel = "cp/notify/v1"
 	// sendFor bounds one event across every channel and its retries.
 	sendFor = 2 * time.Minute
@@ -73,7 +76,7 @@ func Open(dir string, key []byte, log *slog.Logger) (*Hub, error) {
 	if log == nil {
 		log = slog.Default()
 	}
-	h := &Hub{path: filepath.Join(dir, fileName), seal: seal, log: log}
+	h := &Hub{path: filepath.Join(dir, FileName), seal: seal, log: log}
 	raw, err := os.ReadFile(h.path)
 	if errors.Is(err, os.ErrNotExist) {
 		return h, h.use(Config{})

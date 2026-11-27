@@ -69,7 +69,7 @@ func openCastle(t *testing.T, dir, relayURL string) *castle {
 		t.Fatal(err)
 	}
 	t.Cleanup(func() { _ = auth.Close() })
-	seal, err := account.Seal(cfg)
+	seal, err := account.Seal(cfg, db)
 	if err != nil {
 		t.Fatal(err)
 	}
