@@ -12,6 +12,7 @@ BUTTONS = {
     "mos": "https://mos-official.net/apps.html?search=castleparcel",
     "zimaos": "https://github.com/junkerderprovinz/zimaos-apps#install",
     "umbrel": "https://github.com/junkerderprovinz/umbrel-apps#install",
+    "truenas-yaml": "https://github.com/junkerderprovinz/truenas-apps#castleparcel",
     "compose": "https://raw.githubusercontent.com/junkerderprovinz/castleparcel/main/compose.yaml",
     "proxmox": "#proxmox-ve",
     "synology": "#synology",
